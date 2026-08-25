@@ -10,28 +10,34 @@ export default function Experience() {
         subtitle="My professional journey and career progression"
       />
       <div className={styles.timeline}>
-        {jobs.map(([company, role, dates, location, duties, roles]) => (
-          <article className={styles.item} key={company}>
+        {jobs.map(([company, role, dates, location, duties, roles], index) => (
+          <article
+            className={`${styles.item} ${index % 2 === 0 ? styles.left : styles.right}`}
+            key={company}
+          >
+            <span className={styles.year}>{dates.match(/\d{4}/)?.[0]}</span>
             <div className={styles.dot} />
-            <div className={styles.content}>
+            <time className={styles.date}>{dates}</time>
+            <div className={styles.content} tabIndex="0">
               <h3>{company}</h3>
               <div className={styles.meta}>
                 <strong>{role}</strong>
-                <span>{dates}</span>
               </div>
-              <p className={styles.location}>{location}</p>
-              {roles && (
-                <div className={styles.roles}>
-                  {roles.map((item) => (
-                    <span key={item}>{item}</span>
+              <div className={styles.details}>
+                <p className={styles.location}>{location}</p>
+                {roles && (
+                  <div className={styles.roles}>
+                    {roles.map((item) => (
+                      <span key={item}>{item}</span>
+                    ))}
+                  </div>
+                )}
+                <ul>
+                  {duties.map((duty) => (
+                    <li key={duty}>{duty}</li>
                   ))}
-                </div>
-              )}
-              <ul>
-                {duties.map((duty) => (
-                  <li key={duty}>{duty}</li>
-                ))}
-              </ul>
+                </ul>
+              </div>
             </div>
           </article>
         ))}
