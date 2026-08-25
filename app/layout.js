@@ -1,8 +1,9 @@
 import "./globals.css";
-import "@fontsource/open-sans/400.css";
-import "@fontsource/open-sans/600.css";
-import "@fontsource/open-sans/700.css";
-import "@fontsource/open-sans/800.css";
+import "@fontsource/manrope/400.css";
+import "@fontsource/manrope/500.css";
+import "@fontsource/manrope/600.css";
+import "@fontsource/manrope/700.css";
+import "@fontsource/manrope/800.css";
 
 export const metadata = {
   title: "Jalish Mahmud | Full Stack Software Engineer",
