@@ -82,6 +82,16 @@
     padding-top: 1.5rem;
 }
 
+.contactInfo span {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.contactInfo svg {
+    color: var(--accent-green);
+}
+
 .contactInfo span::first-letter {
     color: var(--accent-green);
 }

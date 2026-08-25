@@ -1,0 +1,13 @@
+{
+  "logo": "Jalish Mahmud",
+  "logoMark": "JM",
+  "links": [
+    ["About", "#about"],
+    ["Skills", "#skills"],
+    ["Experience", "#experience"],
+    ["Projects", "#projects"],
+    ["Blog", "#blog"]
+  ],
+  "contactLabel": "Contact Me",
+  "contactEmail": "jalish93@gmail.com"
+}

@@ -1,13 +1,7 @@
-import ClientOnly from "@/components/ClientOnly/ClientOnly";
+import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import Typewriter from "./Typewriter";
 import styles from "./Hero.module.css";
-
-const stats = [
-  ["5+ Yrs", "Full Stack Experience", "green"],
-  ["4+", "Companies Worked With", "amber"],
-  ["100%", "Scalable Systems", "blue"],
-  ["Full Stack", "Capable Stack", "green"],
-];
+import data from "@/data/hero.json";
 
 export default function Hero() {
   return (
@@ -15,44 +9,40 @@ export default function Hero() {
       <div>
         <div className={styles.badge}>
           <span />
-          Available for Hire
+          {data.availability}
         </div>
         <h1>
-          <ClientOnly>
-            <Typewriter />
-          </ClientOnly>
+          <Typewriter />
         </h1>
         <p className={styles.description}>
-          Full Stack Software Engineer with 5+ years of experience specializing
-          in building scalable web apps, high-performance systems, RESTful API
-          integrations, and modern UI/UX solutions.
+          {data.description}
         </p>
         <div className={styles.buttons}>
-          <a href="mailto:jalish93@gmail.com" className="btn btnPrimary">
-            Get in Touch <span>→</span>
+          <a href={`mailto:${data.contactEmail}`} className="btn btnPrimary">
+            Get in Touch <FaArrowRight aria-hidden="true" />
           </a>
           <a
-            href="https://github.com/jalish93"
+            href={data.githubUrl}
             target="_blank"
             rel="noreferrer"
             className="btn btnOutline"
           >
-            ◉ GitHub
+            <FaGithub aria-hidden="true" /> GitHub
           </a>
         </div>
         <div className={styles.contactInfo}>
-          <span>⌕ (+88) 01847 791 304</span>
-          <span>✉ jalish93@gmail.com</span>
-          <span>⌖ Dhaka, Bangladesh</span>
+          <span><FaPhone aria-hidden="true" /> {data.phone}</span>
+          <span><FaEnvelope aria-hidden="true" /> {data.contactEmail}</span>
+          <span><FaMapMarkerAlt aria-hidden="true" /> {data.location}</span>
         </div>
       </div>
       <div className={styles.card}>
         <div className={styles.cardHeader}>
-          <strong>Developer Overview</strong>
-          <span>Summary of qualifications &amp; key metrics</span>
+          <strong>{data.overviewTitle}</strong>
+          <span>{data.overviewSubtitle}</span>
         </div>
         <div className={styles.stats}>
-          {stats.map(([value, label, color]) => (
+          {data.stats.map(([value, label, color]) => (
             <div className={`${styles.stat} ${styles[color]}`} key={label}>
               <strong>{value}</strong>
               <span>{label}</span>
@@ -60,12 +50,12 @@ export default function Hero() {
           ))}
         </div>
         <a
-          href="https://linkedin.com"
+          href={data.linkedinUrl}
           target="_blank"
           rel="noreferrer"
           className="btn btnOutline fullWidth"
         >
-          in Connect on LinkedIn
+          <FaLinkedinIn aria-hidden="true" /> Connect on LinkedIn
         </a>
       </div>
     </section>

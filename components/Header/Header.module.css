@@ -32,7 +32,8 @@
     display: grid;
     place-items: center;
     color: var(--accent-green);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    letter-spacing: .04em;
 }
 
 .links {
@@ -58,8 +59,39 @@
     gap: 1rem;
 }
 
+.menuButton,
+.mobileLinks {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .links {
         display: none;
+    }
+
+    .menuButton {
+        display: inline-grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border-highlight);
+        border-radius: 8px;
+        background: transparent;
+        color: var(--text-main);
+        font-size: 1.25rem;
+        cursor: pointer;
+    }
+
+    .mobileLinks {
+        display: grid;
+        gap: 1rem;
+        list-style: none;
+        padding: 0 0 1.25rem;
+    }
+
+    .mobileLinks a {
+        color: var(--text-muted);
+        font-size: .95rem;
+        font-weight: 500;
     }
 }
