@@ -1,0 +1,3 @@
+module.exports=[62925,a=>{"use strict";var b=a.i(7997);a.s(["default",0,function({children:a}){return(0,b.jsxs)("html",{lang:"en","data-theme":"dark",children:[(0,b.jsx)("head",{}),(0,b.jsx)("body",{children:a})]})},"metadata",0,{title:"Jalish Mahmud | Full Stack Software Engineer",description:"Portfolio of Jalish Mahmud, a full stack software engineer."}])},19325,function(a){a.n(a.i(62925))}];
+
+//# sourceMappingURL=app_layout_07uf2ib.js.map
