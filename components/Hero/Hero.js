@@ -2,6 +2,7 @@ import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaPho
 import Typewriter from "./Typewriter";
 import styles from "./Hero.module.css";
 import data from "@/data/hero.json";
+import { links } from "@/utils/links";
 
 export default function Hero() {
   return (
@@ -18,11 +19,11 @@ export default function Hero() {
           {data.description}
         </p>
         <div className={styles.buttons}>
-          <a href={`mailto:${data.contactEmail}`} className="btn btnPrimary">
+          <a href={`mailto:${data.email}`} className="btn btnPrimary">
             Get in Touch <FaArrowRight aria-hidden="true" />
           </a>
           <a
-            href={data.githubUrl}
+            href={links.github}
             target="_blank"
             rel="noreferrer"
             className="btn btnOutline"
@@ -32,7 +33,7 @@ export default function Hero() {
         </div>
         <div className={styles.contactInfo}>
           <span><FaPhone aria-hidden="true" /> {data.phone}</span>
-          <span><FaEnvelope aria-hidden="true" /> {data.contactEmail}</span>
+          <span><FaEnvelope aria-hidden="true" /> {data.email}</span>
           <span><FaMapMarkerAlt aria-hidden="true" /> {data.location}</span>
         </div>
       </div>
@@ -50,7 +51,7 @@ export default function Hero() {
           ))}
         </div>
         <a
-          href={data.linkedinUrl}
+          href={links.linkedin}
           target="_blank"
           rel="noreferrer"
           className="btn btnOutline fullWidth"

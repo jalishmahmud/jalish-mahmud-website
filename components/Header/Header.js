@@ -5,6 +5,7 @@ import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 import data from "@/data/header.json";
+import { links } from "@/utils/links";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -29,7 +30,7 @@ export default function Header() {
           </ul>
           <div className={styles.actions}>
             <ThemeToggle />
-            <a href={`mailto:${data.contactEmail}`} className="btn btnPrimary">
+            <a href={`mailto:${links.email}`} className="btn btnPrimary">
               {data.contactLabel}
             </a>
             <button
