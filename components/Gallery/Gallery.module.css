@@ -1,0 +1,92 @@
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .6rem;
+    margin: -1rem 0 2rem;
+}
+
+.tab,
+.activeTab {
+    padding: .55rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.tab:hover,
+.activeTab {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.grid {
+    columns: 3 260px;
+    column-gap: 1.25rem;
+}
+
+.item {
+    position: relative;
+    break-inside: avoid;
+    margin: 0 0 1.25rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-card);
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 180px;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.item:hover .image {
+    transform: scale(1.04);
+}
+
+.item figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: .8rem 1rem;
+}
+
+.item strong {
+    font-size: .9rem;
+}
+
+.item span {
+    color: var(--text-muted);
+    font-size: .78rem;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        columns: 2 160px;
+        column-gap: .75rem;
+    }
+
+    .item {
+        margin-bottom: .75rem;
+    }
+
+    .item figcaption {
+        padding: .65rem .75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        columns: 1;
+    }
+}
