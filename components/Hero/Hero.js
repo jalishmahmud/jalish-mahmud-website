@@ -13,6 +13,7 @@ export default function Hero() {
           {data.availability}
         </div>
         <h1>
+          <span className={styles.fixedTitle}>{data.typewriterPrefix}</span>
           <Typewriter />
         </h1>
         <p className={styles.description}>

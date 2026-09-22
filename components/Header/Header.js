@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 import data from "@/data/header.json";
@@ -10,19 +11,21 @@ import styles from "./Header.module.css";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const resolveHref = (href) => href.startsWith("#") && pathname !== "/" ? `/${href}` : href;
 
   return (
     <header className={styles.header}>
       <div className="container">
         <nav className={styles.nav}>
-          <Link href="#about" className={styles.logo}>
+          <Link href={resolveHref("#about")} className={styles.logo}>
             <span className={styles.logoIcon} aria-hidden="true">{data.logoMark}</span>
             <span>{data.logo}</span>
           </Link>
           <ul className={styles.links}>
             {data.links.map(([label, href]) => (
               <li key={href}>
-                <Link href={href} onClick={() => setMenuOpen(false)}>
+                <Link href={resolveHref(href)} onClick={() => setMenuOpen(false)}>
                   {label}
                 </Link>
               </li>
@@ -48,7 +51,7 @@ export default function Header() {
           <ul className={styles.mobileLinks}>
             {data.links.map(([label, href]) => (
               <li key={href}>
-                <Link href={href} onClick={() => setMenuOpen(false)}>
+                <Link href={resolveHref(href)} onClick={() => setMenuOpen(false)}>
                   {label}
                 </Link>
               </li>
