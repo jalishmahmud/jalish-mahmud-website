@@ -1,0 +1,56 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+    min-height: 250px;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-highlight);
+}
+
+.card h3 {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    margin-bottom: .5rem;
+}
+
+.card h3 span {
+    color: var(--text-muted);
+    font-size: .9rem;
+}
+
+.card strong {
+    color: var(--accent-green);
+    font-size: .85rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: .95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.card a {
+    color: var(--accent-green);
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,20 @@
+[
+  [
+    "frontend",
+    "Frontend Development",
+    "green",
+    "React.js,Next.js,Redux Toolkit,Tailwind CSS,TypeScript,JavaScript (ES6+),GSAP,HTML5 / CSS3,Sass"
+  ],
+  [
+    "backend",
+    "Backend & API",
+    "amber",
+    "Node.js,Express.js,MongoDB,PostgreSQL,.NET,Python (FastAPI),REST API,OAuth,JWT"
+  ],
+  [
+    "tools",
+    "Tools & Workflow",
+    "blue",
+    "Git,Jira,Jest,Docker,WebSocket,Webpack,Babel,Figma,WordPress"
+  ]
+]

@@ -1,0 +1,246 @@
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .6rem;
+    margin: -1rem 0 2rem;
+}
+
+.tab,
+.activeTab {
+    padding: .55rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: .85rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.tab:hover,
+.activeTab {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.grid {
+    columns: 3 260px;
+    column-gap: 1.25rem;
+}
+
+.item {
+    position: relative;
+    break-inside: avoid;
+    margin: 0 0 1.25rem;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-card);
+}
+
+.imageButton {
+    display: block;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    background: transparent;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform .4s ease;
+}
+
+.item:hover .image {
+    transform: scale(1.04);
+}
+
+.item figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    padding: .8rem 1rem;
+}
+
+.item strong {
+    font-size: .9rem;
+}
+
+.item span {
+    color: var(--text-muted);
+    font-size: .78rem;
+}
+
+.moreWrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.moreButton {
+    padding: .7rem 2.2rem;
+    border: 1px solid var(--accent-green);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--accent-green);
+    cursor: pointer;
+    font: inherit;
+    font-size: .9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.moreButton:hover {
+    background: var(--accent-green);
+    color: var(--bg-card);
+}
+
+@media (max-width: 768px) {
+    .grid {
+        columns: 2 160px;
+        column-gap: .75rem;
+    }
+
+    .item {
+        margin-bottom: .75rem;
+    }
+
+    .item figcaption {
+        padding: .65rem .75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        columns: 1;
+    }
+}
+
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    background: rgba(3, 7, 18, .82);
+}
+
+.modal {
+    width: min(900px, 100%);
+    max-height: 92vh;
+    overflow: auto;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-highlight);
+    border-radius: 12px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
+}
+
+.modalHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.modalEyebrow {
+    margin-bottom: .25rem;
+    color: var(--accent-green);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.modal h2 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+}
+
+.closeButton,
+.modalNav {
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-highlight);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-main);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.modalImageArea {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.modalImage {
+    width: 100%;
+    max-height: 62vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modalCounter {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-size: .8rem;
+    text-align: center;
+}
+
+.modalTabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+
+.galleryTab,
+.galleryTabActive {
+    padding: .35rem .65rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    font-size: .72rem;
+    font-weight: 600;
+}
+
+.galleryTabActive {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.imageButton:focus-visible,
+.closeButton:focus-visible,
+.modalNav:focus-visible,
+.moreButton:focus-visible {
+    outline: 2px solid var(--accent-green);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        padding: 1rem;
+    }
+
+    .modalImageArea {
+        grid-template-columns: 32px minmax(0, 1fr) 32px;
+        gap: .5rem;
+    }
+}

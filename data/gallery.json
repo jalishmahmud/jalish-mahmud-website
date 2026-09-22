@@ -1,0 +1,73 @@
+[
+  {
+    "category": "Cox's Bazar",
+    "photos": [
+      {
+        "src": "https://picsum.photos/seed/coxbazar-1/900/600",
+        "alt": "Long sandy beach at Cox's Bazar"
+      },
+      {
+        "src": "https://picsum.photos/seed/coxbazar-portrait-1/600/900",
+        "alt": "Standing by the shoreline at Cox's Bazar"
+      },
+      {
+        "src": "https://picsum.photos/seed/coxbazar-2/900/600",
+        "alt": "Sunset over the sea at Cox's Bazar"
+      },
+      {
+        "src": "https://picsum.photos/seed/coxbazar-portrait-2/600/900",
+        "alt": "Cliffs and coastline at Cox's Bazar"
+      },
+      {
+        "src": "https://picsum.photos/seed/coxbazar-3/900/600",
+        "alt": "Waves reaching the shoreline at Cox's Bazar"
+      }
+    ]
+  },
+  {
+    "category": "Saint Martin",
+    "photos": [
+      {
+        "src": "https://picsum.photos/seed/saintmartin-1/900/600",
+        "alt": "Coral island view at Saint Martin"
+      },
+      {
+        "src": "https://picsum.photos/seed/saintmartin-portrait-1/600/900",
+        "alt": "Walking along the beach at Saint Martin"
+      },
+      {
+        "src": "https://picsum.photos/seed/saintmartin-2/900/600",
+        "alt": "Clear blue water around Saint Martin"
+      },
+      {
+        "src": "https://picsum.photos/seed/saintmartin-portrait-2/600/900",
+        "alt": "Palm trees on Saint Martin island"
+      }
+    ]
+  },
+  {
+    "category": "Sundarban",
+    "photos": [
+      {
+        "src": "https://picsum.photos/seed/sundarban-1/900/600",
+        "alt": "Mangrove forest in the Sundarban"
+      },
+      {
+        "src": "https://picsum.photos/seed/sundarban-portrait-1/600/900",
+        "alt": "Tall mangrove roots in the Sundarban"
+      },
+      {
+        "src": "https://picsum.photos/seed/sundarban-2/900/600",
+        "alt": "Boat ride through the Sundarban delta"
+      },
+      {
+        "src": "https://picsum.photos/seed/sundarban-portrait-2/600/900",
+        "alt": "Narrow creek in the Sundarban"
+      },
+      {
+        "src": "https://picsum.photos/seed/sundarban-3/900/600",
+        "alt": "River channels of the Sundarban"
+      }
+    ]
+  }
+]
