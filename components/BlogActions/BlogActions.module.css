@@ -1,0 +1,1 @@
+.actions { display: flex; justify-content: end; gap: .7rem; font-size: .8rem; }.actions a, .actions button { border: 0; background: none; color: var(--accent-green); cursor: pointer; font: inherit; }.actions button { color: #f87171; }
