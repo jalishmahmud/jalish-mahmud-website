@@ -1,0 +1,13 @@
+.layout { display: grid; grid-template-columns: 230px 1fr; min-height: 100vh; background: var(--bg-dark); }
+.layout aside { display: flex; flex-direction: column; padding: 2rem 1.25rem; border-right: 1px solid var(--border-color); background: var(--bg-card); }
+.logo { display: flex; align-items: center; gap: .7rem; margin: 0 .5rem 3rem; font-weight: 800; }
+.logo span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--accent-green); border-radius: 8px; color: var(--accent-green); font-size: .75rem; }
+.layout nav, .bottom { display: grid; gap: .5rem; }
+.layout nav a, .bottom a, .bottom button { display: flex; align-items: center; gap: .75rem; padding: .7rem .75rem; border: 0; border-radius: 7px; background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; text-align: left; }
+.layout nav a:hover, .bottom a:hover, .bottom button:hover { background: var(--accent-green-bg); color: var(--accent-green); }
+.bottom { margin-top: auto; }
+.layout main { max-width: 1300px; width: 100%; padding: 3rem clamp(1.25rem, 4vw, 4rem); margin: 0 auto; }
+.top { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; }
+.top span { color: var(--accent-green); font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.top h1 { margin-top: .35rem; font-size: clamp(2rem, 4vw, 3rem); }
+@media (max-width: 700px) { .layout { display: block; } .layout aside { position: static; padding: 1rem; } .logo { margin-bottom: 1rem; } .layout nav { grid-template-columns: repeat(3, 1fr); } .layout nav a, .bottom a, .bottom button { justify-content: center; font-size: .8rem; } .layout nav a svg, .bottom svg { display: none; } .bottom { grid-template-columns: 1fr 1fr; margin-top: .5rem; } .bottom form { display: contents; } }

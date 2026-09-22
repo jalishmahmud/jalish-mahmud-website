@@ -3,10 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import posts from "@/data/blog.json";
 import styles from "./Blog.module.css";
 
-export default function Blog() {
+export default function Blog({ posts = [] }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const categories = ["All", ...new Set(posts.map((post) => post.category))];
   const filteredPosts =
@@ -62,6 +61,7 @@ export default function Blog() {
           </article>
         ))}
       </div>
+      <div className={styles.viewAll}><Link href="/blog" className="btn btnOutline">View All Blogs →</Link></div>
     </section>
   );
 }

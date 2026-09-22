@@ -7,8 +7,12 @@ import Education from "@/components/Education/Education";
 import Blog from "@/components/Blog/Blog";
 import Gallery from "@/components/Gallery/Gallery";
 import Footer from "@/components/Footer/Footer";
+import { getPublishedBlogs } from "@/lib/blog";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export default async function Home() {
+  const posts = await getPublishedBlogs();
   return (
     <>
       <Header />
@@ -18,7 +22,7 @@ export default function Home() {
         <Experience />
         <Projects />
         <Education />
-        <Blog />
+        <Blog posts={posts.slice(0, 3)} />
         <Gallery />
       </main>
       <Footer />

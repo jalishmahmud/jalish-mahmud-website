@@ -1,0 +1,6 @@
+.page { display: grid; place-items: center; min-height: 100vh; padding: 1.5rem; background: radial-gradient(circle at 50% 0, var(--accent-green-bg), transparent 35%), var(--bg-dark); }
+.card { width: min(100%, 420px); padding: 2.5rem; border: 1px solid var(--border-color); border-radius: 14px; background: var(--bg-card); box-shadow: var(--card-shadow); }
+.mark { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 2rem; border: 1px solid var(--accent-green); border-radius: 10px; color: var(--accent-green); font-weight: 800; }
+.card>span { color: var(--accent-green); font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.card h1 { margin: .4rem 0; font-size: 2.2rem; }.card p { margin-bottom: 2rem; color: var(--text-muted); }
+.card form { display: grid; gap: 1.25rem; }.card label { display: grid; gap: .45rem; color: var(--text-muted); font-size: .85rem; font-weight: 600; }.card input { width: 100%; padding: .8rem; border: 1px solid var(--border-highlight); border-radius: 7px; background: transparent; color: var(--text-main); font: inherit; }.card input:focus { outline: 2px solid var(--accent-green); outline-offset: 1px; }.error { padding: .7rem; border-radius: 7px; background: rgba(239,68,68,.1); color: #f87171; font-size: .85rem; }

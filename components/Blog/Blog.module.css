@@ -1,6 +1,7 @@
 .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 1.5rem;
 }
 
@@ -35,6 +36,7 @@
 .card {
     display: flex;
     flex-direction: column;
+    flex: 0 1 calc((100% - 3rem) / 3);
     min-height: 260px;
     padding: 1.75rem;
     background: var(--bg-card);
@@ -117,4 +119,14 @@
 
 .link:hover {
     text-decoration: underline;
+}
+
+.viewAll { display: flex; justify-content: center; margin-top: 2rem; }
+
+@media (max-width: 900px) {
+    .card { flex-basis: calc((100% - 1.5rem) / 2); }
+}
+
+@media (max-width: 600px) {
+    .card { flex-basis: 100%; }
 }
