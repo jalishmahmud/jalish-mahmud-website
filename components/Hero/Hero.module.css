@@ -30,26 +30,48 @@
 }
 
 .hero h1 {
+    max-width: 720px;
     font-size: clamp(2.65rem, 4.5vw, 3.2rem);
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.12;
+    letter-spacing: -.045em;
     margin-bottom: 1.5rem;
     min-height: 160px;
 }
 
+.typewriterText {
+    color: var(--text-main);
+}
+
+.fixedTitle {
+    display: block;
+}
+
+.green,
+.amber {
+    display: inline;
+    -webkit-text-stroke: .2px currentColor;
+}
+
 .green {
     color: var(--accent-green);
+    text-shadow: 0 0 24px rgba(16, 185, 129, .16);
 }
 
 .amber {
     color: var(--accent-amber);
+    text-shadow: 0 0 24px rgba(245, 158, 11, .14);
 }
 
 .cursor {
     display: inline-block;
     width: 3px;
+    height: 1.05em;
     background: var(--accent-green);
-    margin-left: 4px;
+    margin-left: .16em;
+    vertical-align: -.12em;
+    border-radius: 99px;
+    box-shadow: 0 0 12px rgba(16, 185, 129, .65);
     animation: blink .8s infinite;
 }
 

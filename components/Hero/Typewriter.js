@@ -5,43 +5,39 @@ import data from "@/data/hero.json";
 import styles from "./Hero.module.css";
 
 export default function Typewriter() {
-  const [text, setText] = useState(data.typewriterParts.map(() => ""));
-  const [partIndex, setPartIndex] = useState(0);
+  const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  const phraseParts = data.typewriterPhrases[phraseIndex];
+  const phrase = phraseParts.map(([text]) => text).join("");
 
   useEffect(() => {
-    if (partIndex >= data.typewriterParts.length) return undefined;
-    const timer = setTimeout(
-      () => {
-        setText((current) =>
-          current.map((value, index) =>
-            index === partIndex
-              ? value + data.typewriterParts[partIndex][0][charIndex]
-              : value,
-          ),
-        );
-        if (charIndex + 1 >= data.typewriterParts[partIndex][0].length) {
-          setPartIndex((current) => current + 1);
-          setCharIndex(0);
-        } else {
-          setCharIndex((current) => current + 1);
-        }
-      },
-      charIndex === 0 ? 100 : 50,
-    );
+    const finished = charIndex === phrase.length;
+    const empty = charIndex === 0;
+    const delay = finished && !deleting ? 1800 : deleting ? 35 : empty ? 100 : 55;
+    const timer = setTimeout(() => {
+      if (finished && !deleting) {
+        setDeleting(true);
+      } else if (deleting && empty) {
+        setDeleting(false);
+        setPhraseIndex((current) => (current + 1) % data.typewriterPhrases.length);
+      } else if (deleting) {
+        setCharIndex((current) => current - 1);
+      } else {
+        setCharIndex((current) => current + 1);
+      }
+    }, delay);
     return () => clearTimeout(timer);
-  }, [partIndex, charIndex]);
+  }, [charIndex, deleting, phrase, phraseIndex]);
 
   return (
     <>
-      {text.map((value, index) => (
-        <span className={styles[data.typewriterParts[index][1]]} key={index}>
-          {value}
-        </span>
-      ))}
-      <span className={styles.cursor} aria-hidden="true">
-        &nbsp;
-      </span>
+      {phraseParts.map(([part, color], index) => {
+        const start = phraseParts.slice(0, index).reduce((total, [value]) => total + value.length, 0);
+        const visiblePart = part.slice(0, Math.max(0, Math.min(part.length, charIndex - start)));
+        return <span className={color ? styles[color] : styles.typewriterText} key={part}>{visiblePart}</span>;
+      })}
+      <span className={styles.cursor} aria-hidden="true">&nbsp;</span>
     </>
   );
 }
