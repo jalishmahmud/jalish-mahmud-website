@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "building-scalable-nextjs-applications",
+    "title": "Building Scalable Next.js Applications",
+    "excerpt": "Practical patterns for structuring a Next.js application that stays fast, maintainable, and ready to grow.",
+    "date": "2026-08-12",
+    "readTime": "6 min read",
+    "category": "Next.js",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85",
+    "content": [
+      "A scalable application starts with clear boundaries. In Next.js, the App Router makes it natural to separate server-rendered content, interactive client components, and reusable UI sections.",
+      "Keep data close to the route that owns it, move shared design tokens into global CSS, and use CSS Modules for component-specific styles. This keeps changes local and makes the interface easier to evolve.",
+      "Performance should be part of the architecture from day one. Prefer server components where possible, keep client boundaries small, and load interactive behavior only where the user needs it."
+    ]
+  },
+  {
+    "slug": "clean-api-integration-patterns",
+    "title": "Clean API Integration Patterns",
+    "excerpt": "How thoughtful request boundaries and predictable error handling make full stack features easier to ship.",
+    "date": "2026-07-28",
+    "readTime": "5 min read",
+    "category": "Engineering",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=85",
+    "content": [
+      "API integrations become easier to maintain when the UI does not need to know every detail about the underlying service. A small data-access layer can normalize responses and keep components focused on presentation.",
+      "Every request should have a clear loading, success, and failure state. These states are part of the product experience, not an afterthought added once the happy path works.",
+      "Typed contracts, consistent naming, and useful logs help teams debug issues quickly while keeping future integrations predictable."
+    ]
+  },
+  {
+    "slug": "from-figma-to-pixel-perfect-ui",
+    "title": "From Figma to Pixel-Perfect UI",
+    "excerpt": "A practical workflow for turning design files into responsive interfaces without losing the original intent.",
+    "date": "2026-06-19",
+    "readTime": "4 min read",
+    "category": "UI/UX",
+    "image": "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
+    "content": [
+      "Pixel-perfect implementation starts by understanding the design system rather than copying isolated measurements. Identify typography, spacing, color, and component patterns before writing markup.",
+      "Responsive behavior should be designed as a set of intentional layout transitions. Build the smallest useful breakpoint set and let content determine where the layout needs to change.",
+      "Finally, compare the implementation at real viewport sizes and refine the details that affect hierarchy most: alignment, rhythm, contrast, and interactive states."
+    ]
+  }
+]

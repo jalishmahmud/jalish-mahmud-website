@@ -1,0 +1,39 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: var(--transition);
+}
+
+.icon {
+    width: 44px;
+    height: 44px;
+    background: var(--accent-blue-bg);
+    border: 1px solid rgba(59, 130, 246, .3);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.card h3 {
+    font-size: 1.05rem;
+    margin-bottom: .25rem;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: .85rem;
+}
