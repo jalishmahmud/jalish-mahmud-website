@@ -6,7 +6,7 @@ import "@fontsource/manrope/700.css";
 import "@fontsource/manrope/800.css";
 
 export const metadata = {
-  title: "Jalish Mahmud | Full Stack Software Developer",
+  title: "Jalish Mahmud | Full Stack Software Engineer",
   description: "Portfolio of Jalish Mahmud, a full stack software engineer.",
 };
 
