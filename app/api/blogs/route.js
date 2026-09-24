@@ -5,6 +5,7 @@ import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
 import { sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
+import { getCategorySlug } from "@/lib/blog-urls";
 
 async function uniqueSlug(db, slug, ignoreId) {
   let candidate = slugify(slug);
@@ -31,7 +32,7 @@ export async function POST(request) {
     const db = await getDatabase();
     const now = new Date();
     const content = sanitizeContent(input.content);
-    const doc = { ...input, slug: await uniqueSlug(db, input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), createdAt: now, updatedAt: now, publishedAt: input.status === "published" ? now : null };
+    const doc = { ...input, categorySlug: getCategorySlug(input.category), slug: await uniqueSlug(db, input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), createdAt: now, updatedAt: now, publishedAt: input.status === "published" ? now : null };
     const result = await db.collection("blogs").insertOne(doc);
     return NextResponse.json({ id: result.insertedId.toString() }, { status: 201 });
   } catch (error) {

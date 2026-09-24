@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
+import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
 import styles from "./Blog.module.css";
 
 export default function Blog({ posts = [] }) {
@@ -43,19 +44,19 @@ export default function Blog({ posts = [] }) {
         {filteredPosts.map((post) => (
           <article className={styles.card} key={post.slug}>
             <Link
-              href={`/blog/${post.slug}`}
+              href={getBlogUrl(post)}
               className={styles.imageLink}
               aria-label={`Read ${post.title}`}
             >
               <img src={post.image} alt="" className={styles.image} />
             </Link>
             <div className={styles.meta}>
-              <span>{post.category}</span>
+              <Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link>
               <time dateTime={post.date}>{post.date}</time>
             </div>
-            <h3>{post.title}</h3>
+            <h3><Link href={getBlogUrl(post)}>{post.title}</Link></h3>
             <p>{post.excerpt}</p>
-            <Link href={`/blog/${post.slug}`} className={styles.link}>
+            <Link href={getBlogUrl(post)} className={styles.link}>
               Read Article <span aria-hidden="true">→</span>
             </Link>
           </article>
