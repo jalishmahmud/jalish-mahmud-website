@@ -10,7 +10,7 @@ const posts = JSON.parse(await readFile(new URL("../data/blog.json", import.meta
 const slugify = (s) => s.toLowerCase().replace(/[^\w\s-]/g, " ").trim().replace(/[\s_-]+/g, "-");
 const postPath = (p) => `/blog/${slugify(p.category)}/${p.slug}`;
 const categories = [...new Set(posts.map((p) => `/blog/${slugify(p.category)}`))];
-const paths = ["/", "/blog", ...categories, ...posts.map(postPath)];
+const paths = ["/", "/blog", "/privacy-policy", "/terms-and-conditions", ...categories, ...posts.map(postPath)];
 const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;/g, "'");
 const attrs = (tag) => Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map((m) => [m[1], decode(m[2])]));
 const metas = (html) => Object.fromEntries([...html.matchAll(/<meta\s[^>]*>/g)].map(([tag]) => { const a = attrs(tag); return [a.name || a.property, a.content]; }));
