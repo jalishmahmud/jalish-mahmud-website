@@ -1,5 +1,6 @@
 "use client";
 
+import ContentImage from "@/components/ContentImage/ContentImage";
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -109,7 +110,7 @@ export default function Experience() {
                             }
                             aria-label={`View ${photo.alt}`}
                           >
-                            <img
+                            <ContentImage
                               src={photo.src}
                               alt={photo.alt}
                               className={styles.galleryImage}
@@ -197,7 +198,7 @@ export default function Experience() {
               >
                 <FaChevronLeft aria-hidden="true" />
               </button>
-              <img
+              <ContentImage
                 src={
                   selectedPhoto.events[selectedPhoto.eventIndex].photos[
                     selectedPhoto.photoIndex

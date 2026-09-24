@@ -1,5 +1,17 @@
-import { getPublishedBlogs, getPublishedCategories } from "@/lib/blog";
+import { getPublishedBlogs } from "@/lib/blog";
 import { siteUrl } from "@/lib/utils";
+import { isoDate } from "@/lib/seo";
 import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
+
 export const dynamic = "force-dynamic";
-export default async function sitemap() { const posts = await getPublishedBlogs(); const categories = await getPublishedCategories(); return [{ url: siteUrl("/"), lastModified: new Date() }, { url: siteUrl("/blog"), lastModified: new Date() }, ...categories.map((category) => ({ url: siteUrl(getCategoryUrl(category.slug)), lastModified: new Date() })), ...posts.map((post) => ({ url: siteUrl(getBlogUrl(post)), lastModified: post.updatedAt || post.date }))]; }
+
+export default async function sitemap() {
+  const posts = await getPublishedBlogs();
+  const categories = [...new Set(posts.map((post) => post.categorySlug))];
+  return [
+    { url: siteUrl("/") },
+    { url: siteUrl("/blog") },
+    ...categories.map((slug) => ({ url: siteUrl(getCategoryUrl(slug)) })),
+    ...posts.map((post) => ({ url: siteUrl(getBlogUrl(post)), lastModified: isoDate(post.updatedAt || post.publishedAt || post.date) })),
+  ];
+}

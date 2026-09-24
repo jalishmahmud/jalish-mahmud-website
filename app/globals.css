@@ -54,7 +54,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color .3s ease, color .3s ease;
-    font-family: 'Manrope', sans-serif;
+    font-family: var(--font-manrope), sans-serif;
 }
 
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import ContentImage from "@/components/ContentImage/ContentImage";
+import { useCallback, useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import galleryData from "@/data/gallery.json";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
@@ -49,10 +50,11 @@ export default function Gallery() {
   };
   const closePhoto = () => setSelectedIndex(null);
 
-  const showPrev = () =>
-    setSelectedIndex((index) => (index - 1 + modalPhotos.length) % modalPhotos.length);
-  const showNext = () =>
-    setSelectedIndex((index) => (index + 1) % modalPhotos.length);
+  const modalPhotoCount = modalPhotos.length;
+  const showPrev = useCallback(() =>
+    setSelectedIndex((index) => (index - 1 + modalPhotoCount) % modalPhotoCount), [modalPhotoCount]);
+  const showNext = useCallback(() =>
+    setSelectedIndex((index) => (index + 1) % modalPhotoCount), [modalPhotoCount]);
 
   useEffect(() => {
     if (selectedIndex === null) return undefined;
@@ -69,7 +71,7 @@ export default function Gallery() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
     };
-  }, [selectedIndex, modalPhotos.length]);
+  }, [selectedIndex, showNext, showPrev]);
 
   const selectedPhoto = selectedIndex !== null ? modalPhotos[selectedIndex] : null;
 
@@ -102,7 +104,7 @@ export default function Gallery() {
               onClick={() => openPhoto(photo)}
               aria-label={`View ${photo.alt}`}
             >
-              <img src={photo.src} alt={photo.alt} className={styles.image} />
+              <ContentImage src={photo.src} alt={photo.alt} className={styles.image} />
             </button>
             <figcaption>
               <strong>{photo.category}</strong>
@@ -176,7 +178,7 @@ export default function Gallery() {
               >
                 <FaChevronLeft aria-hidden="true" />
               </button>
-              <img
+              <ContentImage
                 src={selectedPhoto.src}
                 alt={selectedPhoto.alt}
                 className={styles.modalImage}

@@ -9,6 +9,11 @@ import Gallery from "@/components/Gallery/Gallery";
 import Footer from "@/components/Footer/Footer";
 import { getPublishedBlogs } from "@/lib/blog";
 
+import { buildPageMetadata, homeStructuredData, serializeJsonLd } from "@/lib/seo";
+import { siteConfig } from "@/lib/site-config";
+
+export const metadata = { ...buildPageMetadata({ title: siteConfig.title, description: siteConfig.description, path: "/" }), title: { absolute: siteConfig.title } };
+
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
@@ -17,12 +22,13 @@ export default async function Home() {
     <>
       <Header />
       <main>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(homeStructuredData()) }} />
         <Hero />
         <Skills />
         <Experience />
         <Projects />
         <Education />
-        <Blog posts={posts.slice(0, 3)} />
+        <Blog posts={posts.slice(0, 3).map(({ title, slug, category, categorySlug, excerpt, image, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, image, imageAlt, date }))} />
         <Gallery />
       </main>
       <Footer />
