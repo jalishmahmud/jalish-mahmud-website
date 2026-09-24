@@ -5,6 +5,7 @@ import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
 import { sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
+import { getCategorySlug } from "@/lib/blog-urls";
 
 export async function GET(_request, { params }) {
   try {
@@ -27,7 +28,7 @@ export async function PUT(request, { params }) {
     if (!existing) return NextResponse.json({ error: "Blog not found." }, { status: 404 });
     const content = sanitizeContent(input.content);
     const now = new Date();
-    const update = { ...input, slug: slugify(input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
+    const update = { ...input, categorySlug: getCategorySlug(input.category), slug: slugify(input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
     await db.collection("blogs").updateOne({ _id: new ObjectId(id) }, { $set: update });
     return NextResponse.json({ ok: true });
   } catch (error) { return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Please check the blog fields and try again." }, { status: error.message === "UNAUTHORIZED" ? 401 : 400 }); }
