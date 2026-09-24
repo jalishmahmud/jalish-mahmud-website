@@ -26,6 +26,10 @@
     font-weight: 600;
 }
 
+.meta a { color: var(--accent-green); }
+.breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; align-items: center; margin-bottom: 2rem; color: var(--text-muted); font-size: .8rem; }
+.breadcrumbs a { color: var(--accent-green); }
+
 .meta time {
     color: var(--text-muted);
     font-weight: 400;

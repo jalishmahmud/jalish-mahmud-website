@@ -88,6 +88,9 @@
     letter-spacing: .04em;
 }
 
+.meta a { color: var(--accent-green); }
+.meta a:hover, .card h3 a:hover { text-decoration: underline; }
+
 .meta time {
     color: var(--text-muted);
     font-weight: 400;
