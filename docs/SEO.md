@@ -27,6 +27,8 @@ NEXT_PUBLIC_SITE_URL=https://jalishmahmud.com
 GOOGLE_SITE_VERIFICATION=
 ```
 
+GitHub Actions validation supplies `NEXT_PUBLIC_SITE_URL` from a repository variable, falling back to `https://jalishmahmud.com`. `.env.example` documents settings but Next.js does not load it as an environment file. The separate EC2 build/runtime must have the same value in its existing `.env` or `.env.local`; deployment preserves those files.
+
 Use existing `MONGODB_URI`, `MONGODB_DB`, `ADMIN_SESSION_SECRET` for the blog/admin. Do not commit credentials. The public domain was supplied by the owner. HTTP already returned a 301 to HTTPS and HTTPS returned 200 during implementation; recheck after deployment. The existing www host served a duplicate 200 during the audit. `next.config.mjs` now redirects the alternate www/non-www host to the configured origin, preserving paths; both hosts must reach this app. Prefer an equivalent redirect at nginx as well.
 
 `lib/site-config.js` reuses the name from `data/header.json` and professional links from `utils/links.js`. `lib/utils.js:siteUrl()` requires a public HTTPS origin in production, rejecting missing values, IP/internal hosts, paths, ports and credentials. Development may use localhost. `metadataBase` lives in `app/layout.js`. Root title template is `%s | Jalish Mahmud`; homepage uses an absolute title so the name appears only once. Public pages opt into complete metadata with `buildPageMetadata`; the root does not give admin or 404 pages the homepage canonical.
