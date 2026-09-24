@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ContentImage from "@/components/ContentImage/ContentImage";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
@@ -48,7 +49,7 @@ export default function Blog({ posts = [] }) {
               className={styles.imageLink}
               aria-label={`Read ${post.title}`}
             >
-              <img src={post.image} alt="" className={styles.image} />
+              <ContentImage src={post.image} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} />
             </Link>
             <div className={styles.meta}>
               <Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link>
@@ -56,7 +57,7 @@ export default function Blog({ posts = [] }) {
             </div>
             <h3><Link href={getBlogUrl(post)}>{post.title}</Link></h3>
             <p>{post.excerpt}</p>
-            <Link href={getBlogUrl(post)} className={styles.link}>
+            <Link href={getBlogUrl(post)} className={styles.link} aria-label={`Read ${post.title}`}>
               Read Article <span aria-hidden="true">→</span>
             </Link>
           </article>

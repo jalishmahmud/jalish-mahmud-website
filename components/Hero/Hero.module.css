@@ -218,3 +218,6 @@
         font-size: 2rem;
     }
 }
+
+.hero > div { min-width: 0; }
+.buttons { flex-wrap: wrap; }
