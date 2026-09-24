@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 import data from "@/data/header.json";
-import { links } from "@/utils/links";
+import hero from "@/data/hero.json";
 import styles from "./Header.module.css";
 
 export default function Header() {
@@ -33,7 +33,7 @@ export default function Header() {
           </ul>
           <div className={styles.actions}>
             <ThemeToggle />
-            <a href={`mailto:${links.email}`} className="btn btnPrimary">
+            <a href={`mailto:${hero.email}`} className="btn btnPrimary">
               {data.contactLabel}
             </a>
             <button
@@ -56,6 +56,7 @@ export default function Header() {
                 </Link>
               </li>
             ))}
+            <li><a href={`mailto:${hero.email}`}>{data.contactLabel}</a></li>
           </ul>
         )}
       </div>

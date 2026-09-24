@@ -18,9 +18,9 @@ export default function Projects() {
             </h3>
             <strong>ShellBeeHaken Ltd.</strong>
             <p>{description}</p>
-            <a href={href} target="_blank" rel="noreferrer">
-              Visit Website <span>›</span>
-            </a>
+            {href ? <a href={href} target="_blank" rel="noreferrer">
+              Visit {name} <span>›</span>
+            </a> : <span>Website currently unavailable</span>}
           </article>
         ))}
       </div>
