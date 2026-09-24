@@ -18,7 +18,14 @@ export default function Header() {
     <header className={styles.header}>
       <div className="container">
         <nav className={styles.nav}>
-          <Link href={resolveHref("#about")} className={styles.logo}>
+          <Link
+            href="/"
+            className={styles.logo}
+            onNavigate={() => {
+              setMenuOpen(false);
+              if (pathname === "/") window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+            }}
+          >
             <span className={styles.logoIcon} aria-hidden="true">{data.logoMark}</span>
             <span>{data.logo}</span>
           </Link>

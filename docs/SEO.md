@@ -40,6 +40,8 @@ The shared default social image remains `/api/og/default` (1200×630), using the
 | Route | Metadata | Indexing | Structured data | Sitemap |
 | --- | --- | --- | --- | --- |
 | `/` | Static, unique title/description, canonical, OG/X | Index | Person, ProfilePage, WebSite | Yes |
+| `/privacy-policy` | Static title/description, canonical, OG/X | Index | None required | Yes |
+| `/terms-and-conditions` | Static title/description, canonical, OG/X | Index | None required | Yes |
 | `/blog` | Static, unique title/description, canonical, OG/X | Index | None required | Yes |
 | `/blog/[categorySlug]` | Dynamic category name and description, canonical, OG/X | Index when published posts exist | BreadcrumbList | Nonempty categories |
 | `/blog/[categorySlug]/[blogSlug]` | Dynamic article fields and fallbacks, canonical, article OG/X | Published only | BlogPosting, BreadcrumbList | Published only |
@@ -93,7 +95,7 @@ Validate using [Google Rich Results Test](https://search.google.com/test/rich-re
 
 ## 9. Sitemap
 
-`app/sitemap.js` is dynamically generated from one published-post read. Includes `/`, `/blog`, nonempty categories and canonical published articles. Article `lastModified` uses updatedAt → publishedAt → original fallback date. Static/category dates are omitted because no reliable revision date exists. No fake priorities or change frequencies. No API, admin, preview, draft, redirect, query or fragment URLs. New published content is eligible automatically; database errors are not silently converted into an incomplete sitemap.
+`app/sitemap.js` is dynamically generated from one published-post read. Includes `/`, `/blog`, `/privacy-policy`, `/terms-and-conditions`, nonempty categories and canonical published articles. Article `lastModified` uses updatedAt → publishedAt → original fallback date. Static/category dates are omitted because no reliable revision date exists. No fake priorities or change frequencies. No API, admin, preview, draft, redirect, query or fragment URLs. New published content is eligible automatically; database errors are not silently converted into an incomplete sitemap.
 
 ## 10. Robots and security
 
@@ -197,3 +199,13 @@ Monthly and after launches: review Search Console, broken links, mobile layout, 
 - [Google profile page structured data](https://developers.google.com/search/docs/appearance/structured-data/profile-page)
 - [Google article structured data](https://developers.google.com/search/docs/appearance/structured-data/article)
 - [Google canonical URL guidance](https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls)
+
+## Privacy and website terms
+
+`/privacy-policy` and `/terms-and-conditions` are server-rendered pages with shared styling in `app/(legal)`, global footer links, unique metadata and sitemap entries. The SEO smoke check now covers ten fallback-data pages. These pages explain site practices and content use; they are not prerequisites for Search Console submission or a guaranteed ranking improvement.
+
+The privacy text reflects the reviewed code: email contact, no public accounts/comments/payments/newsletter, no built-in analytics or ads, an in-memory theme choice, a seven-day administrator session cookie, external images and click-triggered sharing links. Hosting logs, email retention, infrastructure-injected services, provider locations and applicable legal requirements cannot be verified from this repository. Before deployment, the owner should check that the notice matches those practices and obtain legal review where necessary. In particular, establish actual retention periods/criteria, provider details and any jurisdiction-specific lawful-basis or rights disclosures rather than treating this text as a compliance certification. Do not claim that the site collects no data.
+
+Review the privacy notice before adding analytics, ads, embeds, forms, newsletters, comments, payments or visitor accounts. The terms do not invent a software licence, arbitration requirement or governing jurisdiction. No cookie-consent banner has been added solely for SEO.
+
+Sources: [Google Search Essentials](https://developers.google.com/search/docs/essentials), [privacy information checklist](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/checklists/) (UK guidance used as a reference, not a determination that UK law applies).
