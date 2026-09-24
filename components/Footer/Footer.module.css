@@ -1,7 +1,35 @@
 .footer {
     border-top: 1px solid var(--border-color);
     padding: 40px 0;
-    text-align: center;
     color: var(--text-muted);
     font-size: .9rem;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem 2rem;
+}
+
+.footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: baseline;
+    font-size: .8rem;
+    gap: .5rem 1.5rem;
+}
+
+.footer nav a {
+    padding: 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer nav a:hover { color: var(--accent-green); }
+
+@media (max-width: 768px) {
+    .content { flex-direction: column; align-items: flex-start; }
+    .footer nav { justify-content: flex-start; }
 }
