@@ -9,10 +9,15 @@ const valid = { source: "full", inquiryType: "business", name: "Test Visitor", e
 const origin = "https://portfolio.example";
 const request = (body, headers = {}) => new Request(origin + "/api/contact", { method: "POST", headers: { origin, "content-type": "application/json", ...headers }, body: typeof body === "string" ? body : JSON.stringify(body) });
 
-test("all inquiry types; full Other requires subject; inactive fields are stripped", () => {
+test("all inquiry types; both forms require Other subject; inactive fields are stripped", () => {
   for (const inquiryType of ["business", "hiring", "collaboration", "personal", "other"]) assert(contactSchema.safeParse({ ...valid, inquiryType, subject: "Question" }).success);
   assert(!contactSchema.safeParse({ ...valid, inquiryType: "other" }).success);
-  assert(contactSchema.safeParse({ ...valid, source: "quick", inquiryType: "other" }).success);
+  assert(!contactSchema.safeParse({ ...valid, source: "quick", inquiryType: "other" }).success);
+  const quick = contactSchema.parse({ ...valid, source: "quick", company: "Example Company", projectType: "React development", budget: "Under USD 1,000", timeline: "Next month" });
+  assert.equal(quick.company, "Example Company");
+  assert.equal(quick.timeline, "Next month");
+  const email = buildContactEmail(quick, { fromName: "Portfolio", fromEmail: "sender@example.com", toEmail: "owner@example.com" });
+  for (const value of [quick.company, quick.projectType, quick.budget, quick.timeline]) { assert(email.text.includes(value)); assert(email.html.includes(value)); }
   assert(!("company" in contactSchema.parse({ ...valid, inquiryType: "personal", company: "Old company" })));
 });
 test("validation rejects invalid values, header injection and honeypot", () => {
