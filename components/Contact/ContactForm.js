@@ -73,7 +73,7 @@ export default function ContactForm({ quick = false }) {
     <div className={quick ? styles.singleColumn : styles.fields}>
       {field({ name: "name", label: "Full name", required: true, autoComplete: "name", maxLength: 100 })}
       {field({ name: "email", label: form.inquiryType === "hiring" ? "Work email" : "Email", required: true, type: "email", autoComplete: "email", maxLength: 254 })}
-      {!quick && inquiryFields[form.inquiryType].map(field)}
+      {inquiryFields[form.inquiryType].map(field)}
     </div>
     <div className={styles.field}>
       <label htmlFor={`${id}-message`}>Message *</label>

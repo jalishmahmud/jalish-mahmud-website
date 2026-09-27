@@ -54,7 +54,7 @@ export default function FloatingContact() {
       {open && <div className={styles.dialogContent}>
         <div className={styles.dialogHeader}><div><h2 id={titleId}>Let’s talk</h2><p>Have something in mind?</p></div><button className={styles.close} type="button" onClick={() => setOpen(false)} aria-label="Close quick contact form"><FaTimes aria-hidden="true" /></button></div>
         <ContactForm quick />
-        <p className={styles.fullLink}>Need to share more details? <Link href="/contact" onClick={() => setOpen(false)}>Open full contact form →</Link></p>
+        <p className={styles.fullLink}>Prefer a dedicated page? <Link href="/contact" onClick={() => setOpen(false)}>Open contact page →</Link></p>
       </div>}
     </dialog>
   </>;

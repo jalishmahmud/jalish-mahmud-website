@@ -4,9 +4,9 @@
 
 Next.js 16.3.2 App Router, JavaScript, CSS Modules, existing Manrope/theme/buttons and React Icons. Existing Zod supplies shared validation. No new design/form/toast/animation library. `data/hero.json` remains the public email/phone/location/availability source; site-config and utils/links supply identity/socials.
 
-`/contact` combines contact cards and reusable `ContactForm`. Business: company/project type/optional USD budget/timeline. Hiring: company/position/employment type. Collaboration: organization/type. Personal: optional subject. Other: required subject on the full form. Common name/email/message survive type changes; irrelevant extras are stripped before sending. All other extra fields are optional.
+`/contact` combines contact cards and reusable `ContactForm`. Business: company/project type/optional USD budget/timeline. Hiring: company/position/employment type. Collaboration: organization/type. Personal: optional subject. Other: required subject in both forms. Common name/email/message survive type changes; irrelevant extras are stripped before sending. All other extra fields are optional.
 
-FloatingContact lives in the shared public Footer, never admin. It lazy-loads the same form in quick mode (type/name/email/message). Native dialog and explicit Tab wrapping provide focus containment and Escape; the implementation restores focus, locks background scrolling and offers an accessible close button. Mobile uses a scrollable bottom sheet, dynamic viewport height and safe-area padding. A link opens `/contact`; unsent form values are not transferred or persisted. Footer padding protects footer links from the floating button.
+FloatingContact lives in the shared public Footer, never admin. It lazy-loads the same complete form, including every inquiry-specific field and the same required-field rules as /contact. The floating layout uses one column and a shorter message textarea within the scrollable panel. Native dialog and explicit Tab wrapping provide focus containment and Escape; the implementation restores focus, locks background scrolling and offers an accessible close button. Mobile uses a scrollable bottom sheet, dynamic viewport height and safe-area padding. A link opens `/contact`; unsent form values are not transferred or persisted. Footer padding protects footer links from the floating button.
 
 ## Server and email
 
@@ -77,4 +77,4 @@ Contact has shared indexable metadata, canonical/OG/X and default OG image, site
 
 ## Implementation verification (2026-09-27)
 
-Six contact tests passed without real mail delivery. Chrome verified all inquiry types, validation, common-field preservation, mocked send success/failure, loading/reset, quick Other, keyboard containment/Escape/focus restoration, admin exclusion, and widths 320/375/768/1024/1440. Lint and production build passed. Real SMTP delivery and a physical mobile keyboard remain deployment checks.
+Six contact tests passed without real mail delivery. Chrome verified all inquiry types, validation, common-field preservation, mocked send success/failure, loading/reset, quick Other subject validation, keyboard containment/Escape/focus restoration, admin exclusion, and widths 320/375/768/1024/1440. Lint and production build passed. Real SMTP delivery and a physical mobile keyboard remain deployment checks.
