@@ -12,15 +12,15 @@ export const metadata = buildPageMetadata({
 export default function PrivacyPolicy() {
   return <>
     <h1>Privacy Policy</h1>
-    <p>Last updated: <time dateTime="2026-09-24">September 24, 2026</time></p>
+    <p>Last updated: <time dateTime="2026-09-27">September 27, 2026</time></p>
     <p>This notice describes information handled when you visit the personal portfolio and blog operated by {siteConfig.fullName}, based in {profile.location}. For privacy questions, email <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
 
     <h2>Information you choose to share</h2>
-    <p>The contact links open your email application. If you send a message, your email address, name if provided, message and attachments are handled through email to respond to your enquiry and any resulting professional correspondence. Please avoid sending sensitive information that is not needed for your enquiry.</p>
+    <p>The contact page and quick contact form send your name, email address, inquiry type, message and any optional details you provide through the configured email service to my inbox. Messages include the submission time and whether you used the full or quick form. Contact messages are not saved in the website’s database. This information is used to respond to your enquiry and any resulting professional correspondence. Direct email links open your email application. Please avoid sending sensitive information that is not needed for your enquiry.</p>
     <p>Reading articles does not require an account. The site currently has no public registration, comment form, newsletter signup or payment feature.</p>
 
     <h2>Technical information and hosting</h2>
-    <p>Your browser sends technical information when requesting pages or images, such as an IP address, browser information and the requested URL. Hosting infrastructure may record this information with request times, response status and referrer information to deliver the site, diagnose errors and protect it from abuse.</p>
+    <p>Your browser sends technical information when requesting pages or images, such as an IP address, browser information and the requested URL. Spam checks validate submissions and use an empty honeypot field. Hosting-level request limits, where configured, use connection information to limit abuse. Hosting infrastructure may record this information with request times, response status and referrer information to deliver the site, diagnose errors and protect it from abuse.</p>
     <p>Hosting, email and any external content providers handle the information necessary to provide their services. Depending on the provider, processing may take place outside your country.</p>
 
     <h2>Cookies and browser storage</h2>

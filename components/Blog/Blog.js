@@ -8,12 +8,12 @@ import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
 import styles from "./Blog.module.css";
 
 export default function Blog({ posts = [] }) {
-  const [activeCategory, setActiveCategory] = useState("All");
-  const categories = ["All", ...new Set(posts.map((post) => post.category))];
+  const [activeCategory, setActiveCategory] = useState("");
+  const categories = [{ name: "All", slug: "" }, ...new Map(posts.map((post) => [post.categorySlug, { name: post.category, slug: post.categorySlug }])).values()];
   const filteredPosts =
-    activeCategory === "All"
+    activeCategory === ""
       ? posts
-      : posts.filter((post) => post.category === activeCategory);
+      : posts.filter((post) => post.categorySlug === activeCategory);
 
   return (
     <section className="container" id="blog">
@@ -23,21 +23,20 @@ export default function Blog({ posts = [] }) {
       />
       <div
         className={styles.tabs}
-        role="tablist"
+        role="group"
         aria-label="Filter blog posts"
       >
         {categories.map((category) => (
           <button
             className={
-              activeCategory === category ? styles.activeTab : styles.tab
+              activeCategory === category.slug ? styles.activeTab : styles.tab
             }
-            key={category}
+            key={category.slug}
             type="button"
-            role="tab"
-            aria-selected={activeCategory === category}
-            onClick={() => setActiveCategory(category)}
+            aria-pressed={activeCategory === category.slug}
+            onClick={() => setActiveCategory(category.slug)}
           >
-            {category}
+            {category.name}
           </button>
         ))}
       </div>
@@ -49,7 +48,7 @@ export default function Blog({ posts = [] }) {
               className={styles.imageLink}
               aria-label={`Read ${post.title}`}
             >
-              <ContentImage src={post.image} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} />
+              <ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} />
             </Link>
             <div className={styles.meta}>
               <Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link>
