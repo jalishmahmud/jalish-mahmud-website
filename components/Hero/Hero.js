@@ -1,4 +1,5 @@
 import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import Link from "next/link";
 import Typewriter from "./Typewriter";
 import { siteConfig } from "@/lib/site-config";
 import styles from "./Hero.module.css";
@@ -21,9 +22,9 @@ export default function Hero() {
           I’m {siteConfig.fullName}. {data.description} My frontend work focuses on React.js, Next.js, JavaScript and TypeScript.
         </p>
         <div className={styles.buttons}>
-          <a href={`mailto:${data.email}`} className="btn btnPrimary">
+          <Link href="/contact" className="btn btnPrimary">
             Get in Touch <FaArrowRight aria-hidden="true" />
-          </a>
+          </Link>
           <a
             href={links.github}
             target="_blank"
