@@ -41,7 +41,7 @@ export default function Blog({ posts = [] }) {
         ))}
       </div>
       <div className={styles.grid}>
-        {filteredPosts.map((post) => (
+        {filteredPosts.slice(0, 3).map((post) => (
           <article className={styles.card} key={post.slug}>
             <Link
               href={getBlogUrl(post)}
