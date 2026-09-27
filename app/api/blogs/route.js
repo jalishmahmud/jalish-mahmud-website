@@ -5,7 +5,8 @@ import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
 import { sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
-import { getCategorySlug } from "@/lib/blog-urls";
+import { saveCategory } from "@/lib/categories";
+import { mergeBlogInput } from "@/lib/blog-fields";
 
 async function uniqueSlug(db, slug, ignoreId) {
   let candidate = slugify(slug);
@@ -28,11 +29,12 @@ export async function GET() {
 export async function POST(request) {
   try {
     await requireAdmin();
-    const input = parseBlogInput(await request.json());
+    const input = parseBlogInput(mergeBlogInput({}, await request.json()));
     const db = await getDatabase();
+    const category = await saveCategory({ name: input.category, slug: input.categorySlug || slugify(input.category) });
     const now = new Date();
     const content = sanitizeContent(input.content);
-    const doc = { ...input, categorySlug: getCategorySlug(input.category), slug: await uniqueSlug(db, input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), createdAt: now, updatedAt: now, publishedAt: input.status === "published" ? now : null };
+    const doc = { ...input, category: category.name, categorySlug: category.slug, categoryId: category.id, slug: await uniqueSlug(db, input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), createdAt: now, updatedAt: now, publishedAt: input.status === "published" ? now : null };
     const result = await db.collection("blogs").insertOne(doc);
     return NextResponse.json({ id: result.insertedId.toString() }, { status: 201 });
   } catch (error) {

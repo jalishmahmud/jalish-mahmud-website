@@ -5,7 +5,8 @@ import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
 import { sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
-import { getCategorySlug } from "@/lib/blog-urls";
+import { saveCategory } from "@/lib/categories";
+import { mergeBlogInput } from "@/lib/blog-fields";
 
 export async function GET(_request, { params }) {
   try {
@@ -22,13 +23,16 @@ export async function PUT(request, { params }) {
     await requireAdmin();
     const { id } = await params;
     if (!ObjectId.isValid(id)) return NextResponse.json({ error: "Invalid blog." }, { status: 400 });
-    const input = parseBlogInput(await request.json());
+    const body = await request.json();
     const db = await getDatabase();
     const existing = await db.collection("blogs").findOne({ _id: new ObjectId(id) });
     if (!existing) return NextResponse.json({ error: "Blog not found." }, { status: 404 });
+    const input = parseBlogInput(mergeBlogInput(existing, body));
+    if (await db.collection("blogs").findOne({ slug: input.slug, _id: { $ne: new ObjectId(id) } })) return NextResponse.json({ error: "This article slug is already in use." }, { status: 409 });
+    const category = await saveCategory({ name: input.category, slug: input.categorySlug || slugify(input.category) });
     const content = sanitizeContent(input.content);
     const now = new Date();
-    const update = { ...input, categorySlug: getCategorySlug(input.category), slug: slugify(input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
+    const update = { ...input, category: category.name, categorySlug: category.slug, categoryId: category.id, slug: slugify(input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
     await db.collection("blogs").updateOne({ _id: new ObjectId(id) }, { $set: update });
     return NextResponse.json({ ok: true });
   } catch (error) { return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Please check the blog fields and try again." }, { status: error.message === "UNAUTHORIZED" ? 401 : 400 }); }

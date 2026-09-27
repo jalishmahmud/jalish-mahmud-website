@@ -42,6 +42,7 @@ The shared default social image remains `/api/og/default` (1200×630), using the
 | `/` | Static, unique title/description, canonical, OG/X | Index | Person, ProfilePage, WebSite | Yes |
 | `/privacy-policy` | Static title/description, canonical, OG/X | Index | None required | Yes |
 | `/terms-and-conditions` | Static title/description, canonical, OG/X | Index | None required | Yes |
+| `/contact` | Static title/description, canonical, OG/X | Index | None required | Yes |
 | `/blog` | Static, unique title/description, canonical, OG/X | Index | None required | Yes |
 | `/blog/[categorySlug]` | Dynamic category name and description, canonical, OG/X | Index when published posts exist | BreadcrumbList | Nonempty categories |
 | `/blog/[categorySlug]/[blogSlug]` | Dynamic article fields and fallbacks, canonical, article OG/X | Published only | BlogPosting, BreadcrumbList | Published only |
@@ -95,7 +96,7 @@ Validate using [Google Rich Results Test](https://search.google.com/test/rich-re
 
 ## 9. Sitemap
 
-`app/sitemap.js` is dynamically generated from one published-post read. Includes `/`, `/blog`, `/privacy-policy`, `/terms-and-conditions`, nonempty categories and canonical published articles. Article `lastModified` uses updatedAt → publishedAt → original fallback date. Static/category dates are omitted because no reliable revision date exists. No fake priorities or change frequencies. No API, admin, preview, draft, redirect, query or fragment URLs. New published content is eligible automatically; database errors are not silently converted into an incomplete sitemap.
+`app/sitemap.js` is dynamically generated from one published-post read. Includes `/`, `/blog`, `/contact`, `/privacy-policy`, `/terms-and-conditions`, nonempty categories and canonical published articles. Article `lastModified` uses updatedAt → publishedAt → original fallback date. Static/category dates are omitted because no reliable revision date exists. No fake priorities or change frequencies. No API, admin, preview, draft, redirect, query or fragment URLs. New published content is eligible automatically; database errors are not silently converted into an incomplete sitemap.
 
 ## 10. Robots and security
 
@@ -174,7 +175,7 @@ At mobile widths (320, 375, 768) inspect navbar, hero, cards, breadcrumb wrappin
 
 ## 15. Performance and maintenance
 
-Public editor isolation is preserved: RichTextEditor remains a dynamic admin-only import. Homepage client cards receive only display fields, not every article body, raw upload or SEO object. React cache prevents repeated lookup work during rendering. Public cards/gallery/cover images use next/image with stable dimensions; Unsplash is explicitly allowed for optimization, other user-provided sources use unoptimized URLs without opening a broad optimizer allowlist. Below-fold images lazy-load; featured/article covers load eagerly. Keep images reasonably sized when publishing.
+Public editor isolation is preserved: RichTextEditor remains a dynamic admin-only import. Homepage client cards receive only display fields from all published posts so every published category is filterable, not article bodies, raw uploads or SEO objects. React cache prevents repeated lookup work during rendering. Public cards/gallery/cover images use next/image with stable dimensions; Unsplash is explicitly allowed for optimization, other user-provided sources use unoptimized URLs without opening a broad optimizer allowlist. Below-fold images lazy-load; featured/article covers load eagerly. Keep images reasonably sized when publishing.
 
 Manrope is preserved and self-hosted through next/font/local using installed Latin WOFF2 files, font swapping and adjusted fallback metrics. Preload is disabled to avoid preloading five weights on every page. The original hero typewriter is preserved. The adjacent server-rendered introduction contains the name, role and technical specialization, independently of animation. Article content and tables/code have overflow rules. No third-party analytics or new animation library was added.
 
@@ -209,3 +210,11 @@ The privacy text reflects the reviewed code: email contact, no public accounts/c
 Review the privacy notice before adding analytics, ads, embeds, forms, newsletters, comments, payments or visitor accounts. The terms do not invent a software licence, arbitration requirement or governing jurisdiction. No cookie-consent banner has been added solely for SEO.
 
 Sources: [Google Search Essentials](https://developers.google.com/search/docs/essentials), [privacy information checklist](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/the-right-to-be-informed/checklists/) (UK guidance used as a reference, not a determination that UK law applies).
+
+## Contact and blog updates (2026-09-27)
+
+Contact page, public floating dialog and server-only email API are documented in [CONTACT.md](CONTACT.md). Contact is included in the sitemap. SMTP credentials are never needed for a CI build. Hosting-level rate limiting requires the documented nginx deployment step.
+
+Blog cover/featured/social separation, saved category dropdown/creation, legacy compatibility, image sizing/alt guidance and live SEO previews are documented in [BLOG.md](BLOG.md). The canonical new social field is `socialImage`; old `seo.ogImage` stays compatible. Featured images never enter article metadata or detail covers. The homepage now filters all published card data rather than only the first three records. New category records enter the sitemap only after an article is published. Existing article/breadcrumb schema and canonical routes remain in use.
+
+Verification: lint, production build, nine contact/blog unit tests, isolated MongoDB/API integration, Chrome responsive/interaction checks and the production SEO smoke check passed. The smoke check now covers eleven public fallback-data pages. Existing default-image Edge Runtime deprecation warnings remain.

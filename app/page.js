@@ -28,7 +28,7 @@ export default async function Home() {
         <Experience />
         <Projects />
         <Education />
-        <Blog posts={posts.slice(0, 3).map(({ title, slug, category, categorySlug, excerpt, image, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, image, imageAlt, date }))} />
+        <Blog posts={posts.map(({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }))} />
         <Gallery />
       </main>
       <Footer />
