@@ -1,5 +1,6 @@
 import "./globals.css";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { siteConfig } from "@/lib/site-config";
 import { siteUrl } from "@/lib/utils";
 
@@ -26,8 +27,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className={manrope.variable}>
-      <body>{children}</body>
+    <html lang="en" data-theme="dark" className={manrope.variable} suppressHydrationWarning>
+      <body>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`try{var theme=localStorage.getItem('theme');if(theme==='light'||theme==='dark'){document.documentElement.dataset.theme=theme}}catch(error){}`}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }

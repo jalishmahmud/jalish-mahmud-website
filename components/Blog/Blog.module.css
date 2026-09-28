@@ -1,135 +1,147 @@
 .grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .tabs {
+    width: fit-content;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: .6rem;
-    margin: -1rem 0 2rem;
+    gap: .35rem;
+    margin: -1rem auto 2.2rem;
+    padding: .35rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
 }
 
 .tab,
 .activeTab {
-    padding: .55rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    padding: .52rem .9rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
     background: transparent;
     color: var(--text-muted);
     cursor: pointer;
     font: inherit;
-    font-size: .85rem;
-    font-weight: 600;
+    font-size: .78rem;
+    font-weight: 700;
     transition: var(--transition);
 }
 
-.tab:hover,
+.tab:hover {
+    color: var(--text-main);
+    background: var(--surface-soft);
+}
+
 .activeTab {
-    border-color: var(--accent-green);
+    border-color: var(--border-highlight);
+    background: var(--accent-green-bg);
     color: var(--accent-green);
 }
 
 .card {
+    min-width: 0;
+    min-height: 430px;
+    padding: 0 0 1.55rem;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    flex: 0 1 calc((100% - 3rem) / 3);
-    min-height: 260px;
-    padding: 1.75rem;
-    background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
+    border-radius: 20px;
+    background: var(--surface-glass);
     transition: var(--transition);
-    overflow: hidden;
-    padding: 0 0 1.75rem;
+    backdrop-filter: blur(12px);
 }
 
-.card> :not(.imageLink) {
-    margin-left: 1.75rem;
-    margin-right: 1.75rem;
+.card > :not(.imageLink) {
+    margin-left: 1.45rem;
+    margin-right: 1.45rem;
 }
 
 .imageLink {
     display: block;
-    height: 170px;
+    height: 184px;
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.35rem;
+    background: var(--bg-elevated);
 }
 
 .image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: block;
-    transition: transform .4s ease;
-}
-
-.card:hover .image {
-    transform: scale(1.05);
+    object-fit: cover;
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1);
 }
 
 .card:hover {
-    transform: translateY(-4px);
     border-color: var(--border-highlight);
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
 }
+
+.card:hover .image { transform: scale(1.045); }
 
 .meta {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: .9rem;
     color: var(--accent-green);
-    font-size: .8rem;
-    font-weight: 600;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .07em;
     text-transform: uppercase;
-    letter-spacing: .04em;
 }
 
 .meta a { color: var(--accent-green); }
-.meta a:hover, .card h3 a:hover { text-decoration: underline; }
+.meta a:hover, .card h3 a:hover { color: var(--accent-blue); }
 
 .meta time {
-    color: var(--text-muted);
-    font-weight: 400;
-    text-transform: none;
+    color: var(--text-subtle);
+    font-weight: 600;
     letter-spacing: 0;
+    text-transform: none;
 }
 
 .card h3 {
-    margin-bottom: .75rem;
-    font-size: 1.25rem;
-    line-height: 1.35;
+    margin-bottom: .65rem;
+    font-size: 1.17rem;
+    line-height: 1.4;
+    letter-spacing: -.025em;
 }
 
 .card p {
     flex-grow: 1;
     color: var(--text-muted);
-    font-size: .95rem;
+    font-size: .88rem;
+    line-height: 1.7;
 }
 
 .link {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
     color: var(--accent-green);
-    font-size: .9rem;
-    font-weight: 600;
+    font-size: .82rem;
+    font-weight: 700;
 }
 
-.link:hover {
-    text-decoration: underline;
-}
-
+.link:hover { color: var(--accent-blue); }
 .viewAll { display: flex; justify-content: center; margin-top: 2rem; }
 
 @media (max-width: 900px) {
-    .card { flex-basis: calc((100% - 1.5rem) / 2); }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-@media (max-width: 600px) {
-    .card { flex-basis: 100%; }
+@media (max-width: 620px) {
+    .grid { grid-template-columns: 1fr; }
+    .tabs { border-radius: 18px; }
+    .card { min-height: 0; }
 }

@@ -1,136 +1,114 @@
 .tabs {
+    width: fit-content;
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: .6rem;
-    margin: -1rem 0 2rem;
+    gap: .35rem;
+    margin: -1rem auto 2.2rem;
+    padding: .35rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: var(--surface-glass);
+    backdrop-filter: blur(12px);
 }
 
 .tab,
 .activeTab {
-    padding: .55rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    padding: .52rem .9rem;
+    border: 1px solid transparent;
+    border-radius: 999px;
     background: transparent;
     color: var(--text-muted);
     cursor: pointer;
     font: inherit;
-    font-size: .85rem;
-    font-weight: 600;
+    font-size: .78rem;
+    font-weight: 700;
     transition: var(--transition);
 }
 
-.tab:hover,
-.activeTab {
-    border-color: var(--accent-green);
-    color: var(--accent-green);
-}
+.tab:hover { color: var(--text-main); background: var(--surface-soft); }
+.activeTab { border-color: var(--border-highlight); background: var(--accent-green-bg); color: var(--accent-green); }
 
 .grid {
     columns: 3 260px;
-    column-gap: 1.25rem;
+    column-gap: 1rem;
 }
 
 .item {
     position: relative;
     break-inside: avoid;
-    margin: 0 0 1.25rem;
+    margin: 0 0 1rem;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background: var(--bg-card);
-}
-
-.imageButton {
-    display: block;
-    padding: 0;
-    border: 0;
-    width: 100%;
-    background: transparent;
-    cursor: zoom-in;
-    overflow: hidden;
-}
-
-.image {
-    display: block;
-    width: 100%;
-    height: auto;
-    transition: transform .4s ease;
-}
-
-.item:hover .image {
-    transform: scale(1.04);
-}
-
-.item figcaption {
-    display: flex;
-    flex-direction: column;
-    gap: .15rem;
-    padding: .8rem 1rem;
-}
-
-.item strong {
-    font-size: .9rem;
-}
-
-.item span {
-    color: var(--text-muted);
-    font-size: .78rem;
-}
-
-.moreWrap {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-.moreButton {
-    padding: .7rem 2.2rem;
-    border: 1px solid var(--accent-green);
-    border-radius: 8px;
-    background: transparent;
-    color: var(--accent-green);
-    cursor: pointer;
-    font: inherit;
-    font-size: .9rem;
-    font-weight: 600;
+    border-radius: 16px;
+    background: var(--surface-glass);
     transition: var(--transition);
 }
 
-.moreButton:hover {
-    background: var(--accent-green);
-    color: var(--bg-card);
+.item:hover {
+    border-color: var(--border-highlight);
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
 }
 
-@media (max-width: 768px) {
-    .grid {
-        columns: 2 160px;
-        column-gap: .75rem;
-    }
-
-    .item {
-        margin-bottom: .75rem;
-    }
-
-    .item figcaption {
-        padding: .65rem .75rem;
-    }
+.imageButton {
+    width: 100%;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
 }
 
-@media (max-width: 480px) {
-    .grid {
-        columns: 1;
-    }
+.image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform .5s cubic-bezier(.2, .8, .2, 1);
 }
+
+.item:hover .image { transform: scale(1.035); }
+
+.item figcaption {
+    padding: .8rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.item strong { font-size: .78rem; letter-spacing: .02em; }
+.item span { color: var(--text-muted); font-size: .75rem; }
+
+.moreWrap { display: flex; justify-content: center; margin-top: 2rem; }
+
+.moreButton {
+    min-height: 44px;
+    padding: .65rem 1.45rem;
+    border: 1px solid var(--border-highlight);
+    border-radius: 999px;
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
+    cursor: pointer;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.moreButton:hover { background: var(--accent-green); color: var(--bg-deep); transform: translateY(-2px); }
 
 .modalBackdrop {
     position: fixed;
     inset: 0;
     z-index: 1100;
+    padding: 1.5rem;
     display: grid;
     place-items: center;
-    padding: 1.5rem;
-    background: rgba(3, 7, 18, .82);
+    background: var(--overlay);
+    backdrop-filter: blur(10px);
 }
 
 .modal {
@@ -138,109 +116,87 @@
     max-height: 92vh;
     overflow: auto;
     padding: 1.5rem;
-    background: var(--bg-card);
     border: 1px solid var(--border-highlight);
-    border-radius: 12px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
+    border-radius: 22px;
+    background: var(--surface-glass);
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(18px);
 }
 
 .modalHeader {
+    margin-bottom: 1.25rem;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 1.25rem;
 }
 
 .modalEyebrow {
     margin-bottom: .25rem;
     color: var(--accent-green);
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .08em;
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .1em;
     text-transform: uppercase;
 }
 
-.modal h2 {
-    font-size: 1.25rem;
-    line-height: 1.3;
-}
+.modal h2 { font-size: 1.25rem; line-height: 1.3; }
 
 .closeButton,
 .modalNav {
+    width: 38px;
+    height: 38px;
     display: inline-grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
-    border: 1px solid var(--border-highlight);
-    border-radius: 8px;
-    background: transparent;
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--surface-soft);
     color: var(--text-main);
     cursor: pointer;
-    flex-shrink: 0;
 }
 
 .modalImageArea {
     display: grid;
-    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    grid-template-columns: 38px minmax(0, 1fr) 38px;
     align-items: center;
     gap: 1rem;
 }
 
-.modalImage {
-    width: 100%;
-    max-height: 62vh;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.modalCounter {
-    margin-top: 1rem;
-    color: var(--text-muted);
-    font-size: .8rem;
-    text-align: center;
-}
-
-.modalTabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-    margin-bottom: 1rem;
-}
+.modalImage { width: 100%; max-height: 62vh; object-fit: contain; border-radius: 14px; }
+.modalCounter { margin-top: 1rem; color: var(--text-muted); font-size: .78rem; text-align: center; }
+.modalTabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
 
 .galleryTab,
 .galleryTabActive {
-    padding: .35rem .65rem;
+    padding: .38rem .7rem;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    background: transparent;
+    border-radius: 999px;
+    background: var(--surface-soft);
     color: var(--text-muted);
     cursor: pointer;
     font: inherit;
-    font-size: .72rem;
-    font-weight: 600;
+    font-size: .7rem;
+    font-weight: 700;
 }
 
-.galleryTabActive {
-    border-color: var(--accent-green);
-    color: var(--accent-green);
-}
+.galleryTabActive { border-color: var(--accent-green); background: var(--accent-green-bg); color: var(--accent-green); }
 
 .imageButton:focus-visible,
 .closeButton:focus-visible,
 .modalNav:focus-visible,
-.moreButton:focus-visible {
-    outline: 2px solid var(--accent-green);
-    outline-offset: 3px;
-}
+.moreButton:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 3px; }
 
 @media (max-width: 768px) {
-    .modal {
-        padding: 1rem;
-    }
+    .grid { columns: 2 160px; column-gap: .75rem; }
+    .item { margin-bottom: .75rem; }
+    .item figcaption { padding: .65rem .75rem; }
+    .modal { padding: 1rem; }
+    .modalImageArea { grid-template-columns: 32px minmax(0, 1fr) 32px; gap: .5rem; }
+    .modalNav { width: 32px; height: 32px; }
+}
 
-    .modalImageArea {
-        grid-template-columns: 32px minmax(0, 1fr) 32px;
-        gap: .5rem;
-    }
+@media (max-width: 520px) {
+    .tabs { border-radius: 18px; }
+    .grid { columns: 1; }
 }

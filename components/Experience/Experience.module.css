@@ -1,6 +1,6 @@
 .timeline {
     position: relative;
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
     padding: .5rem 0;
 }
@@ -11,15 +11,15 @@
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 2px;
-    background: var(--border-color);
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--accent-green), var(--accent-blue), transparent);
     transform: translateX(-50%);
 }
 
 .item {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 94px minmax(0, 1fr);
     align-items: center;
     min-height: 210px;
     padding: 1rem 0;
@@ -29,12 +29,12 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background: var(--accent-green);
+    background: var(--accent-blue);
     border: 4px solid var(--bg-dark);
-    box-shadow: 0 0 0 1px var(--accent-green);
+    box-shadow: 0 0 0 1px var(--accent-blue), 0 0 18px var(--accent-blue-bg);
     transform: translate(-50%, -50%);
     z-index: 1;
 }
@@ -43,11 +43,12 @@
     position: absolute;
     left: 50%;
     top: -1px;
-    padding: .45rem .9rem;
-    border-radius: 4px;
-    background: var(--accent-green);
+    padding: .44rem .82rem;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 999px;
+    background: var(--accent-gradient);
     color: #fff;
-    font-size: .8rem;
+    font-size: .72rem;
     font-weight: 700;
     line-height: 1;
     transform: translateX(-50%);
@@ -78,12 +79,13 @@
 .content {
     position: relative;
     grid-row: 1;
-    background: var(--bg-card);
+    background: linear-gradient(145deg, var(--surface-soft), transparent 44%), var(--surface-glass);
     border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.25rem;
+    border-radius: 18px;
+    padding: 1.4rem;
     transition: border-color .38s ease, transform .38s ease, box-shadow .38s ease;
     outline: none;
+    backdrop-filter: blur(12px);
 }
 
 .left .content {
@@ -98,7 +100,7 @@
 .content:focus {
     border-color: var(--border-highlight);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, .18);
+    box-shadow: var(--card-shadow-hover);
 }
 
 .left .content::after,
@@ -143,6 +145,7 @@
     color: var(--accent-green);
     font-size: 1.25rem;
     margin-bottom: .25rem;
+    letter-spacing: -.025em;
 }
 
 .meta {
@@ -169,11 +172,12 @@
 }
 
 .roles span {
-    background: var(--stat-card-bg);
+    background: var(--surface-soft);
     border: 1px solid var(--border-color);
     padding: 4px 10px;
-    border-radius: 4px;
-    font-size: .8rem;
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-size: .76rem;
 }
 
 .content ul {
@@ -215,8 +219,8 @@
 .galleryTabActive {
     padding: .35rem .65rem;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    background: transparent;
+    border-radius: 999px;
+    background: var(--surface-soft);
     color: var(--text-muted);
     cursor: pointer;
     font: inherit;
@@ -227,6 +231,7 @@
 .galleryTabActive {
     border-color: var(--accent-green);
     color: var(--accent-green);
+    background: var(--accent-green-bg);
 }
 
 .galleryGrid {
@@ -240,14 +245,14 @@
     aspect-ratio: 16 / 9;
     height: auto;
     object-fit: cover;
-    border-radius: 6px;
+    border-radius: 10px;
     border: 1px solid var(--border-color);
 }
 
 .galleryImageButton {
     padding: 0;
     border: 0;
-    border-radius: 6px;
+    border-radius: 10px;
     background: transparent;
     cursor: zoom-in;
     overflow: hidden;
@@ -267,7 +272,8 @@
     display: grid;
     place-items: center;
     padding: 1.5rem;
-    background: rgba(3, 7, 18, .82);
+    background: var(--overlay);
+    backdrop-filter: blur(10px);
 }
 
 .modal {
@@ -275,10 +281,11 @@
     max-height: 92vh;
     overflow: auto;
     padding: 1.5rem;
-    background: var(--bg-card);
+    background: var(--surface-glass);
     border: 1px solid var(--border-highlight);
-    border-radius: 12px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, .5);
+    border-radius: 22px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(18px);
 }
 
 .modalHeader {
@@ -314,8 +321,8 @@
     width: 36px;
     height: 36px;
     border: 1px solid var(--border-highlight);
-    border-radius: 8px;
-    background: transparent;
+    border-radius: 50%;
+    background: var(--surface-soft);
     color: var(--text-main);
     cursor: pointer;
 }
@@ -331,7 +338,7 @@
     width: 100%;
     max-height: 62vh;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 14px;
 }
 
 .modalCounter {
