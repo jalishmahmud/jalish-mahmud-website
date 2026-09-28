@@ -5,8 +5,7 @@
     ["Skills", "#skills"],
     ["Experience", "#experience"],
     ["Projects", "#projects"],
-    ["Blog", "/blog"],
-    ["Gallery", "#gallery"]
+    ["Blog", "/blog"]
   ],
   "contactLabel": "Contact Me"
 }
