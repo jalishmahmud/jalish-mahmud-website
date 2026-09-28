@@ -19,7 +19,7 @@ export default function Hero() {
           <Typewriter />
         </h1>
         <p className={styles.description}>
-          I’m {siteConfig.fullName}. {data.description} My frontend work focuses on React.js, Next.js, JavaScript and TypeScript.
+          I’m {siteConfig.fullName}. {data.description} My work spans React.js, Next.js, JavaScript and TypeScript, plus production deployment with AWS EC2, Nginx, PM2, HTTPS, and GitHub Actions CI/CD.
         </p>
         <div className={styles.buttons}>
           <Link href="/contact" className="btn btnPrimary">
