@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import { FaCode, FaServer, FaWrench } from "react-icons/fa";
+import { FaCloud, FaCode, FaServer, FaWrench } from "react-icons/fa";
 import skills from "@/data/skills.json";
 import styles from "./Skills.module.css";
 
@@ -7,6 +7,7 @@ const skillIcons = {
   frontend: FaCode,
   backend: FaServer,
   tools: FaWrench,
+  devops: FaCloud,
 };
 
 export default function Skills() {
@@ -14,7 +15,7 @@ export default function Skills() {
     <section className="container" id="skills">
       <SectionHeader
         title="Technical Expertise"
-        subtitle="Core technologies and tools I work with daily"
+        subtitle="Technologies I use to build, integrate, deploy, and operate production applications"
       />
       <div className={styles.grid}>
         {skills.map(([iconKey, title, color, tags]) => {
