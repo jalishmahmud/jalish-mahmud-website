@@ -7,7 +7,8 @@
     [
       "Working with .NET, Python (FastAPI), and Nuxt.js, implementing features like Google Business Profile data scraping, Google Keyword Planner, Google Place Service, ChatGPT API, and Synup API for MEO tools.",
       "Refactoring and improving existing backend and frontend modules to enhance system performance.",
-      "Debugging and resolving critical integration issues between systems, delivering stable feature releases."
+      "Debugging and resolving critical integration issues between systems, delivering stable feature releases.",
+      "Deployed and operated a production application on AWS EC2 with Ubuntu, Nginx, and PM2; configured DNS, a custom domain, and Let's Encrypt HTTPS, then automated validated deployments through a secure GitHub Actions CI/CD workflow."
     ]
   ],
   [

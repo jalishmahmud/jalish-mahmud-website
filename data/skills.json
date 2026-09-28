@@ -16,5 +16,11 @@
     "Tools & Workflow",
     "blue",
     "Git,Jira,Jest,Docker,WebSocket,Webpack,Babel,Figma,WordPress"
+  ],
+  [
+    "devops",
+    "Cloud & DevOps",
+    "green",
+    "AWS EC2,Ubuntu / Linux,Nginx,PM2,GitHub Actions,CI/CD,DNS & Custom Domains,SSL / HTTPS,SSH,Environment Configuration"
   ]
 ]

@@ -19,7 +19,7 @@ export default function Blog({ posts = [] }) {
     <section className="container" id="blog">
       <SectionHeader
         title="Latest From The Blog"
-        subtitle="Notes on frontend engineering, product development, and design"
+        subtitle="Notes on frontend engineering, AWS deployment, CI/CD, product development, and design"
       />
       <div
         className={styles.tabs}

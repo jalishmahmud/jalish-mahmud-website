@@ -6,7 +6,7 @@ import styles from "@/components/Contact/Contact.module.css";
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata = buildPageMetadata({ title: "Contact", description: `Contact ${siteConfig.fullName} about software engineering projects, React and Next.js development, hiring opportunities or collaboration.`, path: "/contact" });
+export const metadata = buildPageMetadata({ title: "Contact", description: `Contact ${siteConfig.fullName} about software engineering, React and Next.js development, AWS deployment, API integration, hiring opportunities or collaboration.`, path: "/contact" });
 
 export default function ContactPage() {
   return <><Header /><main className={`container ${styles.page}`}>

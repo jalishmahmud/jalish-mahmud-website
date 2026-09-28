@@ -5,7 +5,6 @@ import Experience from "@/components/Experience/Experience";
 import Projects from "@/components/Projects/Projects";
 import Education from "@/components/Education/Education";
 import Blog from "@/components/Blog/Blog";
-import Gallery from "@/components/Gallery/Gallery";
 import Footer from "@/components/Footer/Footer";
 import { getPublishedBlogs } from "@/lib/blog";
 
@@ -29,7 +28,6 @@ export default async function Home() {
         <Projects />
         <Education />
         <Blog posts={posts.map(({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }))} />
-        <Gallery />
       </main>
       <Footer />
     </>
