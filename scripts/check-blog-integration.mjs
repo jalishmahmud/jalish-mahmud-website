@@ -32,25 +32,36 @@ try {
   assert((await api("/api/categories", null, "GET")).some((c) => c.id === system.id));
   let sitemap = await (await fetch(origin + "/sitemap.xml")).text();
   assert(!sitemap.includes("/blog/system-design"));
-  const post = { title: "Getting Started with React Hooks", slug: "react-hooks", excerpt: "Learn practical patterns for React Hooks in this acceptance fixture.", content: "<h2>Hooks</h2><p>Published content.</p>", category: "React", categorySlug: "react", coverImage: image, featuredImage: image, socialImage: image, imageAlt: "Cover diagram", featuredImageAlt: "Portrait diagram", featured: true, status: "published", seo: {} };
+  const post = { title: "Getting Started with React Hooks", slug: "react-hooks", excerpt: "Learn practical patterns for React Hooks in this acceptance fixture.", content: "<h2>Hooks</h2><p>Published content.</p>", category: "React", categorySlug: "react", coverImage: image, featuredImage: image, socialImage: image, socialImageAlt: "Social architecture diagram", imageAlt: "Cover diagram", featuredImageAlt: "Portrait diagram", featured: true, status: "published", seo: { title: "React Hooks SEO Title", description: "A custom search description for this React Hooks article.", ogTitle: "React Hooks Social Title", ogDescription: "A separate sharing description for the React Hooks article." } };
   const { id } = await api("/api/blogs", post);
   const path = "/blog/react/react-hooks";
   let html = await (await fetch(origin + path)).text();
   assert(html.match(/<img[^>]+src="[^"]+\/cover\?/));
   assert(html.match(/<meta property="og:image" content="[^"]+\/social\?/));
   assert(html.includes("Legacy React Article"));
-  for (const kind of ["cover", "featured", "social", "og"]) { const r = await fetch(`${origin}/api/blog-images/${id}/${kind}`); assert.equal(r.status, 200); assert.equal(r.headers.get("content-type"), "image/png"); }
+  assert(html.includes("<title>React Hooks SEO Title | Jalish Mahmud</title>"));
+  assert(html.includes('name="description" content="A custom search description for this React Hooks article."'));
+  assert(html.includes('property="og:title" content="React Hooks Social Title"'));
+  assert(html.includes('name="twitter:description" content="A separate sharing description for the React Hooks article."'));
+  assert(html.includes('rel="canonical" href="https://jalishmahmud.com/blog/react/react-hooks"'));
+  assert(html.includes('"headline":"Getting Started with React Hooks"'));
+  assert(/<a\b(?=[^>]*href="\/")(?=[^>]*rel="author")[^>]*>/.test(html));
+
+  assert(html.includes('property="og:image:alt" content="Social architecture diagram"'));
+  assert(html.includes('name="twitter:image:alt" content="Social architecture diagram"'));
+  for (const kind of ["cover", "featured", "social", "og"]) { const r = await fetch(`${origin}/api/blog-images/${id}/${kind}`); assert.equal(r.status, 200); assert.equal(r.headers.get("content-type"), "image/png"); assert(!/noindex/.test(r.headers.get("x-robots-tag") || "")); }
   html = await (await fetch(origin + "/blog")).text();
   assert(html.match(/<img[^>]+src="[^"]+\/featured\?/));
   await api(`/api/blogs/${id}`, { title: "Updated React Hooks Title" }, "PUT");
   let stored = await api(`/api/blogs/${id}`, null, "GET");
-  assert.equal(stored.slug, post.slug); assert.equal(stored.coverImage, image); assert.equal(stored.featuredImage, image); assert.equal(stored.socialImage, image);
+  assert.equal(stored.socialImageAlt, post.socialImageAlt); assert.equal(stored.slug, post.slug); assert.equal(stored.coverImage, image); assert.equal(stored.featuredImage, image); assert.equal(stored.socialImage, image);
   await api(`/api/blogs/${id}`, { featured: false }, "PUT");
   assert.equal((await api(`/api/blogs/${id}`, null, "GET")).featuredImage, image);
   assert.equal((await fetch(`${origin}/api/blog-images/${id}/featured`)).status, 404);
   await api(`/api/blogs/${id}`, { featured: true, featuredImage: "", socialImage: "" }, "PUT");
   html = await (await fetch(origin + path)).text();
   assert(html.match(/<meta property="og:image" content="[^"]+\/cover\?/));
+  assert(html.includes('property="og:image:alt" content="Cover diagram"'));
   const blogHtml = await (await fetch(origin + "/blog")).text();
   assert(!blogHtml.match(/<img[^>]+src="[^"]+\/featured\?/));
   await api(`/api/blogs/${id}`, { coverImage: "" }, "PUT");

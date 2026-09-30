@@ -57,3 +57,17 @@ Browser acceptance: upload distinct cover/portrait/social images, mark Featured,
 ## Implementation verification (2026-09-27)
 
 Three image/merge validation tests and the isolated MongoDB/API integration check passed. Chrome verified category persistence, image uploads, saved slug stability, homepage filters, and complete featured/detail images at 375/768/1440 widths without page errors. Lint and production build passed; this is a JavaScript project with no separate TypeScript check configured. Existing Edge Runtime deprecation warnings remain in the default OG generator. Production SEO smoke tests passed on 11 fallback-data public pages, including contact.
+
+## SEO field audit (2026-10-01)
+
+Existing article title, slug, excerpt, body, category, tags, cover/featured/social images and SEO/social overrides are saved and used. Title supplies the visible H1 and BlogPosting headline; SEO title supplies browser/search title with the site-name suffix. Excerpt is visible and the description fallback. Category supplies URLs/breadcrumbs/related articles; tags supply article metadata and structured-data keywords, not Google meta-keyword ranking signals. Author identity, canonical URLs, first-publication/modification timestamps, breadcrumbs and sitemap entries are automatic for published articles.
+
+Added optional `socialImageAlt` (250 characters) to describe a custom social image in Open Graph and Twitter/X metadata. Cover fallback uses `imageAlt`; legacy posts without the new field use title-based fallback text. Social image alt is also shown in the editor preview. For images inside the body, the Image upload prompts for alt text; select an existing image and choose **Image alt text** to edit it. Empty alt is suitable for decorative images. Enabled Tiptap Base64 parsing so existing embedded uploads survive reopening the editor.
+
+Public blog-image and default OG endpoints now override the general API noindex header; authenticated JSON APIs remain noindex and draft images remain unavailable. The visible author link now targets the homepage rather than the removed About anchor.
+
+For each article, write a unique, useful title, short readable slug, clear excerpt, substantial original content with H2/H3 headings, relevant internal links, category, and a representative cover with descriptive alt text. SEO title/description and social overrides are optional because fallbacks exist. Length counters are writing guidance, not Google character limits. No manual canonical, author, date, focus-keyword or meta-keyword field is needed for this single-author workflow. More fields do not guarantee rankings; Google may choose different title/snippet text. Body images still use embedded Base64; public cover/social URLs provide the separately crawlable article images.
+
+References: [Google Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article), [Google snippets](https://developers.google.com/search/docs/appearance/snippet), [Tiptap image configuration](https://tiptap.dev/docs/editor/extensions/nodes/image).
+
+Audit verification: lint and production build passed; three blog unit tests passed; isolated local MongoDB integration verified custom search/social overrides, canonical/H1 separation, social-alt persistence and fallback, indexable image headers, legacy compatibility and draft exclusion. Production SEO smoke checks passed on 11 fallback pages. Existing Edge Runtime deprecation warnings remain. No production database records were changed.

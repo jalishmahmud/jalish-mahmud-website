@@ -218,3 +218,7 @@ Contact page, public floating dialog and server-only email API are documented in
 Blog cover/featured/social separation, saved category dropdown/creation, legacy compatibility, image sizing/alt guidance and live SEO previews are documented in [BLOG.md](BLOG.md). The canonical new social field is `socialImage`; old `seo.ogImage` stays compatible. Featured images never enter article metadata or detail covers. The homepage now filters all published card data rather than only the first three records. New category records enter the sitemap only after an article is published. Existing article/breadcrumb schema and canonical routes remain in use.
 
 Verification: lint, production build, nine contact/blog unit tests, isolated MongoDB/API integration, Chrome responsive/interaction checks and the production SEO smoke check passed. The smoke check now covers eleven public fallback-data pages. Existing default-image Edge Runtime deprecation warnings remain.
+
+## Blog field audit (2026-10-01)
+
+See [BLOG.md](BLOG.md#seo-field-audit-2026-10-01) for the field-to-output mapping and writing checklist. Added optional social-image alt metadata and body-image alt controls. Fixed the blanket API noindex header for public blog/OG image assets; protected JSON API routes stay noindex. Author links now point to the actual homepage. Public image-header assertions and custom SEO/social metadata persistence checks cover these changes.

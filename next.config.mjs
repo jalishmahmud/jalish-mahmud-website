@@ -15,6 +15,9 @@ const nextConfig = {
     return [
       { source: "/admin/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] },
       { source: "/api/:path*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] },
+      // Public image assets must be indexable; authenticated JSON APIs stay noindex.
+      { source: "/api/blog-images/:path*", headers: [{ key: "X-Robots-Tag", value: "index, follow" }] },
+      { source: "/api/og/:path*", headers: [{ key: "X-Robots-Tag", value: "index, follow" }] },
     ];
   },
 };
