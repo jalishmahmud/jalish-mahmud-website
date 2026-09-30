@@ -91,6 +91,7 @@ for (const path of ["/api/og/default", "/apple-icon", "/icon.svg"]) {
   const response = await fetch(origin + path);
   assert.equal(response.status, 200, path);
   assert(response.headers.get("content-type").startsWith("image/"));
+  assert(!/noindex/.test(response.headers.get("x-robots-tag") || ""), `Image must be indexable: ${path}`);
   assert((await response.arrayBuffer()).byteLength > 100);
 }
 assert.equal((await fetch(origin + "/api/blog-images/not-an-id/cover")).status, 404);
