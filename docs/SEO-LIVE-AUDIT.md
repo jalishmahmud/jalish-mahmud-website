@@ -1,0 +1,39 @@
+# Public route SEO audit
+
+Generated 2026-10-03T04:45:51.003Z. Source: https://jalishmahmud.com. Canonical origin: https://jalishmahmud.com. Read-only, sitemap-derived snapshot; not a ranking or Google indexing guarantee.
+
+| Route | Title | Description | Canonical | H1 | Indexable? | Open Graph | Structured Data | Sitemap |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| / | Jalish Mahmud \| Full Stack Engineer, AWS & System Design | Jalish Mahmud is a Full Stack Software Engineer building scalable Next.js apps, APIs and AI integrations, with AWS EC2 and GitHub Actions CI/CD experience. | https://jalishmahmud.com | Building Scalable Apps | Yes | OG + X | Person, ProfilePage, WebSite | Yes |
+| /blog | Next.js, AWS & Software Engineering Blog \| Jalish Mahmud | Articles by Jalish Mahmud about Next.js, AWS EC2 deployment, Nginx, PM2, GitHub Actions CI/CD, API integration and frontend engineering. | https://jalishmahmud.com/blog | Thoughts on building better software. | Yes | OG + X | — | Yes |
+| /contact | Contact \| Jalish Mahmud | Contact Jalish Mahmud about software engineering, React and Next.js development, AWS deployment, API integration, hiring opportunities or collaboration. | https://jalishmahmud.com/contact | Let’s build something together. | Yes | OG + X | — | Yes |
+| /privacy-policy | Privacy Policy \| Jalish Mahmud | How Jalish Mahmud's portfolio and blog handle contact information, cookies, hosting data and links to other services. | https://jalishmahmud.com/privacy-policy | Privacy Policy | Yes | OG + X | — | Yes |
+| /terms-and-conditions | Terms and Conditions \| Jalish Mahmud | Information about using Jalish Mahmud's portfolio and blog, including technical examples, content ownership and external links. | https://jalishmahmud.com/terms-and-conditions | Terms and Conditions | Yes | OG + X | — | Yes |
+| /blog/react-js | React.js Articles \| Jalish Mahmud | React.js articles, practical tutorials and development notes by Jalish Mahmud. | https://jalishmahmud.com/blog/react-js | React.js Articles. | Yes | OG + X | BreadcrumbList | Yes |
+| /blog/system-design | System Design Articles \| Jalish Mahmud | System Design articles, practical tutorials and development notes by Jalish Mahmud. | https://jalishmahmud.com/blog/system-design | System Design Articles. | Yes | OG + X | BreadcrumbList | Yes |
+| /blog/react-js/react-19-use-api-promises-context | React 19 use() API: Promises, Suspense & Context Explained \| Jalish Mahmud | Learn React 19's use() API with practical examples. Understand how to read Promises and Context during render, work with Suspense and Error Boundaries, and avoid common mistakes. | https://jalishmahmud.com/blog/react-js/react-19-use-api-promises-context | React 19 use() API: Read Promises and Context Directly During Render | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+| /blog/react-js/react-19-useformstatus-hook-guide | React 19 useFormStatus Hook: Practical Guide with Examples \| Jalish Mahmud | Learn React 19 useFormStatus with practical examples. Build reusable submit buttons, track pending form state, prevent duplicate submissions, and combine it with useActionState. | https://jalishmahmud.com/blog/react-js/react-19-useformstatus-hook-guide | React 19 useFormStatus: Build Better Form Loading States Without Prop Drilling | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+| /blog/react-js/react-19-useactionstate-hook-form-actions | React 19 useActionState Hook: Practical Guide with Examples \| Jalish Mahmud | Learn React 19 useActionState with practical examples. Build and test forms with async actions, pending states, validation errors, API requests, and useFormStatus. | https://jalishmahmud.com/blog/react-js/react-19-useactionstate-hook-form-actions | React 19 useActionState: Simplifying Forms and Async Actions | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+| /blog/system-design/design-scalable-notification-system-email-sms-push-in-app | Design a Scalable Notification System with Node.js, Redis & BullMQ \| Jalish Mahmud | Build and test a scalable notification system using Node.js, PostgreSQL, Redis, BullMQ, workers, retries, email, SMS, push, and in-app notifications with step-by-step implementation. | https://jalishmahmud.com/blog/system-design/design-scalable-notification-system-email-sms-push-in-app | Designing a Scalable Notification System: Email, SMS, Push & In-App Notifications | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+| /blog/system-design/how-to-design-url-shortener-system-design | How to Design a URL Shortener: System Design Guide \| Jalish Mahmud | Learn how to design a scalable URL shortener with APIs, databases, Base62 encoding, Redis caching, load balancing, message queues, analytics, replication, and sharding. | https://jalishmahmud.com/blog/system-design/how-to-design-url-shortener-system-design | How to Design a URL Shortener: A Practical System Design Guide | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+| /blog/system-design/system-design-fundamentals-scalable-application-architecture | System Design Fundamentals: A Beginner's Guide to Scalable Architecture \| Jalish Mahmud | Learn system design fundamentals with a practical explanation of load balancers, API gateways, microservices, caching, message queues, databases, scalability, reliability, and high availability. | https://jalishmahmud.com/blog/system-design/system-design-fundamentals-scalable-application-architecture | System Design Fundamentals: How Scalable Applications Work Behind the Scenes | Yes | OG + X | BlogPosting, BreadcrumbList | Yes |
+
+## Findings
+
+- /: unnecessary meta keywords
+- Missing alternate site name
+- Public city/country missing from Person
+- Missing square PNG icon reference
+- Missing visible local identity
+- /blog: unnecessary meta keywords
+- /contact: unnecessary meta keywords
+- /privacy-policy: unnecessary meta keywords
+- /terms-and-conditions: unnecessary meta keywords
+- /blog/react-js: unnecessary meta keywords
+- /blog/system-design: unnecessary meta keywords
+- /blog/react-js/react-19-use-api-promises-context: unnecessary meta keywords
+- /blog/react-js/react-19-useformstatus-hook-guide: unnecessary meta keywords
+- /blog/react-js/react-19-useactionstate-hook-form-actions: unnecessary meta keywords
+- /blog/system-design/design-scalable-notification-system-email-sms-push-in-app: unnecessary meta keywords
+- /blog/system-design/how-to-design-url-shortener-system-design: unnecessary meta keywords
+- /blog/system-design/system-design-fundamentals-scalable-application-architecture: unnecessary meta keywords

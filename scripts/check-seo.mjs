@@ -28,6 +28,8 @@ for (const path of paths) {
   titles.add(title);
   for (const key of ["description", "og:title", "og:description", "og:image", "og:url", "twitter:title", "twitter:description", "twitter:image"]) assert(meta[key], `${path}: ${key}`);
   assert.equal(meta["twitter:card"], "summary_large_image");
+  assert.equal(meta["og:site_name"], "Jalish Mahmud");
+  assert(!meta.keywords, `No meta keywords: ${path}`);
   assert.equal(new URL(meta["og:url"]).href, new URL(canonicalOrigin + path).href);
   const canonical = [...head.matchAll(/<link\s[^>]*>/g)].map(([tag]) => attrs(tag)).filter((a) => a.rel === "canonical");
   assert.equal(canonical.length, 1);
@@ -87,7 +89,7 @@ for (const path of ["/admin/login", "/admin/dashboard", "/admin/blogs", "/admin/
   if (path === "/admin/login") assert(metas(await response.text()).robots.includes("noindex"));
   else { assert.equal(response.status, 307); assert(response.headers.get("location").endsWith("/admin/login")); }
 }
-for (const path of ["/api/og/default", "/apple-icon", "/icon.svg"]) {
+for (const path of ["/api/og/default", "/apple-icon", "/icon.svg", "/icon1"]) {
   const response = await fetch(origin + path);
   assert.equal(response.status, 200, path);
   assert(response.headers.get("content-type").startsWith("image/"));
@@ -95,4 +97,10 @@ for (const path of ["/api/og/default", "/apple-icon", "/icon.svg"]) {
   assert((await response.arrayBuffer()).byteLength > 100);
 }
 assert.equal((await fetch(origin + "/api/blog-images/not-an-id/cover")).status, 404);
+// This suite runs with MONGODB_URI empty: infrastructure failure is temporary,
+// unlike an invalid/missing image. Never cache it as a permanent 404.
+const unavailableImage = await fetch(origin + "/api/blog-images/000000000000000000000001/cover");
+assert.equal(unavailableImage.status, 503);
+assert.equal(unavailableImage.headers.get("cache-control"), "no-store");
+assert.equal(unavailableImage.headers.get("retry-after"), "60");
 console.log(`PASS sitemap, robots, permanent redirects, 404s, private routes and generated images. ${paths.length} public pages checked.`);
