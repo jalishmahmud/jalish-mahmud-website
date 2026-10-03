@@ -19,7 +19,7 @@ export default function Hero() {
           <Typewriter />
         </h1>
         <p className={styles.description}>
-          I’m {siteConfig.fullName}. {data.description} My work spans React.js, Next.js, JavaScript and TypeScript, plus production deployment with AWS EC2, Nginx, PM2, HTTPS, and GitHub Actions CI/CD.
+          I’m {siteConfig.fullName}, a {siteConfig.jobTitle} based in {siteConfig.location}. I build web applications with React, Next.js and TypeScript, integrate APIs, and deploy applications on AWS EC2 with GitHub Actions CI/CD.
         </p>
         <div className={styles.buttons}>
           <Link href="/contact" className="btn btnPrimary">

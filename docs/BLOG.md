@@ -6,13 +6,13 @@ The existing Next.js/MongoDB/Tiptap blog remains in place. No image-hosting migr
 
 | Field | Recommended dimensions | Use |
 | --- | --- | --- |
-| `coverImage` | 1200 × 630 | Article detail, normal/category/homepage/related cards; social fallback |
+| `coverImage` | 1200 × 630 | Article detail, normal/category/homepage/related cards; article schema; social fallback |
 | `featuredImage` | 1250 × 1320 | Only the special featured section on `/blog` |
-| `socialImage` | 1200 × 630 | Open Graph, Twitter/X and article structured-data image |
+| `socialImage` | 1200 × 630 | Open Graph and Twitter/X; article schema fallback when no real cover exists |
 
 JPG, PNG or WebP, maximum **1,500,000 bytes** per uploaded image. Dimensions are recommendations, not publishing restrictions. Browser preview shows dimensions, size and format for new uploads, plus an aspect-ratio warning. Server validates Base64 size and image signatures. Replace or Remove explicitly; edits without a new upload preserve existing images. Unchecking Featured retains the stored featured image but stops exposing it publicly.
 
-Featured fallback: `featuredImage → coverImage`. Social fallback: `socialImage → coverImage → /api/og/default`. The featured image never becomes an automatic social or article-detail image. A missing cover uses the branded default placeholder; it does not use the featured image. Article/featured images render with natural height and contain behavior to show the complete image. Related cards use cover images and separate title/category links.
+Featured fallback: `featuredImage → coverImage`. Social fallback: `socialImage → coverImage → /api/og/default`. Article schema prefers a real cover, then a real social image, and omits the image property if neither exists; the generic branded placeholder remains available for sharing. The featured image never becomes an automatic social or article-detail image. A missing cover uses the branded default placeholder; it does not use the featured image. Article/featured images render with natural height and contain behavior to show the complete image. Related cards use cover images and separate title/category links.
 
 Cover alt text remains the compatible `imageAlt` field. `featuredImageAlt` falls back to cover alt, then the existing title-based fallback. Provide real descriptions of images rather than keyword lists.
 
@@ -28,7 +28,7 @@ New MongoDB `categories` documents contain `_id`, `name`, normalized `nameKey`, 
 
 Existing string/object categories are read without a bulk migration. Their saved slugs are preserved when discovered. Selecting/saving an old category registers it in the collection as needed; old articles do not need recreation. Existing legacy case variants with already-distinct custom slugs are not destructively rewritten. Category delete/edit management is not included.
 
-Public categories still derive from published blogs, so empty saved categories and draft-only categories do not appear publicly or in the sitemap. Homepage receives lightweight card fields from **all published posts**, fixing the former first-three-post category restriction. All is first/default; filters use category slugs and preserve crawlable article/category links. Related posts remain published-only, same-category, exclude the current post and are limited to three.
+Public categories still derive from published blogs, so empty saved categories and draft-only categories do not appear publicly or in the sitemap. Homepage receives lightweight card fields for up to three posts per published category, retaining every category tab while showing only three articles at once. All is first/default; filters use category slugs and preserve crawlable article/category links. Related posts remain published-only, same-category, exclude the current post and are limited to three.
 
 ## Editor and SEO
 
@@ -40,7 +40,9 @@ The editor keeps Tiptap, tags, feature toggle and publication flow, grouped into
 - Social description → meta description → excerpt.
 - Social image → cover → branded default.
 
-Search/social previews update with title, description, category, slug and image changes. They are illustrative, not guaranteed platform renderings. Canonical, OG URL, author, dates and schemas remain automatic. Editing a saved article title does not regenerate its slug. Manual slug changes are still possible and require care: no historical slug-alias migration is added. Duplicate slugs on edit return 409. Preview displays the last saved content; save draft before previewing unsaved changes.
+Search/social previews update with title, description, category, slug and image changes. They are illustrative, not guaranteed platform renderings. Canonical, OG URL, author, dates and schemas remain automatic. Editing a saved article title does not regenerate its slug. Manual changes to a published slug preserve its old URL as a permanent redirect to the current category/slug; successive changes redirect directly to the latest URL. Only the current URL appears in the sitemap. Drafts remain unavailable through both current and historical URLs, including when a previously published article is unpublished.
+
+The server owns `publishedSlugs` (published slug history) and `urlSlugs` (current slug plus published history). The first save of a legacy article preserves its existing slug if it is published or has a stored publication date. Client-supplied history is ignored. New draft-only slugs do not become public aliases. A sparse unique index on `urlSlugs` is created on the first authenticated save, so the database account needs index-creation permission. No bulk migration is performed; already-lost historical slugs cannot be recovered automatically. Creation adds a numeric suffix when either a current slug or an alias is taken; editing into another article's current slug or alias returns 409. Concurrent URL claims are protected by the database index, and simultaneous saves of one article may return 409 to avoid losing a published URL. Preview displays the last saved content; save draft before previewing unsaved changes.
 
 ## Verification
 
@@ -50,7 +52,7 @@ npm run lint
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example npm run build
 ```
 
-`scripts/check-blog-integration.mjs` is an **isolated local integration test**, not a production migration. It connects only to loopback, clears the fixed `portfolio_contact_blog_test` database, creates a test admin and fixtures, and tests authenticated save/edit, category concurrency/persistence, legacy compatibility, image endpoints/fallbacks, unfeaturing, homepage categories, drafts and sitemap. Start a dedicated temporary MongoDB on port 27029 and the app on port 3100 using that test database; never run it against a real database with that name. The script leaves fixtures for browser checks. Stop/remove the temporary database after testing.
+`scripts/check-blog-integration.mjs` is an **isolated local integration test**, not a production migration. It connects only to loopback, clears the fixed `portfolio_contact_blog_test` database, creates a test admin and fixtures, and tests authenticated save/edit, category concurrency/persistence, legacy compatibility, image endpoints/schema fallbacks, unfeaturing, homepage categories, drafts and sitemap. It also checks published slug redirects, alias collisions, concurrent URL claims, same-article edits, unpublish/republish behavior and canonical-only sitemap entries. Start a dedicated temporary MongoDB on port 27029 and a fresh app process on port 3100 using that test database; never run it against a real database with that name. The script leaves fixtures for browser checks. Stop/remove the temporary database after testing.
 
 Browser acceptance: upload distinct cover/portrait/social images, mark Featured, save and verify /blog vs detail vs OG; remove featured/social and verify fallbacks; unfeature/re-enable and verify preservation; create a category then load a new editor; verify case variants reuse it; filter homepage across more than three posts; resize 320/375/768/1024/1440; verify full images, alt text and mobile editor/previews. Check social sharing after deployment against real publicly accessible images.
 
@@ -71,3 +73,7 @@ For each article, write a unique, useful title, short readable slug, clear excer
 References: [Google Article structured data](https://developers.google.com/search/docs/appearance/structured-data/article), [Google snippets](https://developers.google.com/search/docs/appearance/snippet), [Tiptap image configuration](https://tiptap.dev/docs/editor/extensions/nodes/image).
 
 Audit verification: lint and production build passed; three blog unit tests passed; isolated local MongoDB integration verified custom search/social overrides, canonical/H1 separation, social-alt persistence and fallback, indexable image headers, legacy compatibility and draft exclusion. Production SEO smoke checks passed on 11 fallback pages. Existing Edge Runtime deprecation warnings remain. No production database records were changed.
+
+## Whole-site audit follow-up (2026-10-03)
+
+Five blog unit tests and the expanded isolated MongoDB/API integration passed, including published URL history, collision/concurrent-save handling, draft exclusion, canonical-only sitemaps, cover-first Article schema and omission of the generic logo when an article has no image. Public image infrastructure failures now return 503/no-store rather than 404. Lint and the production build pass; the earlier default-OG Edge Runtime warning has been resolved. See [the full review](SEO-REVIEW-2026-10-03.md) for live versus local evidence and remaining editorial/performance work.

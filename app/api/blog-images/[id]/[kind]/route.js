@@ -15,6 +15,11 @@ export async function GET(_request, { params }) {
     if (!image) return new NextResponse("Not found", { status: 404 });
     return new NextResponse(image.buffer, { status: 200, headers: { "Content-Type": image.mime, "Cache-Control": "public, max-age=60, s-maxage=86400, stale-while-revalidate=3600" } });
   } catch {
-    return new NextResponse("Not found", { status: 404 });
+    // A temporary database outage must not look like a permanently missing image
+    // to crawlers or be cached as a successful response by a proxy.
+    return new NextResponse("Image temporarily unavailable", {
+      status: 503,
+      headers: { "Cache-Control": "no-store", "Retry-After": "60" },
+    });
   }
 }
