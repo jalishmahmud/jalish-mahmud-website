@@ -2,6 +2,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { siteConfig } from "@/lib/site-config";
 import { siteUrl } from "@/lib/utils";
+import { themeBootstrap } from "@/lib/theme-bootstrap";
 
 const manrope = localFont({
   src: [
@@ -26,7 +27,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" className={manrope.variable}>
+    <html lang="en" data-theme="dark" data-design="classic" className={manrope.variable} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeBootstrap }} /></head>
       <body>{children}</body>
     </html>
   );

@@ -6,7 +6,9 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import eventData from "@/data/experience-events.json";
 import jobs from "@/data/experience.json";
-import styles from "./Experience.module.css";
+import baseStyles from "./Experience.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Experience");
 
 export default function Experience() {
   const [activeEvents, setActiveEvents] = useState({});

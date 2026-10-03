@@ -2,7 +2,9 @@ import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { FaLanguage, FaUniversity } from "react-icons/fa";
 import education from "@/data/education.json";
 import { SiReact } from "react-icons/si";
-import styles from "./Education.module.css";
+import baseStyles from "./Education.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Education");
 
 const educationIcons = {
   university: FaUniversity,

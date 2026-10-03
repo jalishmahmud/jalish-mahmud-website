@@ -4,7 +4,9 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { getPublishedBlogs } from "@/lib/blog";
 import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
-import styles from "./page.module.css";
+import baseStyles from "./page.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "blog-index");
 
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";

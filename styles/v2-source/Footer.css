@@ -1,8 +1,23 @@
 .footer {
+    position: relative;
+    padding: 40px 0 94px;
+    overflow: hidden;
     border-top: 1px solid var(--border-color);
-    padding: 40px 0 90px;
+    background: linear-gradient(to bottom, transparent, var(--surface-soft));
     color: var(--text-muted);
-    font-size: .9rem;
+    font-size: .82rem;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    width: 140px;
+    height: 1px;
+    transform: translateX(-50%);
+    background: var(--accent-gradient);
+    box-shadow: 0 0 24px var(--accent-green);
 }
 
 .content {
@@ -17,16 +32,11 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     align-items: baseline;
-    font-size: .8rem;
-    gap: .5rem 1.5rem;
+    gap: .5rem 1.4rem;
+    font-size: .76rem;
 }
 
-.footer nav a {
-    padding: 0;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
+.footer nav a { padding: .2rem 0; }
 .footer nav a:hover { color: var(--accent-green); }
 
 @media (max-width: 768px) {

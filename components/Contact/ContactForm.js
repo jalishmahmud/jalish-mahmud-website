@@ -5,7 +5,9 @@ import Link from "next/link";
 import { FaPaperPlane, FaSpinner } from "react-icons/fa";
 import { contactSchema, contactErrors, inquiryTypes, inquiryFields } from "@/lib/contact-validation";
 import profile from "@/data/hero.json";
-import styles from "./Contact.module.css";
+import baseStyles from "./Contact.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Contact");
 
 const initialForm = () => ({ inquiryType: "business", name: "", email: "", message: "", website: "" });
 

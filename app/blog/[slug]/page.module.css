@@ -1,7 +1,7 @@
 .article {
     max-width: 780px;
     margin: 0 auto;
-    padding: 140px 0 100px;
+    padding: 140px 0 40px;
 }
 
 .back {
@@ -80,7 +80,7 @@
 .content :global(.hljs-comment) { color: #64748b; }
 .content :global(code) { font-family: monospace; }
 .content :global(img) { max-width: 100%; height: auto; border-radius: 10px; }
-.related { margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-color); }
+.related { margin-top: 40px; padding-top: 40px; border-top: 1px solid var(--border-color); }
 .related h2 { margin-bottom: 1.25rem; }
 .relatedGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .relatedGrid article { display: grid; gap: .4rem; padding: 1rem; border: 1px solid var(--border-color); border-radius: 10px; }
@@ -91,8 +91,10 @@
 @media (max-width: 768px) {
     .article {
         padding-top: 110px;
-        padding-bottom: 60px;
+        padding-bottom: 25px;
     }
+
+    .related { margin-top: 25px; padding-top: 25px; }
 
     .image {
         height: auto;

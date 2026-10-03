@@ -1,6 +1,8 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import projects from "@/data/projects.json";
-import styles from "./Projects.module.css";
+import baseStyles from "./Projects.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Projects");
 
 export default function Projects() {
   return (

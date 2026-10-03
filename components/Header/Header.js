@@ -6,7 +6,9 @@ import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 import data from "@/data/header.json";
-import styles from "./Header.module.css";
+import baseStyles from "./Header.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Header");
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

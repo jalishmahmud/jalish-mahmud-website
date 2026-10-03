@@ -2,7 +2,9 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import ContactForm from "@/components/Contact/ContactForm";
 import ContactInfo from "@/components/Contact/ContactInfo";
-import styles from "@/components/Contact/Contact.module.css";
+import baseStyles from "@/components/Contact/Contact.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Contact");
 import { buildPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
