@@ -2,7 +2,9 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import data from "@/data/hero.json";
-import styles from "./Hero.module.css";
+import baseStyles from "./Hero.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Hero");
 
 const motionPreference = "(prefers-reduced-motion: reduce)";
 

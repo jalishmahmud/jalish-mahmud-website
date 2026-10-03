@@ -1,7 +1,9 @@
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaGithub, FaLinkedinIn } from "react-icons/fa";
 import profile from "@/data/hero.json";
 import { siteConfig } from "@/lib/site-config";
-import styles from "./Contact.module.css";
+import baseStyles from "./Contact.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Contact");
 
 export default function ContactInfo() {
   const phone = profile.phone.replace(/\(\+88\)/, "+88").replace(/[^+\d]/g, "");

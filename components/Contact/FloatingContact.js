@@ -5,7 +5,9 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaCommentDots, FaTimes } from "react-icons/fa";
-import styles from "./Contact.module.css";
+import baseStyles from "./Contact.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Contact");
 
 const ContactForm = dynamic(() => import("./ContactForm"), { loading: () => <p role="status">Loading contact form…</p> });
 

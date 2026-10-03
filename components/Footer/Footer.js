@@ -1,6 +1,8 @@
 import FloatingContact from "@/components/Contact/FloatingContact";
 import Link from "next/link";
-import styles from "./Footer.module.css";
+import baseStyles from "./Footer.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Footer");
 import data from "@/data/footer.json";
 
 export default function Footer() {

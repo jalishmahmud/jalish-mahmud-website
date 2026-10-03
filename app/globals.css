@@ -1,4 +1,5 @@
 :root {
+    color-scheme: dark;
     --bg-dark: #0b0f17;
     --bg-header: rgba(11, 15, 23, .85);
     --bg-card: #131926;
@@ -19,6 +20,7 @@
 }
 
 :root[data-theme='light'] {
+    color-scheme: light;
     --bg-dark: #f8fafc;
     --bg-header: rgba(248, 250, 252, .85);
     --bg-card: #fff;
@@ -35,6 +37,12 @@
     --border-highlight: #cbd5e1;
     --card-shadow: 0 10px 30px rgba(0, 0, 0, .08);
     --stat-card-bg: rgba(0, 0, 0, .02);
+}
+
+/* The optional stylesheet is fetched only for saved V2 visitors. Hide the
+   unstyled page until it arrives so the classic layout never flashes. */
+html[data-design='v2']:not([data-design-ready='true']) body {
+    visibility: hidden;
 }
 
 * {
@@ -115,6 +123,6 @@ section {
     }
 
     section {
-        padding: 60px 0;
+        padding: 25px 0;
     }
 }

@@ -1,0 +1,27 @@
+.page {
+    max-width: 860px;
+    padding-top: 150px;
+    padding-bottom: 40px;
+    overflow-wrap: anywhere;
+}
+
+.page h1 {
+    margin-bottom: 1.25rem;
+    background: var(--text-gradient);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -.06em;
+}
+
+.page h2 { margin: 2.4rem 0 .8rem; font-size: 1.3rem; line-height: 1.4; letter-spacing: -.025em; }
+.page p, .page ul { margin-bottom: 1rem; color: var(--text-muted); line-height: 1.85; }
+.page ul { padding-left: 1.5rem; }
+.page li { margin-bottom: .5rem; }
+.page a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 768px) {
+    .page { padding-top: 120px; padding-bottom: 25px; }
+}

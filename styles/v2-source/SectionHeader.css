@@ -1,0 +1,34 @@
+.header {
+    max-width: 680px;
+    margin: 0 auto 3.25rem;
+    text-align: center;
+}
+
+.header::before {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin: 0 auto 1.1rem;
+    border-radius: 999px;
+    background: var(--accent-gradient);
+    box-shadow: 0 0 18px var(--accent-green-bg);
+}
+
+.header h2 {
+    margin-bottom: .65rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -.05em;
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: .98rem;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .header { margin-bottom: 2.35rem; }
+}
