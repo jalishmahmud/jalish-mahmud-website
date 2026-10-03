@@ -442,7 +442,10 @@ html[data-design="v2"] .design-blog-post-content h2, html[data-design="v2"] .des
 html[data-design="v2"] .design-blog-post-content ul, html[data-design="v2"] .design-blog-post-content ol { padding-left: 1.5rem; color: var(--text-muted); }
 html[data-design="v2"] .design-blog-post-content a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
 html[data-design="v2"] .design-blog-post-content blockquote { padding: 1rem 1.25rem; border: 1px solid var(--border-color); border-left: 3px solid var(--accent-green); border-radius: 0 12px 12px 0; background: var(--accent-green-bg); color: var(--text-muted); }
-html[data-design="v2"] .design-blog-post-content pre { overflow-x: auto; padding: 1.25rem; border: 1px solid var(--border-highlight); border-radius: 14px; background: var(--bg-deep); color: #d9d0ff; font-family: monospace; white-space: pre; }
+html[data-design="v2"] .design-blog-post-content pre { overflow-x: auto; padding: 3.2rem 1.25rem 1.25rem; border: 1px solid var(--border-highlight); border-radius: 14px; background: var(--bg-deep); color: #d9d0ff; font-family: monospace; white-space: pre; }
+html[data-design="v2"] .design-blog-post-content pre .code-copy-button { border-color: var(--border-highlight); border-radius: 9px; background: var(--bg-card); color: var(--accent-green); }
+html[data-design="v2"] .design-blog-post-content pre .code-copy-button:hover { background: var(--bg-elevated); }
+html[data-design="v2"] .design-blog-post-content pre .code-copy-button:focus-visible { outline-color: var(--accent-green); }
 html[data-design="v2"] .design-blog-post-content .hljs-keyword, html[data-design="v2"] .design-blog-post-content .hljs-title, html[data-design="v2"] .design-blog-post-content .hljs-string { color: #bca5ff; }
 html[data-design="v2"] .design-blog-post-content .hljs-comment { color: #81799c; }
 html[data-design="v2"][data-theme='light'] .design-blog-post-content pre { color: var(--text-main); }

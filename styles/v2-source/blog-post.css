@@ -85,7 +85,10 @@
 .content :global(ul), .content :global(ol) { padding-left: 1.5rem; color: var(--text-muted); }
 .content :global(a) { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
 .content :global(blockquote) { padding: 1rem 1.25rem; border: 1px solid var(--border-color); border-left: 3px solid var(--accent-green); border-radius: 0 12px 12px 0; background: var(--accent-green-bg); color: var(--text-muted); }
-.content :global(pre) { overflow-x: auto; padding: 1.25rem; border: 1px solid var(--border-highlight); border-radius: 14px; background: var(--bg-deep); color: #d9d0ff; font-family: monospace; white-space: pre; }
+.content :global(pre) { overflow-x: auto; padding: 3.2rem 1.25rem 1.25rem; border: 1px solid var(--border-highlight); border-radius: 14px; background: var(--bg-deep); color: #d9d0ff; font-family: monospace; white-space: pre; }
+.content :global(pre) :global(.code-copy-button) { border-color: var(--border-highlight); border-radius: 9px; background: var(--bg-card); color: var(--accent-green); }
+.content :global(pre) :global(.code-copy-button:hover) { background: var(--bg-elevated); }
+.content :global(pre) :global(.code-copy-button:focus-visible) { outline-color: var(--accent-green); }
 .content :global(.hljs-keyword), .content :global(.hljs-title), .content :global(.hljs-string) { color: #bca5ff; }
 .content :global(.hljs-comment) { color: #81799c; }
 :root[data-theme='light'] .content :global(pre) { color: var(--text-main); }
