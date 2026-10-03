@@ -1,0 +1,20 @@
+.button {
+    width: 42px;
+    height: 42px;
+    background: var(--surface-soft);
+    border: 1px solid var(--border-color);
+    color: var(--accent-green);
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.button:hover {
+    border-color: var(--border-highlight);
+    background: var(--accent-green-bg);
+    transform: rotate(10deg) translateY(-1px);
+}

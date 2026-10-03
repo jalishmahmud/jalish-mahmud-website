@@ -1,7 +1,9 @@
 "use client";
 import { useState } from "react";
 import { FaFacebook, FaLinkedin, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
-import styles from "./BlogShare.module.css";
+import baseStyles from "./BlogShare.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "BlogShare");
 
 export default function BlogShare({ title, url }) {
   const [copied, setCopied] = useState(false);

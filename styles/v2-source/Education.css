@@ -1,0 +1,48 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    padding: 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    background: var(--surface-glass);
+    transition: var(--transition);
+    backdrop-filter: blur(12px);
+}
+
+.card:hover {
+    border-color: var(--border-highlight);
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.icon {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border: 1px solid color-mix(in srgb, var(--accent-blue) 28%, transparent);
+    border-radius: 13px;
+    background: var(--accent-blue-bg);
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.card h3 {
+    margin-bottom: .25rem;
+    font-size: 1.05rem;
+    letter-spacing: -.02em;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: .82rem;
+    line-height: 1.6;
+}

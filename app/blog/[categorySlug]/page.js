@@ -8,7 +8,9 @@ import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
 import { cleanText } from "@/lib/utils";
 import { buildPageMetadata, breadcrumbData, serializeJsonLd } from "@/lib/seo";
 import { categorySeo } from "@/lib/category-seo";
-import styles from "../page.module.css";
+import baseStyles from "../page.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "blog-index");
 
 export const dynamic = "force-dynamic";
 

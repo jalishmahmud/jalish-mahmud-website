@@ -2,7 +2,9 @@ import { FaArrowRight, FaEnvelope, FaGithub, FaLinkedinIn, FaMapMarkerAlt, FaPho
 import Link from "next/link";
 import Typewriter from "./Typewriter";
 import { siteConfig } from "@/lib/site-config";
-import styles from "./Hero.module.css";
+import baseStyles from "./Hero.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Hero");
 import data from "@/data/hero.json";
 import { links } from "@/utils/links";
 

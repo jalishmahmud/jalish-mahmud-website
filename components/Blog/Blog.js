@@ -5,7 +5,9 @@ import ContentImage from "@/components/ContentImage/ContentImage";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
-import styles from "./Blog.module.css";
+import baseStyles from "./Blog.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Blog");
 
 export default function Blog({ posts = [] }) {
   const [activeCategory, setActiveCategory] = useState("");

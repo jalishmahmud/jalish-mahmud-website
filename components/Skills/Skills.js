@@ -1,7 +1,9 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import { FaCloud, FaCode, FaServer, FaWrench } from "react-icons/fa";
 import skills from "@/data/skills.json";
-import styles from "./Skills.module.css";
+import baseStyles from "./Skills.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Skills");
 
 const skillIcons = {
   frontend: FaCode,

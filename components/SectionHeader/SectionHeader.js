@@ -1,4 +1,6 @@
-import styles from "./SectionHeader.module.css";
+import baseStyles from "./SectionHeader.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "SectionHeader");
 
 export default function SectionHeader({ title, subtitle }) {
   return (

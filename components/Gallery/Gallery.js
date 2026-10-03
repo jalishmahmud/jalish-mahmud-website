@@ -5,7 +5,9 @@ import { useCallback, useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import galleryData from "@/data/gallery.json";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import styles from "./Gallery.module.css";
+import baseStyles from "./Gallery.module.css";
+import { withDesignStyles } from "@/lib/design-styles";
+const styles = withDesignStyles(baseStyles, "Gallery");
 
 const PAGE_SIZE = 6;
 
@@ -46,7 +48,7 @@ export default function Gallery() {
 
   const openPhoto = (photo) => {
     setModalCategory(activeFilter);
-    setSelectedIndex(modalPhotos.findIndex((item) => item.src === photo.src));
+    setSelectedIndex(visiblePhotos.findIndex((item) => item.src === photo.src));
   };
   const closePhoto = () => setSelectedIndex(null);
 
