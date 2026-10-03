@@ -7,6 +7,7 @@ import { sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
 import { saveCategory } from "@/lib/categories";
 import { mergeBlogInput } from "@/lib/blog-fields";
+import { blogSlugFilter, blogSlugState, isBlogSlugCollision, writableBlogs } from "@/lib/blog-slugs";
 
 export async function GET(_request, { params }) {
   try {
@@ -28,14 +29,20 @@ export async function PUT(request, { params }) {
     const existing = await db.collection("blogs").findOne({ _id: new ObjectId(id) });
     if (!existing) return NextResponse.json({ error: "Blog not found." }, { status: 404 });
     const input = parseBlogInput(mergeBlogInput(existing, body));
-    if (await db.collection("blogs").findOne({ slug: input.slug, _id: { $ne: new ObjectId(id) } })) return NextResponse.json({ error: "This article slug is already in use." }, { status: 409 });
+    const blogs = await writableBlogs(db);
+    if (await blogs.findOne({ ...blogSlugFilter(input.slug), _id: { $ne: existing._id } }, { projection: { _id: 1 } })) return NextResponse.json({ error: "This article slug is already in use." }, { status: 409 });
     const category = await saveCategory({ name: input.category, slug: input.categorySlug || slugify(input.category) });
     const content = sanitizeContent(input.content);
     const now = new Date();
-    const update = { ...input, category: category.name, categorySlug: category.slug, categoryId: category.id, slug: slugify(input.slug || input.title), content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
-    await db.collection("blogs").updateOne({ _id: new ObjectId(id) }, { $set: update });
+    const update = { ...input, ...blogSlugState(existing, input.slug, input.status), category: category.name, categorySlug: category.slug, categoryId: category.id, content, contentHtml: content, readTime: readingTime(content), updatedAt: now, publishedAt: existing.publishedAt || (input.status === "published" ? now : null) };
+    // A concurrent edit must not overwrite a newly published URL's history.
+    const saved = await blogs.updateOne({ _id: existing._id, slug: existing.slug, status: existing.status, updatedAt: existing.updatedAt ?? { $exists: false } }, { $set: update });
+    if (!saved.matchedCount) return NextResponse.json({ error: "This article changed while saving. Reload it and try again." }, { status: 409 });
     return NextResponse.json({ ok: true });
-  } catch (error) { return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Please check the blog fields and try again." }, { status: error.message === "UNAUTHORIZED" ? 401 : 400 }); }
+  } catch (error) {
+    if (isBlogSlugCollision(error)) return NextResponse.json({ error: "This article slug is already in use." }, { status: 409 });
+    return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Please check the blog fields and try again." }, { status: error.message === "UNAUTHORIZED" ? 401 : 400 });
+  }
 }
 
 export async function DELETE(_request, { params }) {

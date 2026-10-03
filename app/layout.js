@@ -20,7 +20,6 @@ export const metadata = {
   metadataBase: new URL(siteUrl()),
   title: { default: siteConfig.title, template: `%s | ${siteConfig.name}` },
   description: siteConfig.description,
-  keywords: siteConfig.keywords,
   authors: [{ name: siteConfig.fullName, url: siteUrl("/") }],
   verification: { google: process.env.GOOGLE_SITE_VERIFICATION || undefined },
 };

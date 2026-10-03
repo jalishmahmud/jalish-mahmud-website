@@ -17,6 +17,13 @@ export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const posts = await getPublishedBlogs();
+  // Keep every published category while sending only the cards each tab can show.
+  const categoryCounts = new Map();
+  const previewPosts = posts.filter((post) => {
+    const count = categoryCounts.get(post.categorySlug) || 0;
+    categoryCounts.set(post.categorySlug, count + 1);
+    return count < 3;
+  });
   return (
     <>
       <Header />
@@ -27,7 +34,7 @@ export default async function Home() {
         <Experience />
         <Projects />
         <Education />
-        <Blog posts={posts.map(({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }))} />
+        <Blog posts={previewPosts.map(({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }) => ({ title, slug, category, categorySlug, excerpt, coverImage, imageAlt, date }))} />
       </main>
       <Footer />
     </>
