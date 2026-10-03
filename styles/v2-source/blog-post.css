@@ -88,6 +88,9 @@
 .content :global(pre) { overflow-x: auto; padding: 1.25rem; border: 1px solid var(--border-highlight); border-radius: 14px; background: var(--bg-deep); color: #d9d0ff; font-family: monospace; white-space: pre; }
 .content :global(.hljs-keyword), .content :global(.hljs-title), .content :global(.hljs-string) { color: #bca5ff; }
 .content :global(.hljs-comment) { color: #81799c; }
+:root[data-theme='light'] .content :global(pre) { color: var(--text-main); }
+:root[data-theme='light'] .content :global(.hljs-keyword), :root[data-theme='light'] .content :global(.hljs-title), :root[data-theme='light'] .content :global(.hljs-string) { color: var(--accent-green-dark); }
+:root[data-theme='light'] .content :global(.hljs-comment) { color: var(--text-muted); }
 .content :global(code) { font-family: monospace; }
 .content :global(img) { max-width: 100%; height: auto; border-radius: 14px; }
 .content :global(table) { display: block; overflow-x: auto; }
