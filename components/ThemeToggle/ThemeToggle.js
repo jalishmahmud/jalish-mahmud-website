@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import { LuMoonStar, LuPanelsTopLeft, LuSunMedium } from "react-icons/lu";
 import { COLOR_KEY, DESIGN_KEY, ensureV2Stylesheet, readPreference, setPreference } from "@/lib/theme-preferences";
 import { withDesignStyles } from "@/lib/design-styles";
 import baseStyles from "./ThemeToggle.module.css";
@@ -68,7 +69,7 @@ export default function ThemeToggle() {
         title={color === "dark" ? "Light mode" : "Dark mode"}
         onClick={() => setPreference("theme", getColor() === "dark" ? "light" : "dark", COLOR_KEY)}
       >
-        <span aria-hidden="true">{color === "dark" ? "☼" : "☾"}</span>
+        {color === "dark" ? <LuSunMedium aria-hidden="true" /> : <LuMoonStar aria-hidden="true" />}
       </button>
       <button
         className={styles.button}
@@ -79,7 +80,7 @@ export default function ThemeToggle() {
         disabled={loading}
         onClick={toggleDesign}
       >
-        <span aria-hidden="true">↻</span>
+        <LuPanelsTopLeft aria-hidden="true" />
       </button>
     </div>
   );
