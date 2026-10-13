@@ -9,7 +9,6 @@
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    font-size: 1rem;
     transition: var(--transition);
 }
 

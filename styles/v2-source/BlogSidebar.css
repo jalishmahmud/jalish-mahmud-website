@@ -1,0 +1,10 @@
+.sidebar { top: min(120px, calc(100dvh - var(--sidebar-height, 0px) - 16px)); margin-top: 138px; padding: 2px 6px 8px 2px; --sidebar-text: #d2cce7; }
+:root[data-theme='light'] .sidebar { --sidebar-text: #4a425d; }
+.group { padding: 1.25rem; border-color: var(--border-color); border-radius: 16px; background: var(--surface-glass); box-shadow: var(--card-shadow); }
+.group h2 { margin-bottom: .75rem; }
+.group a { padding: .4rem 0; }
+.group li { gap: .65rem; padding: .7rem 0; }
+.group li a { padding: 0; }
+.group li:first-child { padding-top: 0; }
+.group li:last-child { padding-bottom: 0; }
+@media (max-width: 900px) { .sidebar { top: auto; margin-top: 0; padding: 0 0 2rem; } }
