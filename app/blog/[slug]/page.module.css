@@ -55,7 +55,9 @@
 .image {
     width: 100%;
     height: auto;
+    aspect-ratio: 1200 / 630;
     object-fit: contain;
+    background: var(--bg-dark);
     border-radius: 12px;
     margin-bottom: 2.5rem;
     display: block;
@@ -122,7 +124,7 @@
 .content :global(table) { display: block; overflow-x: auto; }
 .content :global(pre) { white-space: pre; }
 
-.relatedGrid img { width: 100%; height: auto; object-fit: contain; border-radius: 6px; }
+.relatedGrid img { width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; border-radius: 6px; background: var(--bg-dark); }
 .relatedGrid h3 { font-size: 1rem; line-height: 1.5; }
 
 @media (max-width: 900px) {

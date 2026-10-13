@@ -286,22 +286,22 @@ html[data-design="v2"] .design-blog-index-featured {
 }
 
 html[data-design="v2"] .design-blog-index-featuredImage {
-    min-height: 430px;
     display: grid;
     place-items: center;
+    align-self: center;
+    aspect-ratio: 1200 / 630;
     overflow: hidden;
     background: var(--bg-elevated);
 }
+html[data-design="v2"] .design-blog-index-featuredPortrait { aspect-ratio: 1250 / 1320; }
 
 html[data-design="v2"] .design-blog-index-featuredImage img {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    transition: transform .55s cubic-bezier(.2, .8, .2, 1);
+    object-fit: contain;
 }
 
-html[data-design="v2"] .design-blog-index-featured:hover .design-blog-index-featuredImage img { transform: scale(1.025); }
 html[data-design="v2"] .design-blog-index-featured > div { padding: clamp(2rem, 5vw, 3.5rem); align-self: center; }
 html[data-design="v2"] .design-blog-index-categoryLink, html[data-design="v2"] .design-blog-index-meta a { color: var(--accent-green); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 html[data-design="v2"] .design-blog-index-featuredMeta { color: var(--text-subtle); }
@@ -334,9 +334,8 @@ html[data-design="v2"] .design-blog-index-grid article {
 
 html[data-design="v2"] .design-blog-index-grid article:hover { border-color: var(--border-highlight); transform: translateY(-4px); box-shadow: var(--card-shadow-hover); }
 html[data-design="v2"] .design-blog-index-grid article > :not(:first-child) { margin-left: 1.25rem; margin-right: 1.25rem; }
-html[data-design="v2"] .design-blog-index-grid article > a:first-child { height: 190px; display: block; overflow: hidden; margin-bottom: 1.2rem; background: var(--bg-elevated); }
-html[data-design="v2"] .design-blog-index-grid img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .45s ease; }
-html[data-design="v2"] .design-blog-index-grid article:hover img { transform: scale(1.04); }
+html[data-design="v2"] .design-blog-index-grid article > a:first-child { aspect-ratio: 1200 / 630; display: block; overflow: hidden; margin-bottom: 1.2rem; background: var(--bg-elevated); }
+html[data-design="v2"] .design-blog-index-grid img { width: 100%; height: 100%; display: block; object-fit: contain; }
 html[data-design="v2"] .design-blog-index-meta { display: flex; justify-content: space-between; gap: .75rem; margin-bottom: .75rem; }
 html[data-design="v2"] .design-blog-index-meta time { color: var(--text-subtle); }
 html[data-design="v2"] .design-blog-index-grid h3 { letter-spacing: -.02em; }
@@ -345,7 +344,6 @@ html[data-design="v2"] .design-blog-index-grid article p { margin-top: .65rem; }
 
 @media (max-width: 900px) {
     html[data-design="v2"] .design-blog-index-featured { grid-template-columns: 1fr; }
-    html[data-design="v2"] .design-blog-index-featuredImage { min-height: 320px; max-height: 520px; }
     html[data-design="v2"] .design-blog-index-grid { grid-template-columns: 1fr 1fr; }
 }
 
@@ -353,7 +351,6 @@ html[data-design="v2"] .design-blog-index-grid article p { margin-top: .65rem; }
     html[data-design="v2"] .design-blog-index-hero { padding-top: 125px; padding-bottom: 25px; }
     html[data-design="v2"] .design-blog-index-hero h1 { }
     html[data-design="v2"] .design-blog-index-featured { margin-bottom: 25px; border-radius: 18px; }
-    html[data-design="v2"] .design-blog-index-featuredImage { min-height: 230px; }
     html[data-design="v2"] .design-blog-index-featured > div { padding: 1.5rem; }
     html[data-design="v2"] .design-blog-index-heading { align-items: start; flex-direction: column; gap: .5rem; }
     html[data-design="v2"] .design-blog-index-grid { grid-template-columns: 1fr; }
@@ -425,9 +422,11 @@ html[data-design="v2"] .design-blog-post-excerpt {
 html[data-design="v2"] .design-blog-post-image {
     width: 100%;
     height: auto;
+    aspect-ratio: 1200 / 630;
     display: block;
     margin-bottom: 2.8rem;
     object-fit: contain;
+    background: var(--bg-elevated);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     box-shadow: var(--card-shadow);
@@ -466,7 +465,7 @@ html[data-design="v2"] .design-blog-post-related h2 { margin-bottom: 1.25rem; le
 html[data-design="v2"] .design-blog-post-relatedGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
 html[data-design="v2"] .design-blog-post-relatedGrid article { display: grid; gap: .5rem; padding: .8rem; border: 1px solid var(--border-color); border-radius: 14px; background: var(--surface-glass); transition: var(--transition); }
 html[data-design="v2"] .design-blog-post-relatedGrid article:hover { border-color: var(--border-highlight); transform: translateY(-3px); }
-html[data-design="v2"] .design-blog-post-relatedGrid img { width: 100%; height: auto; object-fit: contain; border-radius: 9px; }
+html[data-design="v2"] .design-blog-post-relatedGrid img { width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; border-radius: 9px; background: var(--bg-elevated); }
 html[data-design="v2"] .design-blog-post-relatedGrid h3 { }
 html[data-design="v2"] .design-blog-post-relatedGrid span { color: var(--text-muted); }
 
@@ -546,7 +545,7 @@ html[data-design="v2"] .design-Blog-card > :not(.design-Blog-imageLink) {
 
 html[data-design="v2"] .design-Blog-imageLink {
     display: block;
-    height: 184px;
+    aspect-ratio: 1200 / 630;
     overflow: hidden;
     margin-bottom: 1.35rem;
     background: var(--bg-elevated);
@@ -556,8 +555,7 @@ html[data-design="v2"] .design-Blog-image {
     width: 100%;
     height: 100%;
     display: block;
-    object-fit: cover;
-    transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+    object-fit: contain;
 }
 
 html[data-design="v2"] .design-Blog-card:hover {
@@ -565,8 +563,6 @@ html[data-design="v2"] .design-Blog-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--card-shadow-hover);
 }
-
-html[data-design="v2"] .design-Blog-card:hover .design-Blog-image { transform: scale(1.045); }
 
 html[data-design="v2"] .design-Blog-meta {
     display: flex;

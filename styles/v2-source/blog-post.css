@@ -65,9 +65,11 @@
 .image {
     width: 100%;
     height: auto;
+    aspect-ratio: 1200 / 630;
     display: block;
     margin-bottom: 2.8rem;
     object-fit: contain;
+    background: var(--bg-elevated);
     border: 1px solid var(--border-color);
     border-radius: 20px;
     box-shadow: var(--card-shadow);
@@ -106,7 +108,7 @@
 .relatedGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
 .relatedGrid article { display: grid; gap: .5rem; padding: .8rem; border: 1px solid var(--border-color); border-radius: 14px; background: var(--surface-glass); transition: var(--transition); }
 .relatedGrid article:hover { border-color: var(--border-highlight); transform: translateY(-3px); }
-.relatedGrid img { width: 100%; height: auto; object-fit: contain; border-radius: 9px; }
+.relatedGrid img { width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: contain; border-radius: 9px; background: var(--bg-elevated); }
 .relatedGrid h3 { font-size: .92rem; line-height: 1.45; }
 .relatedGrid span { color: var(--text-muted); font-size: .72rem; }
 
