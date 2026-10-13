@@ -235,7 +235,7 @@ html[data-design="v2"] .design-blog-index-hero {
     padding: 164px 0 40px;
 }
 
-html[data-design="v2"] .design-blog-index-categoryLayout .design-blog-index-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); }
+html[data-design="v2"] .design-blog-index-categoryLayout .design-blog-index-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)); }
 @media (max-width: 560px) { html[data-design="v2"] .design-blog-index-categoryLayout .design-blog-index-grid { grid-template-columns: 1fr; } }
 
 html[data-design="v2"] .design-blog-index-breadcrumbs {

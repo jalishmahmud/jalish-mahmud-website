@@ -3,7 +3,7 @@
     padding: 164px 0 40px;
 }
 
-.categoryLayout .grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); }
+.categoryLayout .grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)); }
 @media (max-width: 560px) { .categoryLayout .grid { grid-template-columns: 1fr; } }
 
 .breadcrumbs {
