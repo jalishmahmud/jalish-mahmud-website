@@ -1,0 +1,18 @@
+.sidebar { position: sticky; top: min(96px, calc(100dvh - var(--sidebar-height, 0px) - 16px)); align-self: start; display: grid; gap: 1.75rem; margin-top: 138px; padding: 2px 6px 8px 2px; overflow: visible; --sidebar-text: #cbd5e1; }
+:global(html[data-theme='light']) .sidebar { --sidebar-text: #334155; }
+.group { padding: 1.25rem; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-card); }
+.group h2 { margin-bottom: 1rem; color: var(--text-main); font-size: 1rem; }
+.group nav, .group ol { display: grid; gap: .45rem; }
+.group ol { gap: 0; padding-left: 0; list-style: none; counter-reset: popular; }
+.group a { display: block; padding: .4rem 0; color: var(--sidebar-text); font-size: .94rem; line-height: 1.55; overflow-wrap: anywhere; }
+.group a:hover, .group a[aria-current='page'] { color: var(--accent-green); }
+.group a[aria-current='page'] { font-weight: 700; }
+.group li { display: grid; grid-template-columns: 1.7rem minmax(0, 1fr); gap: .55rem; align-items: start; min-width: 0; padding: 1rem 0; counter-increment: popular; }
+.group li:first-child { padding-top: .1rem; }
+.group li:last-child { padding-bottom: .1rem; }
+.group li + li { border-top: 1px solid var(--border-color); }
+.group li::before { content: counter(popular, decimal-leading-zero); display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 7px; background: var(--accent-green-bg); color: var(--accent-green); font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.group li a { min-width: 0; padding: 0; }
+
+@media (max-width: 900px) { .sidebar { position: static; margin-top: 0; padding: 0 0 2rem; grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .sidebar { grid-template-columns: 1fr; } }

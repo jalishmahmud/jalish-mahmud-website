@@ -5,7 +5,9 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import BlogShare from "@/components/BlogShare/BlogShare";
 import CodeCopyButtons from "@/components/CodeCopyButtons/CodeCopyButtons";
-import { getBlogBySlug, getRelatedBlogs, sanitizeContent } from "@/lib/blog";
+import BlogViewTracker from "@/components/BlogViewTracker/BlogViewTracker";
+import BlogSidebar from "@/components/BlogSidebar/BlogSidebar";
+import { getBlogBySlug, getPublishedBlogs, sanitizeContent } from "@/lib/blog";
 import { getBlogUrl, getCategoryUrl } from "@/lib/blog-urls";
 import { cleanText, siteUrl } from "@/lib/utils";
 import { buildPageMetadata, isoDate, serializeJsonLd, breadcrumbData, authorData } from "@/lib/seo";
@@ -41,7 +43,8 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPost({ params }) {
   const post = await resolvePost(params);
-  const related = await getRelatedBlogs(post);
+  const published = await getPublishedBlogs();
+  const related = published.filter((item) => item.slug !== post.slug && item.categorySlug === post.categorySlug).slice(0, 3);
   const blogUrl = siteUrl(getBlogUrl(post));
   // Article schema should identify a representative article image, not the
   // site's generic sharing logo. Keep the default image for OG/Twitter only.
@@ -53,5 +56,5 @@ export default async function BlogPost({ params }) {
   const articleHtml = sanitizeContent(post.contentHtml || (Array.isArray(post.content) ? post.content.map((paragraph) => `<p>${paragraph}</p>`).join("") : post.content) || "");
   const hasCodeBlocks = /<pre(?:\s|>)/i.test(articleHtml);
 
-  return <><Header /><main className="container"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbs) }} /><article className={styles.article}><nav aria-label="Breadcrumb" className={styles.breadcrumbs}><Link href="/">Home</Link><span>›</span><Link href="/blog">Blog</Link><span>›</span><Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link><span>›</span><span aria-current="page">{post.title}</span></nav><div className={styles.meta}><Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link><Link href="/" rel="author">{siteConfig.fullName}</Link><time dateTime={publishedTime}>{post.date} · {post.readTime}</time></div><h1>{post.title}</h1><ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} loading="eager" fetchPriority="high" className={styles.image} /><p className={styles.excerpt}>{post.excerpt}</p><div className={styles.content} data-code-copy-root dangerouslySetInnerHTML={{ __html: articleHtml }} />{hasCodeBlocks && <CodeCopyButtons slug={post.slug} />}<BlogShare title={post.title} url={blogUrl} />{related.length > 0 && <section className={styles.related}><h2>Related {post.category} Articles</h2><div className={styles.relatedGrid}>{related.map((item) => <article key={item.slug}><Link href={getBlogUrl(item)}><ContentImage src={item.coverImage} alt={item.imageAlt || `Cover for ${item.title}`} /></Link><h3><Link href={getBlogUrl(item)}>{item.title}</Link></h3><Link href={getCategoryUrl(item.categorySlug)}>{item.category}</Link><span>{item.readTime}</span></article>)}</div></section>}</article></main><Footer /></>;
+  return <><Header /><main className="container"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} /><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbs) }} /><BlogViewTracker id={post._id} /><div className={styles.pageLayout}><BlogSidebar posts={published} activeCategorySlug={post.categorySlug} /><article className={styles.article}><nav aria-label="Breadcrumb" className={styles.breadcrumbs}><Link href="/">Home</Link><span>›</span><Link href="/blog">Blog</Link><span>›</span><Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link><span>›</span><span aria-current="page">{post.title}</span></nav><div className={styles.meta}><Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link><Link href="/" rel="author">{siteConfig.fullName}</Link><time dateTime={publishedTime}>{post.date} · {post.readTime}</time></div><h1>{post.title}</h1><ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} loading="eager" fetchPriority="high" className={styles.image} /><p className={styles.excerpt}>{post.excerpt}</p><div className={styles.content} data-code-copy-root dangerouslySetInnerHTML={{ __html: articleHtml }} />{hasCodeBlocks && <CodeCopyButtons slug={post.slug} />}<BlogShare title={post.title} url={blogUrl} />{related.length > 0 && <section className={styles.related}><h2>Related {post.category} Articles</h2><div className={styles.relatedGrid}>{related.map((item) => <article key={item.slug}><Link href={getBlogUrl(item)}><ContentImage src={item.coverImage} alt={item.imageAlt || `Cover for ${item.title}`} /></Link><h3><Link href={getBlogUrl(item)}>{item.title}</Link></h3><Link href={getCategoryUrl(item.categorySlug)}>{item.category}</Link><span>{item.readTime}</span></article>)}</div></section>}</article></div></main><Footer /></>;
 }
