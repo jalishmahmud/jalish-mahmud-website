@@ -9,6 +9,7 @@ const modules = [
   ["blog-index", "blog-index"],
   ["blog-post", "blog-post"],
   ["Blog", "Blog"],
+  ["BlogSidebar", "BlogSidebar"],
   ["BlogShare", "BlogShare"],
   ["Contact", "Contact"],
   ["Education", "Education"],

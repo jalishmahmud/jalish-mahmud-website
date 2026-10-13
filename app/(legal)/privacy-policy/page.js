@@ -12,7 +12,7 @@ export const metadata = buildPageMetadata({
 export default function PrivacyPolicy() {
   return <>
     <h1>Privacy Policy</h1>
-    <p>Last updated: <time dateTime="2026-09-27">September 27, 2026</time></p>
+    <p>Last updated: <time dateTime="2026-10-13">October 13, 2026</time></p>
     <p>This notice describes information handled when you visit the personal portfolio and blog operated by {siteConfig.fullName}, based in {profile.location}. For privacy questions, email <a href={`mailto:${profile.email}`}>{profile.email}</a>.</p>
 
     <h2>Information you choose to share</h2>
@@ -24,7 +24,7 @@ export default function PrivacyPolicy() {
     <p>Hosting, email and any external content providers handle the information necessary to provide their services. Depending on the provider, processing may take place outside your country.</p>
 
     <h2>Cookies and browser storage</h2>
-    <p>The website does not currently include analytics or advertising scripts. Its theme switch operates in memory and does not save your choice in a cookie or local storage.</p>
+    <p>When you open a public article, the site increments an aggregate view count for that article. The count does not store your identity or browsing history in the website database. The site does not use an advertising tracker. Your theme and design choices are saved in your browser’s local storage so they can be restored on later visits.</p>
     <p>A cookie named <code>jalish_admin_session</code> is set when the site administrator signs in. It keeps that private workspace authenticated, lasts up to seven days and is cleared on sign-out. Visitors do not need this cookie to read the portfolio or blog.</p>
 
     <h2>Images, external links and sharing</h2>
