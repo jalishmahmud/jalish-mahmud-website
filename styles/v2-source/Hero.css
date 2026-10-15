@@ -289,8 +289,12 @@
     .description { line-height: 1.7; }
     .buttons { align-items: stretch; }
     .buttons a { flex: 1 1 170px; }
-    .contactInfo { display: grid; }
     .card { padding: 1.25rem; border-radius: 20px; }
     .stat { min-height: 104px; padding: .85rem; }
     .stat strong { font-size: 1.3rem; }
+}
+
+@media (max-width: 480px) {
+    .contactInfo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem .5rem; }
+    .contactInfo span { gap: .25rem; }
 }

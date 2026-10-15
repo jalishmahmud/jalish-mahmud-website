@@ -2001,10 +2001,14 @@ html[data-design="v2"] .design-Hero-fullWidth {
     html[data-design="v2"] .design-Hero-description { }
     html[data-design="v2"] .design-Hero-buttons { align-items: stretch; }
     html[data-design="v2"] .design-Hero-buttons a { flex: 1 1 170px; }
-    html[data-design="v2"] .design-Hero-contactInfo { display: grid; }
     html[data-design="v2"] .design-Hero-card { padding: 1.25rem; border-radius: 20px; }
     html[data-design="v2"] .design-Hero-stat { min-height: 104px; padding: .85rem; }
     html[data-design="v2"] .design-Hero-stat strong { }
+}
+
+@media (max-width: 480px) {
+    html[data-design="v2"] .design-Hero-contactInfo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem .5rem; }
+    html[data-design="v2"] .design-Hero-contactInfo span { gap: .25rem; }
 }
 
 
