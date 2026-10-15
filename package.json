@@ -2,12 +2,14 @@
   "name": "jalish-mahmud-website",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build:design": "node scripts/build-v2-design.mjs",
     "prebuild": "node scripts/build-v2-design.mjs",
     "build": "next build",
     "start": "next start",
+    "test": "node --conditions=react-server --test tests/*.test.mjs",
     "lint": "eslint .",
     "create-admin": "node --env-file=.env scripts/create-admin.mjs"
   },
@@ -24,7 +26,7 @@
     "bcryptjs": "^3.0.3",
     "highlight.js": "^11.12.0",
     "lowlight": "^3.3.0",
-    "mongodb": "^7.6.0",
+    "mongoose": "^9.11.2",
     "next": "latest",
     "nodemailer": "^10.0.11",
     "react": "latest",

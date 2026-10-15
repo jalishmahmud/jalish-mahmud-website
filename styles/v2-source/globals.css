@@ -75,7 +75,9 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
     background:
         radial-gradient(circle at 52% -12%, rgba(126, 80, 223, .22), transparent 34rem),
         radial-gradient(circle at -8% 30%, rgba(36, 191, 220, .09), transparent 28rem),
@@ -133,11 +135,13 @@ a {
 }
 
 .container {
-    width: min(calc(100% - 40px), 1180px);
+    width: min(calc(100% - 2 * var(--page-gutter)), 1180px);
     margin-inline: auto;
 }
 
 body > main {
+    flex: 1;
+    width: 100%;
     overflow: clip;
 }
 
@@ -191,10 +195,6 @@ body > main section {
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: min(calc(100% - 32px), 1180px);
-    }
-
     body > main section {
         padding: 25px 0;
     }
