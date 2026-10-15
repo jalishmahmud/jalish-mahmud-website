@@ -1,6 +1,6 @@
 .footer {
     border-top: 1px solid var(--border-color);
-    padding: 40px 0 90px;
+    padding: 40px 0 calc(32px + env(safe-area-inset-bottom));
     color: var(--text-muted);
     font-size: .9rem;
 }
@@ -29,8 +29,16 @@
 
 .footer nav a:hover { color: var(--accent-green); }
 
+@media (max-width: 1350px) {
+    .content { padding-right: 64px; }
+}
+
 @media (max-width: 768px) {
     .footer { padding-top: 25px; }
     .content { flex-direction: column; align-items: flex-start; }
-    .footer nav { justify-content: flex-start; }
+    .footer nav { width: 100%; justify-content: flex-start; }
+}
+
+@media (max-width: 540px) {
+    .footer nav a:last-child { flex-basis: 100%; }
 }

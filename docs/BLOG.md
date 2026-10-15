@@ -2,6 +2,12 @@
 
 The existing Next.js/MongoDB/Tiptap blog remains in place. No image-hosting migration or category dashboard was introduced.
 
+## Data layer
+
+Mongoose connects to the existing MongoDB database through `lib/db/mongoose.js`. The `models/` directory defines the `blogs`, `categories`, and `admins` collections; `lib/repositories/` owns their queries. Existing documents and collection names remain unchanged, including legacy blog image and slug fields. Zod still validates article input at the API boundary.
+
+Public lists use a projected aggregation that omits stored Base64 images and article HTML, with a 60-second cache invalidated after admin edits. Article pages read the body but replace stored cover/social images with URL markers; the admin editor still reads the full document. Mongoose `lean()` keeps read-only results as plain objects. Views use an atomic increment. Schema indexes match the existing blog/category indexes and are created explicitly on writes rather than on every server startup.
+
 ## Images
 
 | Field | Recommended dimensions | Use |
@@ -47,12 +53,12 @@ The server owns `publishedSlugs` (published slug history) and `urlSlugs` (curren
 ## Verification
 
 ```sh
-node --test tests/blog-fields.test.mjs
+npm test
 npm run lint
 NEXT_PUBLIC_SITE_URL=https://your-production-domain.example npm run build
 ```
 
-`scripts/check-blog-integration.mjs` is an **isolated local integration test**, not a production migration. It connects only to loopback, clears the fixed `portfolio_contact_blog_test` database, creates a test admin and fixtures, and tests authenticated save/edit, category concurrency/persistence, legacy compatibility, image endpoints/schema fallbacks, unfeaturing, homepage categories, drafts and sitemap. It also checks published slug redirects, alias collisions, concurrent URL claims, same-article edits, unpublish/republish behavior and canonical-only sitemap entries. Start a dedicated temporary MongoDB on port 27029 and a fresh app process on port 3100 using that test database; never run it against a real database with that name. The script leaves fixtures for browser checks. Stop/remove the temporary database after testing.
+`scripts/check-blog-integration.mjs` is an **isolated local integration test**, not a production migration. It connects only to loopback, clears the fixed `portfolio_contact_blog_test` database, creates a test admin and fixtures, and tests authenticated save/edit, category concurrency/persistence, legacy compatibility, image endpoints/schema fallbacks, view tracking, the admin dashboard, unfeaturing, homepage categories, drafts and sitemap. It also checks published slug redirects, alias collisions, concurrent URL claims, same-article edits, unpublish/republish behavior and canonical-only sitemap entries. Start a dedicated temporary MongoDB on port 27029 and a fresh app process on port 3100 using that test database; never run it against a real database with that name. The script leaves fixtures for browser checks. Stop/remove the temporary database after testing.
 
 Browser acceptance: upload distinct cover/portrait/social images, mark Featured, save and verify /blog vs detail vs OG; remove featured/social and verify fallbacks; unfeature/re-enable and verify preservation; create a category then load a new editor; verify case variants reuse it; filter homepage across more than three posts; resize 320/375/768/1024/1440; verify full images, alt text and mobile editor/previews. Check social sharing after deployment against real publicly accessible images.
 

@@ -1,13 +1,15 @@
 // Explicitly isolated local integration check. Never point this at production.
 import assert from "node:assert/strict";
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import Admin from "../models/Admin.js";
+import Blog from "../models/Blog.js";
+import Category from "../models/Category.js";
 const origin = process.env.BLOG_TEST_ORIGIN || "http://127.0.0.1:3100";
 const uri = process.env.BLOG_TEST_MONGODB_URI || "mongodb://127.0.0.1:27029";
 assert(["127.0.0.1", "localhost"].includes(new URL(origin).hostname));
 assert(["127.0.0.1", "localhost"].includes(new URL(uri).hostname));
-const client = new MongoClient(uri);
-const db = client.db("portfolio_contact_blog_test");
+await mongoose.connect(uri, { dbName: "portfolio_contact_blog_test", autoIndex: false, autoCreate: false });
 const image = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=";
 let cookie;
 const articleSchema = (html) => [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((match) => JSON.parse(match[1])).find((schema) => schema["@type"] === "BlogPosting");
@@ -18,23 +20,35 @@ async function api(path, body, method = "POST") {
   return data;
 }
 try {
-  await db.dropDatabase(); // Fixed, disposable database on loopback only.
-  await db.collection("admins").insertOne({ username: "acceptance-test", email: "test@example.com", role: "super-admin", passwordHash: await bcrypt.hash("local-test-password", 10) });
+  await mongoose.connection.dropDatabase(); // Fixed, disposable database on loopback only.
+  await Admin.create({ username: "acceptance-test", email: "test@example.com", role: "super-admin", passwordHash: await bcrypt.hash("local-test-password", 10) });
   const legacy = { title: "Legacy React Article", slug: "legacy-react", excerpt: "A legacy article used to check compatibility.", category: "React", content: "<p>Legacy content.</p>", status: "published", coverImage: image, seo: { ogImage: image }, publishedAt: new Date() };
-  await db.collection("blogs").insertOne(legacy);
+  const legacyBlog = await Blog.create(legacy);
   assert.equal((await fetch(origin + "/api/categories")).status, 401);
   const login = await fetch(origin + "/api/auth/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ identifier: "acceptance-test", password: "local-test-password" }) });
   assert(login.ok); cookie = login.headers.get("set-cookie").split(";")[0];
   assert((await api("/api/categories", null, "GET")).some((c) => c.name === "React"));
   const categories = await Promise.all(["React", "react", "REACT"].map((name) => api("/api/categories", { name, slug: "react" })));
   assert.equal(new Set(categories.map((c) => c.id)).size, 1);
-  assert.equal(await db.collection("categories").countDocuments({ slug: "react" }), 1);
+  assert.equal(await Category.countDocuments({ slug: "react" }), 1);
   const system = await api("/api/categories", { name: "System Design", slug: "system-design" });
   assert((await api("/api/categories", null, "GET")).some((c) => c.id === system.id));
+  // Fixture inserts bypass the app. Clear any public cache left by a prior
+  // isolated run through the same admin write path used in production.
+  const cacheReset = await api("/api/blogs", { title: "Temporary Draft", slug: "temporary-draft", excerpt: "An isolated fixture used to refresh the public article cache.", content: "<p>Temporary.</p>", category: "React", status: "draft" });
+  await api(`/api/blogs/${cacheReset.id}`, null, "DELETE");
   let sitemap = await (await fetch(origin + "/sitemap.xml")).text();
   assert(!sitemap.includes("/blog/system-design"));
   const post = { title: "Getting Started with React Hooks", slug: "react-hooks", excerpt: "Learn practical patterns for React Hooks in this acceptance fixture.", content: "<h2>Hooks</h2><p>Published content.</p>", category: "React", categorySlug: "react", coverImage: image, featuredImage: image, socialImage: image, socialImageAlt: "Social architecture diagram", imageAlt: "Cover diagram", featuredImageAlt: "Portrait diagram", featured: true, status: "published", seo: { title: "React Hooks SEO Title", description: "A custom search description for this React Hooks article.", ogTitle: "React Hooks Social Title", ogDescription: "A separate sharing description for the React Hooks article." } };
   const { id } = await api("/api/blogs", post);
+  const counted = await fetch(`${origin}/api/blog-views/${id}`, { method: "POST", headers: { Origin: "https://jalishmahmud.com" } });
+  assert.equal(counted.status, 204, "A public article visit increments its views");
+  const rejectedView = await fetch(`${origin}/api/blog-views/${id}`, { method: "POST", headers: { Origin: "https://foreign.example" } });
+  assert.equal(rejectedView.status, 403, "A foreign origin cannot increment views");
+  assert.equal((await api(`/api/blogs/${id}`, null, "GET")).views, 1);
+  const dashboard = await fetch(`${origin}/admin/dashboard`, { headers: { Cookie: cookie } });
+  assert.equal(dashboard.status, 200);
+  assert((await dashboard.text()).includes(post.title), "The admin dashboard still lists articles");
   const path = "/blog/react/react-hooks";
   let html = await (await fetch(origin + path)).text();
   assert(html.match(/<img[^>]+src="[^"]+\/cover\?/));
@@ -109,7 +123,7 @@ try {
   await expectRedirect(renamedPath, path);
   await expectRedirect("/blog/react/react-hooks-final", path);
   // An existing published document acquires history when first edited, without migration.
-  await api(`/api/blogs/${legacy._id}`, { slug: "legacy-react-renamed" }, "PUT");
+  await api(`/api/blogs/${legacyBlog._id}`, { slug: "legacy-react-renamed" }, "PUT");
   await expectRedirect("/blog/react/legacy-react", "/blog/react/legacy-react-renamed");
   // Concurrent creates and edits cannot claim the same current or historical URL.
   const concurrent = await Promise.all([1, 2, 3].map(() => api("/api/blogs", { ...post, slug: "concurrent-slug" })));
@@ -129,6 +143,6 @@ try {
   assert(savedShared.publishedSlugs.includes(concurrentPosts[2].slug));
   sitemap = await (await fetch(origin + "/sitemap.xml")).text();
   for (const alias of [renamedPath, "/blog/react/react-hooks-final", "/blog/react/legacy-react"]) assert(!sitemap.includes(`<loc>https://jalishmahmud.com${alias}</loc>`), "Sitemap excludes historical URLs");
-  console.log("PASS categories, legacy compatibility, image/schema fallbacks, published slug redirects, alias collision/concurrency protection, draft exclusion and canonical sitemap URLs.");
+  console.log("PASS categories, admin dashboard, view tracking, legacy compatibility, image/schema fallbacks, published slug redirects, alias collision/concurrency protection, draft exclusion and canonical sitemap URLs.");
   console.log("Local browser fixtures are ready; use acceptance-test / local-test-password on the isolated app only.");
-} finally { await client.close(); }
+} finally { await mongoose.disconnect(); }

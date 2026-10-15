@@ -380,7 +380,14 @@
     .year {
         left: -25px;
         top: 0;
-        transform: translateX(-50%);
+        transform: translateX(-8px);
+    }
+
+    .left .content::after,
+    .right .content::after {
+        left: -8px;
+        right: auto;
+        transform: translateY(-50%) rotate(225deg);
     }
 
     .date,
