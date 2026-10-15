@@ -1,18 +1,15 @@
 import { NextResponse } from "next/server";
-import { ObjectId } from "mongodb";
-import { getDatabase } from "@/lib/mongodb";
+import mongoose from "mongoose";
+import { findPublishedBlogImage } from "@/lib/repositories/blog-repository";
 
 import { decodeBlogImage } from "@/lib/image-data";
 import { storedSocialImage } from "@/lib/blog-fields";
 
 export async function GET(request, { params }) {
   const { id, kind } = await params;
-  if (!ObjectId.isValid(id) || !["cover", "featured", "social", "og"].includes(kind)) return new NextResponse("Not found", { status: 404 });
+  if (!mongoose.isObjectIdOrHexString(id) || !["cover", "featured", "social", "og"].includes(kind)) return new NextResponse("Not found", { status: 404 });
   try {
-    const projection = kind === "cover" ? { coverImage: 1, image: 1 }
-      : kind === "featured" ? { featured: 1, featuredImage: 1 }
-        : { socialImage: 1, seo: 1 };
-    const blog = await (await getDatabase()).collection("blogs").findOne({ _id: new ObjectId(id), status: "published" }, { projection });
+    const blog = await findPublishedBlogImage(id, kind);
     const source = kind === "og" || kind === "social" ? storedSocialImage(blog || {}) : kind === "featured" ? (blog?.featured ? blog.featuredImage : "") : (blog?.coverImage ?? blog?.image);
     const image = decodeBlogImage(source);
     if (!image) return new NextResponse("Not found", { status: 404 });
