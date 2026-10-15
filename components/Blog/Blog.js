@@ -51,7 +51,7 @@ export default function Blog({ posts = [] }) {
               className={styles.imageLink}
               aria-label={`Read ${post.title}`}
             >
-              <ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} />
+              <ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 380px" />
             </Link>
             <div className={styles.meta}>
               <Link href={getCategoryUrl(post.categorySlug)} prefetch={false}>{post.category}</Link>
