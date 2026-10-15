@@ -56,6 +56,9 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
     background: var(--bg-dark);
     color: var(--text-main);
     font-size: 1rem;
@@ -64,6 +67,8 @@ body {
     transition: background-color .3s ease, color .3s ease;
     font-family: var(--font-manrope), sans-serif;
 }
+
+body > main { flex: 1; width: 100%; }
 
 
 a {

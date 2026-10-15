@@ -76,7 +76,9 @@ html[data-design="v2"] {
 }
 
 html[data-design="v2"] body {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
     background:
         radial-gradient(circle at 52% -12%, rgba(126, 80, 223, .22), transparent 34rem),
         radial-gradient(circle at -8% 30%, rgba(36, 191, 220, .09), transparent 28rem),
@@ -132,6 +134,8 @@ html[data-design="v2"] .container {
 }
 
 html[data-design="v2"] body > main {
+    flex: 1;
+    width: 100%;
     overflow: clip;
 }
 
@@ -1353,7 +1357,7 @@ html[data-design="v2"] .design-Experience-modalTabs {
 
 html[data-design="v2"] .design-Footer-footer {
     position: relative;
-    padding: 40px 0 94px;
+    padding: 40px 0 calc(32px + env(safe-area-inset-bottom));
     overflow: hidden;
     border-top: 1px solid var(--border-color);
     background: linear-gradient(to bottom, transparent, var(--surface-soft));
@@ -1390,10 +1394,18 @@ html[data-design="v2"] .design-Footer-footer nav {
 html[data-design="v2"] .design-Footer-footer nav a { padding: .2rem 0; }
 html[data-design="v2"] .design-Footer-footer nav a:hover { color: var(--accent-green); }
 
+@media (max-width: 1350px) {
+    html[data-design="v2"] .design-Footer-content { padding-right: 64px; }
+}
+
 @media (max-width: 768px) {
     html[data-design="v2"] .design-Footer-footer { padding-top: 25px; }
     html[data-design="v2"] .design-Footer-content { flex-direction: column; align-items: flex-start; }
-    html[data-design="v2"] .design-Footer-footer nav { justify-content: flex-start; }
+    html[data-design="v2"] .design-Footer-footer nav { width: 100%; justify-content: flex-start; }
+}
+
+@media (max-width: 540px) {
+    html[data-design="v2"] .design-Footer-footer nav a:last-child { flex-basis: 100%; }
 }
 
 

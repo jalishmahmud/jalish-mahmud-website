@@ -75,7 +75,9 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
     background:
         radial-gradient(circle at 52% -12%, rgba(126, 80, 223, .22), transparent 34rem),
         radial-gradient(circle at -8% 30%, rgba(36, 191, 220, .09), transparent 28rem),
@@ -138,6 +140,8 @@ a {
 }
 
 body > main {
+    flex: 1;
+    width: 100%;
     overflow: clip;
 }
 
