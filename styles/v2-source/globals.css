@@ -135,7 +135,7 @@ a {
 }
 
 .container {
-    width: min(calc(100% - 40px), 1180px);
+    width: min(calc(100% - 2 * var(--page-gutter)), 1180px);
     margin-inline: auto;
 }
 
@@ -195,10 +195,6 @@ body > main section {
 }
 
 @media (max-width: 768px) {
-    .container {
-        width: min(calc(100% - 32px), 1180px);
-    }
-
     body > main section {
         padding: 25px 0;
     }

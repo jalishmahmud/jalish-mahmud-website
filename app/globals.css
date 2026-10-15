@@ -17,6 +17,7 @@
     --card-shadow: 0 20px 40px rgba(0, 0, 0, .5);
     --stat-card-bg: rgba(255, 255, 255, .02);
     --transition: all .3s ease;
+    --page-gutter: clamp(1rem, 3vw, 2.5rem);
 }
 
 :root[data-theme='light'] {
@@ -77,9 +78,8 @@ a {
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    
+    width: min(calc(100% - 2 * var(--page-gutter)), 1200px);
+    margin-inline: auto;
 }
 
 section {
@@ -122,11 +122,6 @@ section {
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-    }
-
     section {
         padding: 25px 0;
     }

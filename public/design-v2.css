@@ -129,7 +129,7 @@ html[data-design="v2"] :focus-visible {
 }
 
 html[data-design="v2"] .container {
-    width: min(calc(100% - 40px), 1180px);
+    width: min(calc(100% - 2 * var(--page-gutter)), 1180px);
     margin-inline: auto;
 }
 
@@ -187,10 +187,6 @@ html[data-design="v2"] .btnOutline:hover {
 }
 
 @media (max-width: 768px) {
-    html[data-design="v2"] .container {
-        width: min(calc(100% - 32px), 1180px);
-    }
-
     html[data-design="v2"] body > main section {
         padding: 25px 0;
     }
