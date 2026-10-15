@@ -58,7 +58,7 @@
 
 .hero h1 {
     max-width: 760px;
-    min-height: 176px;
+    min-height: 0;
     margin-bottom: 1.4rem;
     /* Font size and line height come from the shared Classic Hero rule. */
     font-weight: 800;
@@ -267,7 +267,6 @@
 
     .hero h1 {
         max-width: 800px;
-        min-height: 150px;
     }
 
     .card {
@@ -284,9 +283,7 @@
         padding-top: 112px;
     }
 
-    .hero h1 {
-        min-height: 130px;
-    }
+    .typewriter { min-height: 0; }
 
     .description { line-height: 1.7; }
     .buttons { align-items: stretch; }

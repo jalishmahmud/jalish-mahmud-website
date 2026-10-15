@@ -943,10 +943,10 @@ html[data-design="v2"] .design-Education-icon {
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    border: 1px solid color-mix(in srgb, var(--accent-blue) 28%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-green) 28%, transparent);
     border-radius: 13px;
-    background: var(--accent-blue-bg);
-    color: var(--accent-blue);
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
 }
 
 html[data-design="v2"] .design-Education-card h3 {
@@ -1785,7 +1785,7 @@ html[data-design="v2"] .design-Hero-badge span {
 
 html[data-design="v2"] .design-Hero-hero h1 {
     max-width: 760px;
-    min-height: 176px;
+    min-height: 0;
     margin-bottom: 1.4rem;
     /* Font size and line height come from the shared Classic Hero rule. */
     font-weight: 800;
@@ -1984,7 +1984,6 @@ html[data-design="v2"] .design-Hero-fullWidth {
 
     html[data-design="v2"] .design-Hero-hero h1 {
         max-width: 800px;
-        min-height: 125px;
     }
 
     html[data-design="v2"] .design-Hero-card {
@@ -2001,9 +2000,7 @@ html[data-design="v2"] .design-Hero-fullWidth {
         padding-top: 112px;
     }
 
-    html[data-design="v2"] .design-Hero-hero h1 {
-        min-height: 130px;
-    }
+    html[data-design="v2"] .design-Hero-typewriter { min-height: 0; }
 
     html[data-design="v2"] .design-Hero-description { }
     html[data-design="v2"] .design-Hero-buttons { align-items: stretch; }

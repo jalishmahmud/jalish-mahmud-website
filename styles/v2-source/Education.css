@@ -28,10 +28,10 @@
     display: grid;
     place-items: center;
     flex-shrink: 0;
-    border: 1px solid color-mix(in srgb, var(--accent-blue) 28%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-green) 28%, transparent);
     border-radius: 13px;
-    background: var(--accent-blue-bg);
-    color: var(--accent-blue);
+    background: var(--accent-green-bg);
+    color: var(--accent-green);
     font-size: 1.1rem;
 }
 
