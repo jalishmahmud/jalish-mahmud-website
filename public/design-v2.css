@@ -1315,7 +1315,13 @@ html[data-design="v2"] .design-Experience-modalTabs {
     html[data-design="v2"] .design-Experience-year {
         left: -25px;
         top: 0;
-        transform: translateX(-50%);
+        transform: translateX(-8px);
+    }
+
+    html[data-design="v2"] .design-Experience-left .design-Experience-content::after, html[data-design="v2"] .design-Experience-right .design-Experience-content::after {
+        left: -8px;
+        right: auto;
+        transform: translateY(-50%) rotate(225deg);
     }
 
     html[data-design="v2"] .design-Experience-date, html[data-design="v2"] .design-Experience-left .design-Experience-date, html[data-design="v2"] .design-Experience-right .design-Experience-date {
