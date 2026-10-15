@@ -19,10 +19,7 @@
     width: 100vw;
     transform: translateX(-50%);
     pointer-events: none;
-    background:
-        linear-gradient(90deg, transparent 0 7%, var(--border-color) 7% calc(7% + 1px), transparent calc(7% + 1px) 93%, var(--border-color) 93% calc(93% + 1px), transparent calc(93% + 1px)),
-        radial-gradient(circle at 77% 42%, var(--accent-green-bg), transparent 22rem);
-    border-bottom: 1px solid var(--border-color);
+    background: radial-gradient(circle at 77% 42%, var(--accent-green-bg), transparent 22rem);
     mask-image: linear-gradient(to bottom, black 76%, transparent 100%);
 }
 
