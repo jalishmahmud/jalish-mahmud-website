@@ -47,18 +47,19 @@ export default function Blog({ posts = [] }) {
           <article className={styles.card} key={post.slug}>
             <Link
               href={getBlogUrl(post)}
+              prefetch={false}
               className={styles.imageLink}
               aria-label={`Read ${post.title}`}
             >
               <ContentImage src={post.coverImage} alt={post.imageAlt || `Cover for ${post.title}`} className={styles.image} />
             </Link>
             <div className={styles.meta}>
-              <Link href={getCategoryUrl(post.categorySlug)}>{post.category}</Link>
+              <Link href={getCategoryUrl(post.categorySlug)} prefetch={false}>{post.category}</Link>
               <time dateTime={post.date}>{post.date}</time>
             </div>
-            <h3><Link href={getBlogUrl(post)}>{post.title}</Link></h3>
+            <h3><Link href={getBlogUrl(post)} prefetch={false}>{post.title}</Link></h3>
             <p>{post.excerpt}</p>
-            <Link href={getBlogUrl(post)} className={styles.link} aria-label={`Read ${post.title}`}>
+            <Link href={getBlogUrl(post)} prefetch={false} className={styles.link} aria-label={`Read ${post.title}`}>
               Read Article <span aria-hidden="true">→</span>
             </Link>
           </article>

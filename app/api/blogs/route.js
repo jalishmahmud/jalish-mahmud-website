@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/auth";
 import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
-import { sanitizeContent } from "@/lib/blog";
+import { invalidatePublishedBlogs, sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
 import { saveCategory } from "@/lib/categories";
 import { mergeBlogInput } from "@/lib/blog-fields";
@@ -29,6 +29,7 @@ export async function POST(request) {
     const content = sanitizeContent(input.content);
     const doc = { ...input, category: category.name, categorySlug: category.slug, categoryId: category.id, content, contentHtml: content, readTime: readingTime(content), createdAt: now, updatedAt: now, publishedAt: input.status === "published" ? now : null };
     const result = await insertBlogWithUniqueSlug(await writableBlogs(db), doc);
+    invalidatePublishedBlogs();
     return NextResponse.json({ id: result.insertedId.toString() }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Please check the blog fields and try again." }, { status: error.message === "UNAUTHORIZED" ? 401 : 400 });

@@ -14,7 +14,7 @@ export default function BlogSidebar({ posts, activeCategorySlug }) {
     .slice(0, 5);
 
   return <StickySidebarFrame className={styles.sidebar}>
-    <section className={styles.group}><h2>Categories</h2><nav aria-label="Article categories">{categories.map((category) => <Link key={category.slug} href={getCategoryUrl(category.slug)} aria-current={category.slug === activeCategorySlug ? "page" : undefined}>{category.name}</Link>)}</nav></section>
-    <section className={styles.group}><h2>Most viewed</h2><ol>{mostViewed.map((post) => <li key={post.slug}><Link href={getBlogUrl(post)}>{post.title}</Link></li>)}</ol></section>
+    <section className={styles.group}><h2>Categories</h2><nav aria-label="Article categories">{categories.map((category) => <Link key={category.slug} href={getCategoryUrl(category.slug)} prefetch={false} aria-current={category.slug === activeCategorySlug ? "page" : undefined}>{category.name}</Link>)}</nav></section>
+    <section className={styles.group}><h2>Most viewed</h2><ol>{mostViewed.map((post) => <li key={post.slug}><Link href={getBlogUrl(post)} prefetch={false}>{post.title}</Link></li>)}</ol></section>
   </StickySidebarFrame>;
 }

@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 import { requireAdmin } from "@/lib/auth";
 import { getDatabase } from "@/lib/mongodb";
 import { parseBlogInput } from "@/lib/validation";
-import { sanitizeContent } from "@/lib/blog";
+import { invalidatePublishedBlogs, sanitizeContent } from "@/lib/blog";
 import { slugify, readingTime } from "@/lib/utils";
 import { saveCategory } from "@/lib/categories";
 import { mergeBlogInput } from "@/lib/blog-fields";
@@ -38,6 +38,7 @@ export async function PUT(request, { params }) {
     // A concurrent edit must not overwrite a newly published URL's history.
     const saved = await blogs.updateOne({ _id: existing._id, slug: existing.slug, status: existing.status, updatedAt: existing.updatedAt ?? { $exists: false } }, { $set: update });
     if (!saved.matchedCount) return NextResponse.json({ error: "This article changed while saving. Reload it and try again." }, { status: 409 });
+    invalidatePublishedBlogs();
     return NextResponse.json({ ok: true });
   } catch (error) {
     if (isBlogSlugCollision(error)) return NextResponse.json({ error: "This article slug is already in use." }, { status: 409 });
@@ -50,7 +51,8 @@ export async function DELETE(_request, { params }) {
     await requireAdmin();
     const { id } = await params;
     if (!ObjectId.isValid(id)) return NextResponse.json({ error: "Invalid blog." }, { status: 400 });
-    await (await getDatabase()).collection("blogs").deleteOne({ _id: new ObjectId(id) });
+    const result = await (await getDatabase()).collection("blogs").deleteOne({ _id: new ObjectId(id) });
+    if (result.deletedCount) invalidatePublishedBlogs();
     return NextResponse.json({ ok: true });
   } catch (error) { return NextResponse.json({ error: error.message === "UNAUTHORIZED" ? "Unauthorized" : "Unable to delete blog." }, { status: error.message === "UNAUTHORIZED" ? 401 : 500 }); }
 }
