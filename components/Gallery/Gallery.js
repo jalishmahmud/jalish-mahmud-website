@@ -4,6 +4,7 @@ import ContentImage from "@/components/ContentImage/ContentImage";
 import { useCallback, useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import galleryData from "@/data/gallery.json";
+import { getSectionImage } from "@/config/images";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import baseStyles from "./Gallery.module.css";
 import { withDesignStyles } from "@/lib/design-styles";
@@ -14,6 +15,7 @@ const PAGE_SIZE = 6;
 const galleryPhotos = galleryData.flatMap((group) =>
   group.photos.map((photo) => ({
     ...photo,
+    src: getSectionImage("gallery", photo.imageKey),
     category: group.category,
   })),
 );
@@ -48,7 +50,7 @@ export default function Gallery() {
 
   const openPhoto = (photo) => {
     setModalCategory(activeFilter);
-    setSelectedIndex(visiblePhotos.findIndex((item) => item.src === photo.src));
+    setSelectedIndex(visiblePhotos.findIndex((item) => item.imageKey === photo.imageKey));
   };
   const closePhoto = () => setSelectedIndex(null);
 
@@ -99,14 +101,14 @@ export default function Gallery() {
       </div>
       <div className={styles.grid}>
         {shownPhotos.map((photo, index) => (
-          <figure className={styles.item} key={`${photo.src}-${index}`}>
+          <figure className={styles.item} key={`${photo.imageKey}-${index}`}>
             <button
               type="button"
               className={styles.imageButton}
               onClick={() => openPhoto(photo)}
               aria-label={`View ${photo.alt}`}
             >
-              <ContentImage src={photo.src} alt={photo.alt} className={styles.image} />
+              <ContentImage src={photo.src} alt={photo.alt} {...(typeof photo.src === "string" ? { width: photo.width, height: photo.height } : {})} className={styles.image} sizes="(max-width: 480px) 100vw, (max-width: 900px) 50vw, 33vw" />
             </button>
             <figcaption>
               <strong>{photo.category}</strong>
@@ -183,7 +185,9 @@ export default function Gallery() {
               <ContentImage
                 src={selectedPhoto.src}
                 alt={selectedPhoto.alt}
+                {...(typeof selectedPhoto.src === "string" ? { width: selectedPhoto.width, height: selectedPhoto.height } : {})}
                 className={styles.modalImage}
+                sizes="(max-width: 700px) 85vw, 1000px"
               />
               <button
                 className={styles.modalNav}
