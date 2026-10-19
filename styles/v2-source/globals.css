@@ -71,7 +71,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 110px;
 }
 
 body {
@@ -148,7 +147,6 @@ body > main {
 body > main section {
     position: relative;
     padding: 40px 0;
-    scroll-margin-top: 100px;
 }
 
 .btn {

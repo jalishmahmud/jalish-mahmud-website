@@ -86,6 +86,10 @@ section {
     padding: 40px 0;
 }
 
+main > :is(#skills, #experience, #projects) {
+    scroll-margin-top: 88px;
+}
+
 .btn {
     padding: .65rem 1.25rem;
     border-radius: 8px;
@@ -124,5 +128,9 @@ section {
 @media (max-width: 768px) {
     section {
         padding: 25px 0;
+    }
+
+    main > :is(#skills, #experience, #projects) {
+        scroll-margin-top: 104px;
     }
 }
