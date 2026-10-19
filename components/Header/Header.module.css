@@ -18,21 +18,21 @@
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     min-width: 0;
     flex-shrink: 1;
 }
 
 .logoIcon {
-    --brand-mark-size: 38px;
+    --brand-mark-size: 30px;
 }
 
 .logoName {
     display: block;
     position: relative;
-    width: 210px;
+    width: 170px;
     min-width: 0;
-    flex: 0 1 210px;
+    flex: 0 1 170px;
 }
 
 .logoName::after {
@@ -122,8 +122,8 @@
 @media (max-width: 480px) {
     .nav { column-gap: 8px; }
     .logo { gap: 4px; }
-    .logoIcon { --brand-mark-size: 24px; }
-    .logoName { width: 147px; flex-basis: 147px; }
+    .logoIcon { --brand-mark-size: 22px; }
+    .logoName { width: 136px; flex-basis: 136px; }
     .actions { gap: .4rem; }
     .actions > a { display: none; }
     .menuButton { width: 44px; height: 44px; }
