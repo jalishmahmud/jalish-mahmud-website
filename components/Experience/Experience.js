@@ -4,11 +4,23 @@ import ContentImage from "@/components/ContentImage/ContentImage";
 import { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
-import eventData from "@/data/experience-events.json";
+import rawEventData from "@/data/experience-events.json";
 import jobs from "@/data/experience.json";
+import { getSectionImage } from "@/config/images";
 import baseStyles from "./Experience.module.css";
 import { withDesignStyles } from "@/lib/design-styles";
 const styles = withDesignStyles(baseStyles, "Experience");
+
+const eventData = rawEventData.map((group) => ({
+  ...group,
+  events: group.events.map((event) => ({
+    ...event,
+    photos: event.photos.map((photo) => ({
+      ...photo,
+      src: getSectionImage("experience", photo.imageKey),
+    })),
+  })),
+}));
 
 export default function Experience() {
   const [activeEvents, setActiveEvents] = useState({});
@@ -99,7 +111,7 @@ export default function Experience() {
                       <div className={styles.galleryGrid}>
                         {activeEvent.photos.map((photo, photoIndex) => (
                           <button
-                            key={photo.src}
+                            key={photo.imageKey}
                             type="button"
                             className={styles.galleryImageButton}
                             onClick={() =>
@@ -116,6 +128,7 @@ export default function Experience() {
                               src={photo.src}
                               alt={photo.alt}
                               className={styles.galleryImage}
+                              sizes="(max-width: 768px) 45vw, 220px"
                             />
                           </button>
                         ))}
@@ -212,6 +225,7 @@ export default function Experience() {
                   ].alt
                 }
                 className={styles.modalImage}
+                sizes="(max-width: 700px) 80vw, 900px"
               />
               <button
                 className={styles.modalNav}
