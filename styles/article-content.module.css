@@ -1,0 +1,163 @@
+:global(html[data-design]) .articleContent {
+    --article-ink: var(--article-text, var(--text-main));
+    --code-surface: #111827;
+    --code-ink: #e5e7eb;
+    --code-accent: #a7f3d0;
+    --code-comment: #94a3b8;
+    color: var(--article-ink);
+    font-size: clamp(1rem, .35vw + .96rem, 1.0625rem);
+    line-height: 1.68;
+    overflow-wrap: break-word;
+}
+
+:global(html[data-theme='light']) .articleContent {
+    --code-surface: #f1f5f9;
+    --code-ink: #1e293b;
+    --code-accent: #047857;
+    --code-comment: #64748b;
+}
+
+:global(html[data-design]) .articleContent > * { margin-block: 0; min-width: 0; }
+:global(html[data-design]) .articleContent > * + * { margin-top: 1rem; }
+:global(html[data-design]) .articleContent > :is(h1, h2, h3, h4, h5, h6) { margin-top: 2rem; }
+:global(html[data-design]) .articleContent > :is(h1, h2, h3, h4, h5, h6):first-child { margin-top: 0; }
+:global(html[data-design]) .articleContent > :is(h1, h2, h3, h4, h5, h6) + * { margin-top: .65rem; }
+:global(html[data-design]) .articleContent > :is(ul, ol) + :is(ul, ol) { margin-top: .35rem; }
+:global(html[data-design]) .articleContent > :is(p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6) { max-width: 72ch; }
+:global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) { padding: 0; }
+:global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > * { margin-block: 0; }
+:global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > * + * { margin-top: 1rem; }
+:global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > :is(h1, h2, h3, h4, h5, h6):not(:first-child) { margin-top: 2rem; }
+:global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > :is(h1, h2, h3, h4, h5, h6) + * { margin-top: .65rem; }
+
+:global(html[data-design]) .articleContent :is(h1, h2, h3, h4, h5, h6) {
+    color: var(--text-main);
+    font-weight: 700;
+    letter-spacing: -.025em;
+    line-height: 1.25;
+    text-wrap: balance;
+}
+:global(html[data-design]) .articleContent :global(h1) { font-size: clamp(1.85rem, 3.5vw, 2.25rem); }
+:global(html[data-design]) .articleContent :global(h2) { font-size: clamp(1.5rem, 2.5vw, 1.75rem); }
+:global(html[data-design]) .articleContent :global(h3) { font-size: clamp(1.27rem, 2vw, 1.4rem); }
+:global(html[data-design]) .articleContent :global(h4) { font-size: 1.16rem; }
+:global(html[data-design]) .articleContent :global(h5) { font-size: 1.06rem; }
+:global(html[data-design]) .articleContent :global(h6) { font-size: .96rem; }
+
+:global(html[data-design]) .articleContent :global(p) { line-height: inherit; }
+:global(html[data-design]) .articleContent :is(strong, b) { color: var(--text-main); font-weight: 700; }
+:global(html[data-design]) .articleContent :is(em, i) { font-style: italic; }
+:global(html[data-design]) .articleContent :global(a) { color: var(--accent-green); text-decoration: underline; text-underline-offset: .18em; }
+:global(html[data-design]) .articleContent :global(a:hover) { color: var(--accent-green-dark); }
+:global(html[data-design]) .articleContent :global(a:focus-visible) { outline: 2px solid var(--accent-green); outline-offset: 2px; }
+
+:global(html[data-design]) .articleContent :global(ul), :global(html[data-design]) .articleContent :global(ol) { padding-inline-start: 1.5em; }
+:global(html[data-design]) .articleContent :global(ul) { list-style: disc outside; }
+:global(html[data-design]) .articleContent :global(ol) { list-style: decimal outside; }
+:global(html[data-design]) .articleContent :global(li) { padding-inline-start: .12em; }
+:global(html[data-design]) .articleContent :global(li + li) { margin-top: .3rem; }
+:global(html[data-design]) .articleContent :global(li > p) { margin: 0; }
+:global(html[data-design]) .articleContent :global(li > p + p) { margin-top: .4rem; }
+:global(html[data-design]) .articleContent :global(li > ul), :global(html[data-design]) .articleContent :global(li > ol) { margin-block: .35rem; }
+:global(html[data-design]) .articleContent :global(ul ul) { list-style-type: circle; }
+:global(html[data-design]) .articleContent :global(ul ul ul) { list-style-type: square; }
+
+:global(html[data-design]) .articleContent :global(blockquote) {
+    padding: .55rem 1rem;
+    border-inline-start: 3px solid var(--accent-green);
+    border-radius: 0 6px 6px 0;
+    background: var(--accent-green-bg);
+}
+:global(html[data-design]) .articleContent :global(blockquote > * + *) { margin-top: .5rem; }
+:global(html[data-design]) .articleContent :global(hr) { height: 1px; border: 0; background: var(--border-color); }
+:global(html[data-design]) .articleContent :global(img) { max-width: 100%; height: auto; border-radius: 8px; }
+:global(html[data-design]) .articleContent :global(figure) { max-width: 100%; }
+:global(html[data-design]) .articleContent :global(figcaption) { margin-top: .4rem; color: var(--text-muted); font-size: .85em; text-align: center; }
+
+:global(html[data-design]) .articleContent :global(code) {
+    padding: .12em .32em;
+    border-radius: 4px;
+    background: var(--accent-green-bg);
+    color: var(--text-main);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: .88em;
+}
+:global(html[data-design]) .articleContent :global(pre) {
+    position: relative;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 1.2rem 3.3rem 1.2rem 1.25rem;
+    border-radius: 9px;
+    background: var(--code-surface);
+    color: var(--code-ink);
+    font-size: .9em;
+    line-height: 1.55;
+    tab-size: 2;
+    white-space: pre;
+}
+:global(html[data-design]) .articleContent :global(pre:not(:first-child)) { margin-block-start: 1.4rem; }
+:global(html[data-design]) .articleContent :global(pre code) {
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: inherit;
+    font-size: 1em;
+    line-height: inherit;
+    white-space: inherit;
+}
+:global(html[data-design]) .articleContent :global(pre .code-copy-button) {
+    position: absolute;
+    top: .65rem;
+    right: .65rem;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: var(--code-ink);
+    cursor: pointer;
+}
+:global(html[data-design]) .articleContent :global(pre .code-copy-button:hover) { color: var(--code-accent); }
+:global(html[data-design]) .articleContent :global(pre .code-copy-button:focus-visible) { outline: 2px solid var(--code-accent); outline-offset: 2px; }
+:global(html[data-design]) .articleContent :global(pre .code-copy-button svg) { width: 18px; height: 18px; }
+:global(html[data-design]) .articleContent :global(pre .code-copy-button [data-code-icon='check']) { display: none; }
+:global(html[data-design]) .articleContent :global(pre .code-copy-button[data-state='copied'] [data-code-icon='copy']) { display: none; }
+:global(html[data-design]) .articleContent :global(pre .code-copy-button[data-state='copied'] [data-code-icon='check']) { display: block; }
+:global(html[data-design]) .articleContent :global(pre .code-copy-status) { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+:global(html[data-design]) .articleContent :is(:global(.hljs-keyword), :global(.hljs-title), :global(.hljs-string)) { color: var(--code-accent); }
+:global(html[data-design]) .articleContent :global(.hljs-comment) { color: var(--code-comment); }
+
+:global(html[data-design]) .articleContent :global(table) {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: .9em;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+:global(html[data-design]) .articleContent :is(:global(th), :global(td)) {
+    padding: .6rem .8rem;
+    border: 1px solid var(--border-color);
+    text-align: start;
+    white-space: normal;
+}
+:global(html[data-design]) .articleContent :is(:global(th[align='right']), :global(td[align='right'])) { text-align: right; }
+:global(html[data-design]) .articleContent :is(:global(th[align='center']), :global(td[align='center'])) { text-align: center; }
+:global(html[data-design]) .articleContent :global(th) { background: var(--accent-green-bg); color: var(--text-main); font-weight: 700; }
+:global(html[data-design]) .articleContent :global(tr:nth-child(even)) { background: var(--stat-card-bg); }
+
+@media (max-width: 700px) {
+    :global(html[data-design]) .articleContent { line-height: 1.62; }
+    :global(html[data-design]) .articleContent > * + * { margin-top: .85rem; }
+    :global(html[data-design]) .articleContent > :is(h1, h2, h3, h4, h5, h6) { margin-top: 1.65rem; }
+    :global(html[data-design]) .articleContent > :is(h1, h2, h3, h4, h5, h6) + * { margin-top: .5rem; }
+    :global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > * + * { margin-top: .85rem; }
+    :global(html[data-design]) .articleContent :is(:global(section), :global(article), :global(main)) > :is(h1, h2, h3, h4, h5, h6):not(:first-child) { margin-top: 1.65rem; }
+    :global(html[data-design]) .articleContent :global(pre) { padding: 1rem 3rem 1rem 1rem; }
+    :global(html[data-design]) .articleContent :global(pre:not(:first-child)) { margin-block-start: 1.15rem; }
+    :global(html[data-design]) .articleContent :is(:global(th), :global(td)) { padding: .5rem .65rem; }
+}

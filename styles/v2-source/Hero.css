@@ -294,7 +294,6 @@
     .stat strong { font-size: 1.3rem; }
 }
 
-@media (max-width: 480px) {
-    .contactInfo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem .5rem; }
-    .contactInfo span { gap: .25rem; }
+@media (max-width: 600px) {
+    .contactInfo { display: none; }
 }

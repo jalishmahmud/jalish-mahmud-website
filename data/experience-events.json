@@ -6,11 +6,11 @@
         "name": "Team Moments",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "jbTeamCollaboration",
             "alt": "Team members collaborating around a table"
           },
           {
-            "src": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "jbOfficeDiscussion",
             "alt": "Colleagues discussing ideas in an office"
           }
         ]
@@ -19,11 +19,11 @@
         "name": "Office Event",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "jbCelebration",
             "alt": "Friends celebrating together at an event"
           },
           {
-            "src": "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "jbCommunityEvent",
             "alt": "People enjoying a community event"
           }
         ]
@@ -37,11 +37,11 @@
         "name": "Team Moments",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "shellTeamOutdoors",
             "alt": "Friends smiling together outdoors"
           },
           {
-            "src": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "shellTeamMeeting",
             "alt": "Team meeting in a modern office"
           }
         ]
@@ -50,11 +50,11 @@
         "name": "Celebrations",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "shellCelebration",
             "alt": "Crowd enjoying a celebration"
           },
           {
-            "src": "https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "shellConcert",
             "alt": "Concert lights and audience"
           }
         ]
@@ -68,11 +68,11 @@
         "name": "Office Life",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "datafairOffice",
             "alt": "Bright modern office workspace"
           },
           {
-            "src": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "datafairOpenOffice",
             "alt": "Open plan office interior"
           }
         ]
@@ -86,11 +86,11 @@
         "name": "Creative Sessions",
         "photos": [
           {
-            "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "ifindWorkshop",
             "alt": "Creative team workshop"
           },
           {
-            "src": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=85",
+            "imageKey": "ifindDesigners",
             "alt": "Designers working together"
           }
         ]
