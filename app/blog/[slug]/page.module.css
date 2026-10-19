@@ -23,15 +23,15 @@
 :global(html[data-design]) .meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.25rem;
+    gap: .45rem .85rem;
+    margin-bottom: 1rem;
     color: var(--accent-green);
     font-size: .85rem;
     font-weight: 600;
 }
 
 .meta a { color: var(--accent-green); }
-:global(html[data-design]) .breadcrumbs { display: flex; flex-wrap: wrap; gap: .55rem; align-items: center; margin-bottom: 2rem; color: var(--text-muted); font-size: .8rem; }
+:global(html[data-design]) .breadcrumbs { display: flex; flex-wrap: wrap; gap: .45rem .55rem; align-items: center; margin-bottom: 1.25rem; color: var(--text-muted); font-size: .8rem; }
 .breadcrumbs a { color: var(--accent-green); }
 
 .meta time {
@@ -78,9 +78,11 @@
 
 @media (max-width: 768px) {
     :global(html[data-design]) .article {
-        padding-top: 110px;
+        padding-top: 96px;
         padding-bottom: 25px;
     }
+
+    :global(html[data-design]) .breadcrumbs { margin-bottom: .9rem; }
 
     :global(html[data-design]) .related { margin-top: 25px; padding-top: 25px; }
 

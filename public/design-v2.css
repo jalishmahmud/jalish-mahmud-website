@@ -231,8 +231,8 @@ html[data-design="v2"] .design-legal-page a { color: var(--accent-green); text-d
 
 
 html[data-design="v2"] .design-blog-index-hero {
-    max-width: 820px;
-    padding: 164px 0 40px;
+    max-width: 760px;
+    padding: 150px 0 40px;
 }
 
 html[data-design="v2"] .design-blog-index-categoryLayout .design-blog-index-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr)); }
@@ -257,7 +257,7 @@ html[data-design="v2"] .design-blog-index-kicker {
 }
 
 html[data-design="v2"] .design-blog-index-hero h1 {
-    margin: 1rem 0 1.15rem;
+    margin: 1rem 0;
     letter-spacing: -.075em;
 }
 
@@ -275,7 +275,7 @@ html[data-design="v2"] .design-blog-index-hero p {
 
 html[data-design="v2"] .design-blog-index-featured {
     display: grid;
-    grid-template-columns: 1.12fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     margin-bottom: 40px;
     overflow: hidden;
     border: 1px solid var(--border-highlight);
@@ -302,7 +302,7 @@ html[data-design="v2"] .design-blog-index-featuredImage img {
     object-fit: contain;
 }
 
-html[data-design="v2"] .design-blog-index-featured > div { padding: clamp(2rem, 5vw, 3.5rem); align-self: center; }
+html[data-design="v2"] .design-blog-index-featured > div { padding: 3rem; align-self: center; }
 html[data-design="v2"] .design-blog-index-categoryLink, html[data-design="v2"] .design-blog-index-meta a { color: var(--accent-green); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
 html[data-design="v2"] .design-blog-index-featuredMeta { color: var(--text-subtle); }
 html[data-design="v2"] .design-blog-index-featured h2 { margin: 1rem 0; letter-spacing: -.045em; }
@@ -312,7 +312,7 @@ html[data-design="v2"] .design-blog-index-read { display: inline-block; margin-t
 html[data-design="v2"] .design-blog-index-read:hover { color: var(--accent-blue); }
 
 html[data-design="v2"] .design-blog-index-latest { padding-bottom: 40px; }
-html[data-design="v2"] .design-blog-index-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 2rem; }
+html[data-design="v2"] .design-blog-index-heading { display: flex; justify-content: space-between; align-items: end; margin-bottom: 1.75rem; }
 html[data-design="v2"] .design-blog-index-heading h2 { margin-top: .35rem; letter-spacing: -.045em; }
 html[data-design="v2"] .design-blog-index-heading > span { color: var(--text-muted); }
 
@@ -342,16 +342,16 @@ html[data-design="v2"] .design-blog-index-grid h3 { letter-spacing: -.02em; }
 html[data-design="v2"] .design-blog-index-grid h3 a:hover { color: var(--accent-green); }
 html[data-design="v2"] .design-blog-index-grid article p { margin-top: .65rem; }
 
-@media (max-width: 900px) {
+@media (max-width: 800px) {
     html[data-design="v2"] .design-blog-index-featured { grid-template-columns: 1fr; }
+    html[data-design="v2"] .design-blog-index-featured > div { padding: 2rem; }
     html[data-design="v2"] .design-blog-index-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 600px) {
-    html[data-design="v2"] .design-blog-index-hero { padding-top: 125px; padding-bottom: 25px; }
+@media (max-width: 560px) {
+    html[data-design="v2"] .design-blog-index-hero { padding-top: 120px; padding-bottom: 25px; }
     html[data-design="v2"] .design-blog-index-hero h1 { }
     html[data-design="v2"] .design-blog-index-featured { margin-bottom: 25px; border-radius: 18px; }
-    html[data-design="v2"] .design-blog-index-featured > div { padding: 1.5rem; }
     html[data-design="v2"] .design-blog-index-heading { align-items: start; flex-direction: column; gap: .5rem; }
     html[data-design="v2"] .design-blog-index-grid { grid-template-columns: 1fr; }
 }
@@ -1942,9 +1942,8 @@ html[data-design="v2"] .design-Hero-fullWidth {
     html[data-design="v2"] .design-Hero-stat strong { }
 }
 
-@media (max-width: 480px) {
-    html[data-design="v2"] .design-Hero-contactInfo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem .5rem; }
-    html[data-design="v2"] .design-Hero-contactInfo span { gap: .25rem; }
+@media (max-width: 600px) {
+    html[data-design="v2"] .design-Hero-contactInfo { display: none; }
 }
 
 
