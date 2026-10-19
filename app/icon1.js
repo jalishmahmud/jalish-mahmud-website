@@ -1,13 +1,12 @@
-import { ImageResponse } from "next/og";
-import header from "@/data/header.json";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+import { brandAssets } from "@/lib/brand-assets";
 
 export const size = { width: 192, height: 192 };
 export const contentType = "image/png";
 
-// Raster companion to the existing JM SVG; same brand, stable public URL.
-export default function Icon() {
-  return new ImageResponse(
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%", background: "#0b0f17", color: "#10b981", borderRadius: 36, fontSize: 87, fontWeight: 700 }}>{header.logoMark}</div>,
-    size,
-  );
+// Keep the established /icon1 URL while serving the exact concept 2 artwork.
+export default async function Icon() {
+  const file = path.join(process.cwd(), "public", brandAssets.iconPng.classic.slice(1));
+  return new Response(await readFile(file), { headers: { "Content-Type": contentType } });
 }

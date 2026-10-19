@@ -53,9 +53,9 @@ Create a blog in the existing editor: choose a saved category or add one, write 
 
 ## Favicon and social images
 
-`app/icon.svg` retains the existing JM brand. `app/icon1.js` generates a square **192×192 PNG** companion at `/icon1`; Next.js emits its icon link and dimensions. `app/apple-icon.js` continues providing a 180×180 PNG. Keep these paths stable. No new artwork is required: the current square green JM mark on a dark background fits the use case. If replacing it later, provide a square PNG at least 192×192, with legible artwork at small sizes; do not stretch a rectangular logo.
+The handwritten concept 2 branding lives in `public/images/branding`, with paths centralized in `lib/brand-assets.js`. The header wordmark has descriptive alt text; the decorative `JM` mark uses the same shape in both designs and switches between Classic green and V2 purple. `app/icon.svg`, `/icon1` (192×192 PNG) and `/apple-icon` (180×180 PNG) keep their existing public URLs and now show the matching mark. The client switches icon colors with the selected design. The Caveat font license for the outlined artwork is in `licenses/CAVEAT-OFL.txt`.
 
-Homepage and icons must be publicly crawlable by Googlebot and Googlebot-Image. An icon does not guarantee a Google favicon, and changing an Organization/Person logo is not a substitute for an icon link. `/api/og/default` supplies the branded 1200×630 default sharing image and now uses the supported Node.js runtime.
+Homepage and icons must be publicly crawlable by Googlebot and Googlebot-Image. An icon does not guarantee a Google favicon, and changing an Organization/Person logo is not a substitute for an icon link. `/api/og/default` supplies the branded 1200×630 default sharing image with the handwritten wordmark; default Open Graph and Twitter alt text describes that card. Blog posts with their own social images retain their own alt text.
 
 ## Canonicals, sitemap, robots and verification
 

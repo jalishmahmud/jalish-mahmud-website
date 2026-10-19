@@ -43,7 +43,14 @@ for (const path of paths) {
   }
   imageUrls.add(meta["og:image"]);
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => JSON.parse(m[1]));
-  if (path === "/") assert(schemas[0]["@graph"].some((s) => s["@type"] === "Person"));
+  if (path === "/") {
+    assert(schemas[0]["@graph"].some((s) => s["@type"] === "Person"));
+    assert([...html.matchAll(/<img\s[^>]*>/g)].some(([tag]) => {
+      const image = attrs(tag);
+      return image.src?.includes("/images/branding/jalish-mahmud-wordmark.svg") && image.alt === "Jalish Mahmud";
+    }), "Homepage wordmark has descriptive alt text");
+    assert.equal(meta["og:image:alt"], "Jalish Mahmud handwritten logo and Full Stack Software Engineer");
+  }
   if (categories.includes(path)) assert(schemas.some((s) => s["@type"] === "BreadcrumbList"));
   if (posts.some((p) => postPath(p) === path)) {
     assert.equal(meta["og:type"], "article");
