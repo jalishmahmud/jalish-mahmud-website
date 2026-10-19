@@ -46,7 +46,7 @@ for (const url of urls) {
   const websites = schemas.filter((s) => s["@type"] === "WebSite");
   if (path === "/") {
     check(websites.length === 1 && websites[0].name === "Jalish Mahmud", "Homepage needs one preferred WebSite entity");
-    check(websites[0]?.alternateName?.includes("Jalish"), "Missing alternate site name");
+    check(websites[0]?.alternateName === undefined, "Unexpected alternate site name");
     const person = schemas.find((s) => s["@type"] === "Person");
     check(person?.address?.addressLocality === "Dhaka" && person?.address?.addressCountry === "Bangladesh", "Public city/country missing from Person");
     check(links.some((a) => a.rel === "icon" && a.type === "image/png" && a.sizes === "192x192"), "Missing square PNG icon reference");

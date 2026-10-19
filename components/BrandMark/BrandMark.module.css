@@ -1,0 +1,11 @@
+.mark {
+    display: block;
+    flex: none;
+    width: var(--brand-mark-size, 38px);
+    height: var(--brand-mark-size, 38px);
+    background: center / contain no-repeat var(--brand-icon-classic);
+}
+
+:global(html[data-design='v2']) .mark {
+    background-image: var(--brand-icon-v2);
+}

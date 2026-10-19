@@ -4,7 +4,10 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaBars, FaTimes } from "react-icons/fa";
+import Image from "next/image";
+import BrandMark from "@/components/BrandMark/BrandMark";
 import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
+import { brandAssets } from "@/lib/brand-assets";
 import data from "@/data/header.json";
 import baseStyles from "./Header.module.css";
 import { withDesignStyles } from "@/lib/design-styles";
@@ -27,8 +30,10 @@ export default function Header() {
               if (pathname === "/") window.scrollTo({ top: 0, left: 0, behavior: "instant" });
             }}
           >
-            <span className={styles.logoIcon} aria-hidden="true">{data.logoMark}</span>
-            <span>{data.logo}</span>
+            <BrandMark className={styles.logoIcon} />
+            <span className={styles.logoName}>
+              <Image src={brandAssets.wordmark} alt={data.logo} width={595} height={182} className={styles.logoWordmark} loading="eager" />
+            </span>
           </Link>
           <ul className={styles.links}>
             {data.links.map(([label, href]) => (

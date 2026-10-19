@@ -4,13 +4,13 @@ This is the source of truth for public metadata, identity, canonical URLs and in
 
 ## Personal Brand SEO
 
-The canonical identity and preferred Google site name are **Jalish Mahmud**. The canonical origin is **https://jalishmahmud.com**, with homepage URL **https://jalishmahmud.com/**. Site name and page title are separate: the former identifies the website; the latter describes an individual page.
+The canonical personal identity and preferred Google site name are **Jalish Mahmud**. The canonical origin is **https://jalishmahmud.com**, with homepage URL **https://jalishmahmud.com/**. Site name and page title are separate: the former identifies the website; the latter can include the software-engineering role.
 
-`lib/site-config.js` reuses the header brand, existing GitHub/LinkedIn URLs and public location from `data/hero.json`. Homepage branding, `og:site_name`, Person, WebSite, visible authorship and article author data use the same identity.
+`lib/site-config.js` reuses the header brand, existing GitHub/LinkedIn URLs and public location from `data/hero.json`. Its `name` field controls `og:site_name` and WebSite.name. Person, visible authorship and article author data use the same personal name.
 
-The homepage contains exactly one WebSite entity with name `Jalish Mahmud`, alternateName `["Jalish", "jalishmahmud.com"]`, canonical URL and a publisher reference to `/#person`. It shares a graph with Person and ProfilePage. Other pages do not repeat WebSite markup. Person uses the existing role **Full Stack Software Engineer**, actual social links, a concise supported expertise list, and public city/country **Dhaka, Bangladesh**. No private street address, invented portrait, business listing or unverified qualification is added. Articles reference the same `/#person` identity and visibly link the author's name to the homepage.
+The homepage contains exactly one WebSite entity with name `Jalish Mahmud`, canonical URL and a publisher reference to `/#person`. It does not suggest an alternate site name. It shares a graph with Person and ProfilePage. Other pages do not repeat WebSite markup. Person uses the existing role **Full Stack Software Engineer**, actual social links, a concise supported expertise list, and public city/country **Dhaka, Bangladesh**. No private street address, invented portrait, business listing or unverified qualification is added. Articles reference the same `/#person` identity and visibly link the author's name to the homepage.
 
-The live-site audit before this work found that WebSite already named Jalish Mahmud, while the deployed page title was older than the workspace. Therefore the exact reason Google chose the domain as its site name cannot be established from source alone. Adding consistent alternatives strengthens the preference; Google chooses the final site name and needs time to recrawl/reprocess it.
+The live homepage before this change already published `Jalish Mahmud` as WebSite.name and `og:site_name`, with `jalishmahmud.com` among the alternate names. Google still showed the domain in the supplied search result. The exact reason cannot be established from source alone. The domain is no longer proposed as an alternate, leaving the personal name as the consistent preference. Google chooses the final site name and needs time to recrawl and reprocess it.
 
 ## Architecture and public routes
 
@@ -32,7 +32,7 @@ The root title template appends `| Jalish Mahmud` to child titles. The homepage 
 
 ## Topic strategy
 
-- Brand: Jalish Mahmud; Jalish as an alternate name.
+- Brand: Jalish Mahmud.
 - Role: Software Engineer / Full Stack Software Engineer.
 - Supported core work: React, Next.js, JavaScript, TypeScript, APIs and full stack application development.
 - Supporting work: AWS EC2, deployment, CI/CD and GitHub Actions; AI integration where existing work supports it.
@@ -53,9 +53,9 @@ Create a blog in the existing editor: choose a saved category or add one, write 
 
 ## Favicon and social images
 
-`app/icon.svg` retains the existing JM brand. `app/icon1.js` generates a square **192×192 PNG** companion at `/icon1`; Next.js emits its icon link and dimensions. `app/apple-icon.js` continues providing a 180×180 PNG. Keep these paths stable. No new artwork is required: the current square green JM mark on a dark background fits the use case. If replacing it later, provide a square PNG at least 192×192, with legible artwork at small sizes; do not stretch a rectangular logo.
+The handwritten concept 2 branding lives in `public/images/branding`, with paths centralized in `lib/brand-assets.js`. The header wordmark has descriptive alt text; the decorative `JM` mark uses the same shape in both designs and switches between Classic green and V2 purple. `app/icon.svg`, `/icon1` (192×192 PNG) and `/apple-icon` (180×180 PNG) keep their existing public URLs and now show the matching mark. The client switches icon colors with the selected design. The Caveat font license for the outlined artwork is in `licenses/CAVEAT-OFL.txt`.
 
-Homepage and icons must be publicly crawlable by Googlebot and Googlebot-Image. An icon does not guarantee a Google favicon, and changing an Organization/Person logo is not a substitute for an icon link. `/api/og/default` supplies the branded 1200×630 default sharing image and now uses the supported Node.js runtime.
+Homepage and icons must be publicly crawlable by Googlebot and Googlebot-Image. An icon does not guarantee a Google favicon, and changing an Organization/Person logo is not a substitute for an icon link. `/api/og/default` supplies the branded 1200×630 default sharing image with the handwritten wordmark; default Open Graph and Twitter alt text describes that card. Blog posts with their own social images retain their own alt text.
 
 ## Canonicals, sitemap, robots and verification
 
