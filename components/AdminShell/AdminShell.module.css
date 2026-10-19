@@ -1,7 +1,7 @@
 .layout { display: grid; grid-template-columns: 230px minmax(0, 1fr); min-height: 100vh; background: var(--bg-dark); }
 .layout aside { display: flex; flex-direction: column; padding: 2rem 1.25rem; border-right: 1px solid var(--border-color); background: var(--bg-card); }
 .logo { display: flex; align-items: center; gap: .7rem; margin: 0 .5rem 3rem; font-weight: 800; }
-.logo span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--accent-green); border-radius: 8px; color: var(--accent-green); font-size: .75rem; }
+.logoMark { --brand-mark-size: 34px; }
 .layout nav, .bottom { display: grid; gap: .5rem; }
 .layout nav a, .bottom a, .bottom button { display: flex; align-items: center; gap: .75rem; padding: .7rem .75rem; border: 0; border-radius: 7px; background: transparent; color: var(--text-muted); font: inherit; cursor: pointer; text-align: left; }
 .layout nav a:hover, .bottom a:hover, .bottom button:hover { background: var(--accent-green-bg); color: var(--accent-green); }

@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { siteConfig } from "@/lib/site-config";
 import { siteUrl } from "@/lib/utils";
 import { themeBootstrap } from "@/lib/theme-bootstrap";
+import BrandFavicon from "@/components/BrandFavicon/BrandFavicon";
 
 const manrope = localFont({
   src: [
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="dark" data-design="classic" className={manrope.variable} suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: themeBootstrap }} /></head>
-      <body>{children}</body>
+      <body><BrandFavicon />{children}</body>
     </html>
   );
 }

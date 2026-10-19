@@ -1554,27 +1554,6 @@ html[data-design="v2"] .design-Header-nav {
     backdrop-filter: blur(18px) saturate(140%);
 }
 
-html[data-design="v2"] .design-Header-logo {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    font-weight: 800;
-    letter-spacing: -.025em;
-}
-
-html[data-design="v2"] .design-Header-logoIcon {
-    width: 38px;
-    height: 38px;
-    background: var(--accent-gradient);
-    border: 1px solid rgba(255, 255, 255, .18);
-    border-radius: 12px;
-    display: grid;
-    place-items: center;
-    color: #fff;
-    letter-spacing: .02em;
-    box-shadow: 0 8px 24px rgba(123, 78, 220, .25);
-}
-
 html[data-design="v2"] .design-Header-links {
     display: flex;
     gap: .4rem;
@@ -1650,8 +1629,6 @@ html[data-design="v2"] .design-Header-menuButton, html[data-design="v2"] .design
 @media (max-width: 480px) {
     html[data-design="v2"] .design-Header-header { padding-top: 10px; }
     html[data-design="v2"] .design-Header-nav { min-height: 60px; padding-left: 10px; padding-right: 8px; border-radius: 15px; }
-    html[data-design="v2"] .design-Header-logo { gap: 8px; }
-    html[data-design="v2"] .design-Header-logoIcon { flex-shrink: 0; }
     html[data-design="v2"] .design-Header-actions { gap: .4rem; }
     html[data-design="v2"] .design-Header-actions > a { display: none; }
     html[data-design="v2"] .design-Header-menuButton { width: 44px; height: 44px; }
