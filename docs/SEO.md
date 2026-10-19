@@ -4,13 +4,13 @@ This is the source of truth for public metadata, identity, canonical URLs and in
 
 ## Personal Brand SEO
 
-The canonical identity and preferred Google site name are **Jalish Mahmud**. The canonical origin is **https://jalishmahmud.com**, with homepage URL **https://jalishmahmud.com/**. Site name and page title are separate: the former identifies the website; the latter describes an individual page.
+The canonical personal identity and preferred Google site name are **Jalish Mahmud**. The canonical origin is **https://jalishmahmud.com**, with homepage URL **https://jalishmahmud.com/**. Site name and page title are separate: the former identifies the website; the latter can include the software-engineering role.
 
-`lib/site-config.js` reuses the header brand, existing GitHub/LinkedIn URLs and public location from `data/hero.json`. Homepage branding, `og:site_name`, Person, WebSite, visible authorship and article author data use the same identity.
+`lib/site-config.js` reuses the header brand, existing GitHub/LinkedIn URLs and public location from `data/hero.json`. Its `name` field controls `og:site_name` and WebSite.name. Person, visible authorship and article author data use the same personal name.
 
-The homepage contains exactly one WebSite entity with name `Jalish Mahmud`, alternateName `["Jalish", "jalishmahmud.com"]`, canonical URL and a publisher reference to `/#person`. It shares a graph with Person and ProfilePage. Other pages do not repeat WebSite markup. Person uses the existing role **Full Stack Software Engineer**, actual social links, a concise supported expertise list, and public city/country **Dhaka, Bangladesh**. No private street address, invented portrait, business listing or unverified qualification is added. Articles reference the same `/#person` identity and visibly link the author's name to the homepage.
+The homepage contains exactly one WebSite entity with name `Jalish Mahmud`, canonical URL and a publisher reference to `/#person`. It does not suggest an alternate site name. It shares a graph with Person and ProfilePage. Other pages do not repeat WebSite markup. Person uses the existing role **Full Stack Software Engineer**, actual social links, a concise supported expertise list, and public city/country **Dhaka, Bangladesh**. No private street address, invented portrait, business listing or unverified qualification is added. Articles reference the same `/#person` identity and visibly link the author's name to the homepage.
 
-The live-site audit before this work found that WebSite already named Jalish Mahmud, while the deployed page title was older than the workspace. Therefore the exact reason Google chose the domain as its site name cannot be established from source alone. Adding consistent alternatives strengthens the preference; Google chooses the final site name and needs time to recrawl/reprocess it.
+The live homepage before this change already published `Jalish Mahmud` as WebSite.name and `og:site_name`, with `jalishmahmud.com` among the alternate names. Google still showed the domain in the supplied search result. The exact reason cannot be established from source alone. The domain is no longer proposed as an alternate, leaving the personal name as the consistent preference. Google chooses the final site name and needs time to recrawl and reprocess it.
 
 ## Architecture and public routes
 
@@ -32,7 +32,7 @@ The root title template appends `| Jalish Mahmud` to child titles. The homepage 
 
 ## Topic strategy
 
-- Brand: Jalish Mahmud; Jalish as an alternate name.
+- Brand: Jalish Mahmud.
 - Role: Software Engineer / Full Stack Software Engineer.
 - Supported core work: React, Next.js, JavaScript, TypeScript, APIs and full stack application development.
 - Supporting work: AWS EC2, deployment, CI/CD and GitHub Actions; AI integration where existing work supports it.

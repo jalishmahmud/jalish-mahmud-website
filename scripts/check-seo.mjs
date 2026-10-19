@@ -45,6 +45,9 @@ for (const path of paths) {
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map((m) => JSON.parse(m[1]));
   if (path === "/") {
     assert(schemas[0]["@graph"].some((s) => s["@type"] === "Person"));
+    const website = schemas[0]["@graph"].find((s) => s["@type"] === "WebSite");
+    assert.equal(website?.name, "Jalish Mahmud");
+    assert.equal(website.alternateName, undefined);
     assert([...html.matchAll(/<img\s[^>]*>/g)].some(([tag]) => {
       const image = attrs(tag);
       return image.src?.includes("/images/branding/jalish-mahmud-wordmark.svg") && image.alt === "Jalish Mahmud";
