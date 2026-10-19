@@ -72,7 +72,6 @@ html[data-design="v2"] * {
 
 html[data-design="v2"] {
     scroll-behavior: smooth;
-    scroll-padding-top: 110px;
 }
 
 html[data-design="v2"] body {
@@ -142,7 +141,6 @@ html[data-design="v2"] body > main {
 html[data-design="v2"] body > main section {
     position: relative;
     padding: 40px 0;
-    scroll-margin-top: 100px;
 }
 
 html[data-design="v2"] .btn {
