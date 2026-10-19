@@ -16,7 +16,7 @@ The live homepage before this change already published `Jalish Mahmud` as WebSit
 
 Next.js 16.3.2 App Router, JavaScript, CSS Modules, server-rendered public content and client components for interactions. No separate TypeScript-check script is configured. Use `npm ci` to preserve package-lock versions.
 
-Public routes are `/`, `/blog`, `/contact`, `/privacy-policy`, `/terms-and-conditions`, published category pages and published article pages. Skills, experience, projects and education are homepage sections, not separate routes. `/blog/[slug]/page.module.css` is a stylesheet, not a route. Existing legacy article URLs redirect to the canonical category/article hierarchy.
+Public routes are `/`, `/blog`, `/contact`, `/privacy-policy`, `/terms-and-conditions`, published category pages and published article pages. Skills, experience and projects are homepage sections, not separate routes. Education and certifications content is retained in the codebase but hidden from the homepage. `/blog/[slug]/page.module.css` is a stylesheet, not a route. Existing legacy article URLs redirect to the canonical category/article hierarchy.
 
 MongoDB supplies published posts when configured; `data/blog.json` is the development/fallback dataset otherwise. Never deploy fallback fixtures accidentally. Empty and draft-only categories are not publicized. Admin/login/preview pages require the existing authentication where applicable, have noindex/nofollow, and are excluded from the sitemap. Robots directives do not replace authentication.
 
